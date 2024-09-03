@@ -1,0 +1,30 @@
+{% extends 'dashboard/layout.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titulo</th>
+                <th>date publikasaun</th>
+                <th>Pulika Husi</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for page in news %}
+            <tr>
+                <td>{{ page.title }}</td>
+                <td>{{ page.date_post }}</td>
+                <td>{{ page.posted_by.username }}</td>
+                <td>
+                    <a href="{% url 'edit_news' page.id %}" class="btn btn-primary">Editar</a>
+                    <a href="{% url 'delete_news' page.id%}" class="btn btn-danger">Hamos</a>
+                   <!-- <a href="{% url 'delete_news' page.id%}" class="btn btn-success"  target="_blank" >Hare</a>-->
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{%endblock%}

@@ -1,0 +1,228 @@
+{% extends 'dashproject/base/layout.html' %} {% load static %} {% block content%}
+<!-- <script type = "text/javascript" >
+    function preventBack(){window.history.forward();}
+     setTimeout("preventBack()", 0);
+     window.onunload=function(){null};
+ </script> -->
+<style>
+  .nav-tabs .nav-item {
+    margin-right: 1rem;
+    /* Adjust this value for more or less spacing */
+  }
+
+  .nav-tabs .nav-link {
+    text-align: center;
+    border-radius: 0;
+    /* Remove border-radius if desired */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    /* Adjust padding if necessary */
+  }
+
+  .nav-tabs .nav-link i {
+    font-size: 1.5rem;
+    /* Adjust icon size if necessary */
+  }
+
+  .nav-tabs .nav-link span {
+    display: block;
+  }
+</style>
+<div class="container-fluid">
+  <!-- Start page title -->
+  <div class="row content-home mt-1 mb-1">
+    <div class="col-12">
+      <div
+        class="page-title-box d-flex align-items-center justify-content-between"
+      >
+        <div class="row">
+          <div class="col">
+            <button class="btn btn-warning">
+              <i class="fa fa-key"></i> URN ID :{{report_id}}
+            </button>
+            <button class="btn btn-light">
+              <i class="fa fa-user"></i>{{ user.first_name|upper }} {{user.last_name|upper }}
+            </button>
+            <button class="btn btn-light">
+              <i class="fa fa-clock"></i>{{report_created}}
+            </button>
+            <button class="btn btn-secondary">
+              <i class="fa fa-pencil-square"></i>{{report_status}}
+            </button>
+            <button class="btn btn-secondary">
+              <i class="fa fa-pencil-square"></i>View
+            </button>
+          </div>
+        </div>
+        <div class="page-title-right">
+          <ol class="breadcrumb m-0">
+            <li class="breadcrumb-item">
+              <a href="javascript: void(0);">Reporting</a>
+            </li>
+            <li class="breadcrumb-item active">Report</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab content -->
+  <div class="row content-home">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="container mt-4">
+          
+            <!-- Nav tabs -->
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link {% if request.GET.tab == 'initial' or not request.GET.tab %}active 
+        {%else%}disabled{% endif %}" id="initial-tab" data-toggle="tab" 
+        href="#initial" role="tab" aria-controls="initial" aria-selected="true">
+            <span class="d-block"><i class="fa fa-info"></i></span>
+            <span class="d-block">Initial</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {% if request.GET.tab == 'subjects' %}active{%else%}disabled{% endif %}" id="subjects-tab" data-toggle="tab" href="#subjects" role="tab" aria-controls="subjects" aria-selected="false">
+            <span class="d-block"><i class="fa fa-people-carry" aria-hidden="true"></i></span>
+            <span class="d-block">Subjects</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {% if request.GET.tab == 'text' %}active{%else%}disabled{% endif %}" id="text-tab" data-toggle="tab" href="#text" role="tab" aria-controls="text" aria-selected="false">
+            <span class="d-block"><i class="fa fa-address-book" aria-hidden="true"></i></span>
+            <span class="d-block">Text</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {% if request.GET.tab == 'attach' %}active{%else%}disabled{% endif %}" id="attachment-tab" data-toggle="tab" href="#attachment" role="tab" aria-controls="attachment" aria-selected="false">
+            <span class="d-block"><i class="fa fa-file" aria-hidden="true"></i></span>
+            <span class="d-block">Attachment</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {% if request.GET.tab == 'comments' %}active{%else%}disabled{% endif %}" id="comment-tab" data-toggle="tab" href="#comment" role="tab" aria-controls="comment" aria-selected="false">
+            <span class="d-block"><i class="fa fa-comment" aria-hidden="true"></i></span>
+            <span class="d-block">Analyst Comment</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {% if request.GET.tab == 'review' %}active{%else%}disabled{% endif %}" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">
+            <span class="d-block"><i class="fa fa-ad" aria-hidden="true"></i></span>
+            <span class="d-block">Review</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {% if request.GET.tab == 'disseminate' %}active{%else%}disabled{% endif %}" id="dissemination-tab" data-toggle="tab" href="#dissemination" role="tab" aria-controls="dissemination" aria-selected="false">
+            <span class="d-block"><i class="fa fa-fan" aria-hidden="true"></i></span>
+            <span class="d-block">Dissemination</span>
+        </a>
+    </li>
+    <!-- Add other tabs here -->
+</ul>
+
+<!-- Tab content -->
+<div class="tab-content" id="myTabContent">
+    <!-- Initial Form -->
+    <div class="tab-pane fade {% if request.GET.tab == 'initial' or not request.GET.tab %}show active{% endif %}"
+     id="initial" role="tabpanel" aria-labelledby="initial-tab">
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{ initial_form }}
+            <button type="submit" class="btn btn-primary mt-1" name="initial_form">Submit to Continue</button>
+        </form>
+    </div>
+
+    <!-- Subject Form -->
+    <div class="tab-pane fade {% if request.GET.tab == 'subjects' %}show active{% endif %}" id="subjects" role="tabpanel" aria-labelledby="subjects-tab">
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{ subject_form }}
+            <button type="submit" class="btn btn-transparent mt-1" name="initial_form">Back to previous</button>
+            <button type="submit" class="btn btn-primary mt-1" name="subject_form">Submit Subject Form</button>
+        </form>
+    </div>
+
+    <!-- Text Form -->
+    <div class="tab-pane fade {% if request.GET.tab == 'text' %}show active{% endif %}" id="text" role="tabpanel" aria-labelledby="text-tab">
+      <form method="POST" action="">
+        {% csrf_token %}
+        {{text_form}}
+        <button type="submit" class="btn btn-primary mt-1 " name="text_form">Add New
+            text</button>
+        <a href="{%url 'report-list'%}" class="btn btn-warning mt-1 ">Terminate</a>
+        <button type="button" class="btn btn-warning  mt-1" id="goToNextStep">
+            <i class="fa fa-plus"></i> <span class="text-uppercase">Go to Next Step</span>
+        </button>
+    </form>
+    {%include './text_list.html'%} 
+    </div>
+
+    <!-- File Form -->
+    <div class="tab-pane fade {% if request.GET.tab == 'attach' %}show active{% endif %}" id="attachment" role="tabpanel" aria-labelledby="attachment-tab">
+        <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ file_form }}
+            <button type="submit" class="btn btn-primary mt-1" name="file_form">Submit</button>
+        </form>
+    </div>
+
+    <!-- Comments Form -->
+    <div class="tab-pane fade {% if request.GET.tab == 'comments' %}show active{% endif %}" id="comment" role="tabpanel" aria-labelledby="comment-tab">
+        <form method="POST" action="">
+            {% csrf_token %}
+            {%include './comments.html'%}
+        </form>
+    </div>
+
+    <!-- Review Tab -->
+    <div class="tab-pane fade {% if request.GET.tab == 'review' %}show active{% endif %}" id="review" role="tabpanel" aria-labelledby="review-tab">
+        <!-- Add Review Content Here -->
+    </div>
+
+    <!-- Dissemination Tab -->
+    <div class="tab-pane fade {% if request.GET.tab == 'disseminate' %}show active{% endif %}" id="dissemination" role="tabpanel" aria-labelledby="dissemination-tab">
+        <!-- Add Dissemination Content Here -->
+    </div>
+</div>
+
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!--This query is for hide and show text box in the intial form-->
+<script>
+  $(document).ready(function () {
+    // Hide the textarea initially
+    $("#id_information_source").hide();
+
+    // Show/hide the textarea based on the selected option
+    $("#id_source").change(function () {
+      if ($(this).val() === "Information other") {
+        $("#id_information_source").show();
+      } else {
+        $("#id_information_source").hide();
+      }
+    });
+
+    // Trigger the change event on page load to handle the default selected option
+    $("#id_source").trigger("change");
+  });
+
+  //ba next page hudi edit page nia
+  $(document).ready(function() {
+    $('#goToNextStep').click(function() {
+        window.location.href = "{% url 'edit_report' report_id  %}?tab=attach";
+    });
+});
+</script>
+
+{% endblock %}

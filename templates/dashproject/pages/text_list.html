@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">User</th>
+          <th scope="col">Source Evaluation</th>
+          <th scope="col">Information Evaluation</th>
+          <th scope="">Update at</th>
+          <th scope="col">Text</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for comments in text_list %}
+        <tr>
+          <td scope="row">{{comments.user}}</td>
+          <td>{{comments.information_source}} - {{comments.get_information_source_display}}</td>
+          <td>{{comments.source_evaluation}} - {{comments.get_source_evaluation_display}}</td>
+          <td>{{comments.updated_at}}</td>
+          <td>{{comments.text}}</td>
+        </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+  </div>
+</div>

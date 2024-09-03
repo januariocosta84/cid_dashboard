@@ -1,0 +1,136 @@
+{% extends 'dashboard/layout.html' %} {% block content %}
+<div class="container-fluid">
+  {% comment %}
+  <div class="row">
+    <div class="col">
+      <form method="GET" action="{% url 'records' %}">
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="directorateSelect">Directorate</label>
+              <select
+                class="form-control"
+                id="directorateSelect"
+                name="directorate"
+              >
+                <option value="">Select Directorate</option>
+                <option value="1">Teste 1</option>
+                <option value="2">Teste 2</option>
+                <option value="3">Teste 3</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="sourceInfoSelect">Source Information</label>
+              <select
+                class="form-control"
+                id="sourceInfoSelect"
+                name="source_information"
+              >
+                <option value="">Select Source Information</option>
+                <option value="1">Teste 1</option>
+                <option value="2">Teste 2</option>
+                <option value="3">Teste 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="dateStart">Date Start</label>
+                  <input
+                    type="date"
+                    name="date_start"
+                    id="dateStart"
+                    class="form-control"
+                  />
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="dateFinish">Date Finish</label>
+                  <input
+                    type="date"
+                    name="date_finish"
+                    id="dateFinish"
+                    class="form-control"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="statusSelect">Status</label>
+              <select class="form-control" id="statusSelect" name="status">
+                <option value="">Select Status</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="searchInput">Search</label>
+              <input
+                type="text"
+                class="form-control"
+                id="searchInput"
+                name="search"
+                placeholder="You can use wildcard"
+              />
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success">Search</button>
+      </form>
+    </div>
+    <hr />
+  </div>
+  {% endcomment %}
+  <h2>Records</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Record URN</th>
+        <th>Directorate</th>
+        <th>Information Source</th>
+        <th>User</th>
+        <th>Updated at</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for record in records %}
+      <tr>
+        <td>{{ record.urn }}</td>
+        <td>{{ record.directorate.name }}</td>
+        <td>{{ record.information_source.parent }}</td>
+        <td>{{ record.user.name }}</td>
+        <td>{{ record.updated_at }}</td>
+        <td>{{ record.subject.status }}</td>
+        <td>
+          <a href="" class="btn btn-primary">View</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
+  </nav>
+</div>
+{% endblock %}

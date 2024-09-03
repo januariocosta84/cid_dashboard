@@ -1,0 +1,57 @@
+{%extends 'dashproject/base/layout.html'%} {% load static %} {% block content %}
+<div class="modal fade" id="modal-default">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Subject</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><strong>First Name: </strong><span id="name-data"></span></p>
+        <p><strong>Last Name: </strong><span id="last-data"></span></p>
+        <p><strong>Gender: </strong><span id="gender-data"></span></p>
+        <p><strong>Date of Birth: </strong><span id="dob-data"></span></p>
+        <p><strong>Approx Age: </strong><span id="approx-age-data"></span></p>
+        <p><strong>ID Type: </strong><span id="id-type-data"></span></p>
+        <p><strong>ID Number: </strong><span id="id-number-data"></span></p>
+        <p>
+          <strong>Home Address: </strong><span id="home-address-data"></span>
+        </p>
+        <p>
+          <strong>Business Name: </strong><span id="business-name-data"></span>
+        </p>
+        <p>
+          <strong>Business Address: </strong
+          ><span id="business-address-data"></span>
+        </p>
+        <p><strong>BIN/TIN: </strong><span id="bin-tin-data"></span></p>
+        <p><strong>Telephone: </strong><span id="telephone-data"></span></p>
+        <p><strong>Description: </strong><span id="description-data"></span></p>
+        <p><strong>Created At: </strong><span id="created-at-data"></span></p>
+        <p><strong>Updated At: </strong><span id="updated-at-data"></span></p>
+        <p>
+          <strong>Conveyance Description: </strong
+          ><span id="conveyance-description-data"></span>
+        </p>
+        <p><strong>Status: </strong><span id="status-data"></span></p>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+{%endblock%}

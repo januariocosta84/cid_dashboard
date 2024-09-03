@@ -1,0 +1,117 @@
+{% extends 'dashproject/base/layout.html' %} {% load static %} {% block content %}
+<div class="container-fluid">
+  <div class="row content-home">
+    <div class="row content-home">
+      <div class="col">
+        <h6>
+          Records <span class="badge badge-primary">{{ records_count }}</span>
+        </h6>
+        <table class="table mt-2 table-bordered table-hover" id="example2">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Information Source</th>
+              <th>User</th>
+              <th>Updated at</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for record in records %}
+            <tr class="mt-2">
+              <td><a href="#">{{ record.information_source_id}}</a></td>
+              <td>{{ record.department.name }}</td>
+              <td>{{ record.information_source.name }}</td>
+              <td>{{ record.user.name }}</td>
+              <td><time datetime="">{{ record.updated_at }}</time></td>
+              <td class="badge badge-secondary ml-2">
+                <i
+                  class="{% if record.status.name == 'Finalized' %}fas fa-folder {%else %} fas fa-pencil-alt{% endif %}"
+                ></i
+                >{{ record.status.name }}
+              </td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-transparent dropdown-toggle text-uppercase"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Actions
+                </button>
+                <div class="dropdown-menu">
+                  <button
+                    type="button"
+                    class="btn btn-transparent p-3 text-uppercase view-subject-btn fas fa-eye"
+                    data-id="{{ record.id }}"
+                    data-toggle="modal"
+                    data-target="#modal-default"
+                  >
+                    View
+                  </button>
+                  {% comment %}
+                  <a
+                    class="dropdown-item view-subject-btn"
+                    href="subject_details/{{record.id}}"
+                    ><i class="fas fa-eye"></i> View</a
+                  >
+                  {% endcomment %}
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="modal-default"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modal-default-label"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal-default-label">Subject</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="card">
+              <p><strong>First Name</strong></p>
+              <span class="subject-first-name"></span>
+              <p><strong>Last Name</strong></p>
+              <span class="subject-last-name"></span>
+              <p><strong>Gender</strong></p>
+              <span class="subject-gender"></span>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+</div>

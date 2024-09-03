@@ -1,0 +1,39 @@
+{% include 'dashproject/account/base_css.html' %} {% load i18n static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      href="{% static 'dashproject/admin-lte/dist/img/icon-costume.png' %}"
+      rel="icon"
+    />
+    <title>CID - Customs Intelligence Database</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.css"
+    />
+  </head>
+  <body class="hold-transition login-page">
+    <div class="login-box costumize-login">
+      <div class="login-logo">
+        <a href=""><b>CID - Customs Intelligence Database</b></a>
+      </div>
+      <div class="card">
+        <div class="card-body login-card-body">
+          <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %} {{form}}
+            <div class="row mt-1">
+              <div class="col-4">
+                <button type="submit" class="btn btn-primary btn-block">
+                  Login
+                </button>
+              </div>
+            </div>
+          </form>
+          {% include 'dashproject/base/messaging.html' %}
+        </div>
+      </div>
+    </div>
+    {% include 'dashproject/account/base_js.html' %}
+  </body>
+</html>

@@ -1,0 +1,106 @@
+/* Base styles */
+section.content {
+    margin-left: 100px;
+}
+
+.margin-costumize {
+    margin-left: 150px;
+}
+
+.content-home {
+    margin-left: 250px;
+}
+
+.costumize-login{
+    position: absolute;
+    background-color: rgb(189, 227, 227);
+    width: 600px;
+    height: 300px;
+}
+
+/* Tablet view adjustments (up to 768px) */
+@media (max-width: 768px) {
+    section.content {
+        margin-left: 0px; /* Adjust margin for tablet */
+    }
+
+    .margin-costumize {
+        margin-left: 0px; /* Adjust margin for tablet */
+    }
+
+    .content-home {
+        margin-left: px; /* Adjust margin for tablet */
+    }
+
+    .table thead {
+        display: none; /* Hide table header */
+    }
+
+    .table tr {
+        display: block;
+        margin-bottom: 1rem;
+    }
+
+    .table td {
+        display: block;
+        text-align: right;
+        border-top: none;
+        position: relative;
+        padding-left: 50%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    .table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 1rem;
+        font-weight: bold;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        text-align: left;
+    }
+
+    .table td:last-child {
+        padding-bottom: 1rem;
+    }
+}
+
+/* Mobile view adjustments (up to 480px) */
+@media (max-width: 480px) {
+    section.content {
+        margin-left: 20px; /* Adjust margin for mobile */
+    }
+
+    .margin-costumize {
+        margin-left: 25px; /* Adjust margin for mobile */
+    }
+
+    .content-home {
+        margin-left: 50px; /* Adjust margin for mobile */
+    }
+
+    .table td {
+        padding-left: 40%;
+    }
+
+    .table td::before {
+        width: 40%;
+    }
+}
+
+.tab-content {
+    margin-top: 20px;
+}
+
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+}

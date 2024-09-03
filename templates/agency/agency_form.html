@@ -1,0 +1,44 @@
+{% extends 'dashproject/base/layout.html' %} {% load static %} {% block content%}
+<div class="card">
+  <div class="card-body">
+    <div class="form-content my-3 p-3">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-7">
+            <div class="card shadow-lg border-0 rounded-lg mt-0 mb-5">
+              <div class="card-header justify-content-center">
+                <h2>Create New Agency Name</h2>
+              </div>
+              <div class="card-body">
+               
+                <form method="POST" action="">
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <label for="agency">Agency Name :</label>
+                    <input
+                      name="name"
+                      type="text"
+                      class="form-control"
+                      id="name"
+                      value="{{ form.name.value|default_if_none:'' }}"
+                      required
+                    />
+                  </div>
+                  <button type="submit" class="btn btn-primary">Create</button>
+                </form>
+              </div>
+              {% comment %}
+              <div class="card-footer text-center">
+                <div class="small">
+                  <a href="{% url 'login' %}">Have an account? Go to Sign in</a>
+                </div>
+              </div>
+              {% endcomment %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

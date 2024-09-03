@@ -1,0 +1,23 @@
+{% extends 'dashboard/layout.html' %}
+{% load static %}
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+
+{% block content %}
+<div class="container mt-1">
+    <form method="post" enctype="multipart/form-data"> 
+        {% csrf_token %} 
+        {{ form.media}}
+        {% for field in form %}
+        <div class="form-group">
+            <div><label for="{{ field.id_for_label }}" class="text-dark">{{ field.label }}: </label></div>
+            {{ field }}
+        </div>
+        {% endfor %}
+        <div class="row justify-content-center">
+            <input type="submit" class="btn btn-info btn-lg" value="Guardar" />
+        </div>
+    </form>
+</div>
+
+{% endblock %}

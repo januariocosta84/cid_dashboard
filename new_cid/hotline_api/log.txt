@@ -1,0 +1,46 @@
+[2024-08-07 02:39:57] Build Client
+[2024-08-07 02:39:57] Get Hotlines Extensions
+[2024-08-07 02:40:01] Found Extensions: Array
+(
+    [0] => Array
+        (
+            [filename] => 5000
+            [directory] => voicemail
+        )
+
+    [1] => Array
+        (
+            [filename] => default_filename
+            [directory] => 
+        )
+
+)
+
+[2024-08-07 02:40:01] Filtering extensions by: Array
+(
+    [0] => 5000
+)
+
+[2024-08-07 02:40:01] Extensions to be processed: Array
+(
+    [0] => Array
+        (
+            [filename] => 5000
+            [directory] => voicemail
+        )
+
+)
+
+[2024-08-07 02:40:03] Get Hotlines Files: Directory,Filename
+voicemail/default/5000/INBOX,msg0001.txt
+voicemail/default/5000/INBOX,msg0001.wav
+voicemail/default/5000/INBOX,msg0000.wav
+voicemail/default/5000/INBOX,msg0000.txt
+
+[2024-08-07 02:40:04] Downloaded file: C:\Users\Luis M Leitao\Documents\new_cid\hotline_api\voicemail/default/5000/INBOX\24_msg0001.txt
+[2024-08-07 02:40:17] Downloaded file: C:\Users\Luis M Leitao\Documents\new_cid\hotline_api\voicemail/default/5000/INBOX\24_msg0001.wav
+[2024-08-07 02:40:27] Downloaded file: C:\Users\Luis M Leitao\Documents\new_cid\hotline_api\voicemail/default/5000/INBOX\24_msg0000.wav
+[2024-08-07 02:40:29] Downloaded file: C:\Users\Luis M Leitao\Documents\new_cid\hotline_api\voicemail/default/5000/INBOX\24_msg0000.txt
+[2024-08-07 02:40:31] GET request failed: Client error: `GET https://10.10.0.20:8443/recapi?filedir=&filename=default_filename` resulted in a `404 Not Found` response
+[2024-08-07 02:40:31] Failed to download file: C:\Users\Luis M Leitao\Documents\new_cid\hotline_api\\24_default_filename. Error: Client error: `GET https://10.10.0.20:8443/recapi?filedir=&filename=default_filename` resulted in a `404 Not Found` response
+[2024-08-07 02:40:31] Error processing hotline 5000: Client error: `GET https://10.10.0.20:8443/recapi?filedir=&filename=default_filename` resulted in a `404 Not Found` response

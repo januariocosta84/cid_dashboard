@@ -1,0 +1,19 @@
+{% extends 'dashproject/base/layout.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+  <div class="card mt-1">
+    <div class="card-body">
+      <h2>Add Users to a Group</h2>
+      <form method="POST" action="">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="user">Select Users:</label>
+          {{ form.user }}  <!-- This renders the select dropdown with users -->
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

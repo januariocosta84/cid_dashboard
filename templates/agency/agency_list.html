@@ -1,0 +1,428 @@
+
+{% extends 'dashproject/base/layout.html' %} {% load static %} {% block content%}
+
+<div class="container-fluid">
+  <!-- start page title -->
+  <div class="row content-home mt-1 mb-1">
+    <div class="col-12">
+      <div
+        class="page-title-box d-flex align-items-center justify-content-between"
+      >
+        <h4 class="mb-0">Agency List</h4>
+
+        <div class="page-title-right">
+          <ol class="breadcrumb m-0">
+            <li class="breadcrumb-item">
+              <a href="javascript: void(0);">Agency</a>
+            </li>
+            <li class="breadcrumb-item active">Agency List</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row content-home">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row mb-2">
+            <div class="col-md-6">
+              <div class="mb-3 ">
+                <a
+                  href="{%url 'create-agency'%}"
+                  class="btn btn-success pl-1"
+                  ><i class="fa fa-builiding-o " aria-hidden="true"></i>Add New Agency</a
+                >
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-inline float-md-right mb-3">
+                <div class="search-box ml-2">
+                  <div class="position-relative">
+                    <input
+                      type="text"
+                      class="form-control rounded bg-light border-0"
+                      placeholder="Search..."
+                    />
+                    <i class="mdi mdi-magnify search-icon"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end row -->
+          <div class="table-responsive mb-4">
+            <table class="table table-centered table-nowrap table-check mb-0">
+              <thead>
+                <tr>
+                  <th scope="col">
+                    ID
+                  </th>
+                  <th scope="col">Agency Name</th>
+                  <th scope="col">Date Created</th>
+                  <th scope="col">Created By</th>
+               <th scope="col">Edit</th>
+                </tr>
+              </thead>
+              <tbody>
+                {%for agency in page_obj %}
+                <tr>
+                  <td>
+                    {{agency.id}}
+                  </td>
+                  <td>
+                    <a href="#" class="text-body">{{agency.name}}</a>
+                  </td>
+                  <td>{{agency.created_at}}</td>
+                  <td>{{agency.created_by.first_name}} </td>
+                    <td>
+                        <a href="{% url 'agency-update' agency.pk %}" class="btn btn-info">Edit</a>
+                        <a href="{% url 'agency-delete' agency.pk %}" class="btn btn-danger ">Delete</a>
+                    </td>
+                  </td>
+                </tr>
+                {%endfor%}
+                <!-- <tr>
+                                <th scope="row">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="contacusercheck2">
+                                        <label class="custom-control-label" for="contacusercheck2"></label>
+                                    </div>
+                                </th>
+                                <td>
+                                    <img src="assets/images/users/avatar-2.jpg" alt="" class="avatar-xs rounded-circle mr-2">
+                                    <a href="#" class="text-body">Helen Barron</a>
+                                </td>
+                                <td>Web Designer</td>
+                                <td>HelenBarron@drezon.com</td>
+                                <td>
+                                    <ul class="list-inline mb-0">
+                                        <li class="list-inline-item">
+                                            <a href="javascript:void(0);" class="px-2 text-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="uil uil-pen font-size-18"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="javascript:void(0);" class="px-2 text-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="uil uil-trash font-size-18"></i></a>
+                                        </li>
+                                        <li class="list-inline-item dropdown">
+                                            <a class="text-muted dropdown-toggle font-size-18 px-2" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true">
+                                                <i class="uil uil-ellipsis-v"></i>
+                                            </a>
+                                        
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="contacusercheck3">
+                                        <label class="custom-control-label" for="contacusercheck3"></label>
+                                    </div>
+                                </th>
+                                <td>
+                                    <img src="assets/images/users/avatar-3.jpg" alt="" class="avatar-xs rounded-circle mr-2">
+                                    <a href="#" class="text-body">Philip Theroux</a>
+                                </td>
+                                <td>UI/UX Designer</td>
+                                <td>PhilipTheroux@drezon.com</td>
+                                <td>
+                                    <ul class="list-inline mb-0">
+                                        <li class="list-inline-item">
+                                            <a href="javascript:void(0);" class="px-2 text-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="uil uil-pen font-size-18"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="javascript:void(0);" class="px-2 text-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="uil uil-trash font-size-18"></i></a>
+                                        </li>
+                                        <li class="list-inline-item dropdown">
+                                            <a class="text-muted dropdown-toggle font-size-18 px-2" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true">
+                                                <i class="uil uil-ellipsis-v"></i>
+                                            </a>
+                                        
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="contacusercheck4">
+                                        <label class="custom-control-label" for="contacusercheck4"></label>
+                                    </div>
+                                </th>
+                                <td>
+                                    <img src="assets/images/users/avatar-4.jpg" alt="" class="avatar-xs rounded-circle mr-2">
+                                    <a href="#" class="text-body">Gerald Moyer</a>
+                                </td>
+                                <td>Backend Developer</td>
+                                <td>GeraldMoyer@drezon.com</td>
+                                <td>
+                                    <ul class="list-inline mb-0">
+                                        <li class="list-inline-item">
+                                            <a href="javascript:void(0);" class="px-2 text-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="uil uil-pen font-size-18"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="javascript:void(0);" class="px-2 text-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="uil uil-trash font-size-18"></i></a>
+                                        </li>
+                                        <li class="list-inline-item dropdown">
+                                            <a class="text-muted dropdown-toggle font-size-18 px-2" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true">
+                                                <i class="uil uil-ellipsis-v"></i>
+                                            </a>
+                                        
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="contacusercheck5">
+                                        <label class="custom-control-label" for="contacusercheck5"></label>
+                                    </div>
+                                </th>
+                                <td>
+                                    <img src="assets/images/users/avatar-5.jpg" alt="" class="avatar-xs rounded-circle mr-2">
+                                    <a href="#" class="text-body">Sharon Carver</a>
+                                </td>
+                                <td>Frontend Developer</td>
+                                <td>SharonCarver@drezon.com</td>
+                                <td>
+                                    <ul class="list-inline mb-0">
+                                        <li class="list-inline-item">
+                                            <a href="javascript:void(0);" class="px-2 text-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="uil uil-pen font-size-18"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="javascript:void(0);" class="px-2 text-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="uil uil-trash font-size-18"></i></a>
+                                        </li>
+                                        <li class="list-inline-item dropdown">
+                                            <a class="text-muted dropdown-toggle font-size-18 px-2" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true">
+                                                <i class="uil uil-ellipsis-v"></i>
+                                            </a>
+                                        
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="#">Edit</a>
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Remove</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="contacusercheck6">
+                                        <label class="custom-control-label" for="contacusercheck6"></label>
+                                    </div>
+                                </th>
+                                <td>
+                                    <img src="assets/images/users/avatar-6.jpg" alt="" class="avatar-xs rounded-circle mr-2">
+                                    <a href="#" class="text-body">Jody Tondreau</a>
+                                </td>
+                                <td>PHP Developer</td>
+                                <td>JodyTondreau@drezon.com</td>
+                                <td>
+                                    <ul class="list-inline mb-0">
+                                        <li class="list-inline-item">
+                                            <a href="javascript:void(0);" class="px-2 text-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="uil uil-pen font-size-18"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="javascript:void(0);" class="px-2 text-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="uil uil-trash font-size-18"></i></a>
+                                        </li>
+                                        <li class="list-inline-item dropdown">
+                                            <a class="text-muted dropdown-toggle font-size-18 px-2" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true">
+                                                <i class="uil uil-ellipsis-v"></i>
+                                            </a>
+                                        
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="contacusercheck7">
+                                        <label class="custom-control-label" for="contacusercheck7"></label>
+                                    </div>
+                                </th>
+                                <td>
+                                    <img src="assets/images/users/avatar-7.jpg" alt="" class="avatar-xs rounded-circle mr-2">
+                                    <a href="#" class="text-body">Dennis Goulet</a>
+                                </td>
+                                <td>Graphic Designer</td>
+                                <td>DennisGoulet@drezon.com</td>
+                                <td>
+                                    <ul class="list-inline mb-0">
+                                        <li class="list-inline-item">
+                                            <a href="javascript:void(0);" class="px-2 text-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="uil uil-pen font-size-18"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="javascript:void(0);" class="px-2 text-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="uil uil-trash font-size-18"></i></a>
+                                        </li>
+                                        <li class="list-inline-item dropdown">
+                                            <a class="text-muted dropdown-toggle font-size-18 px-2" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true">
+                                                <i class="uil uil-ellipsis-v"></i>
+                                            </a>
+                                        
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="contacusercheck8">
+                                        <label class="custom-control-label" for="contacusercheck8"></label>
+                                    </div>
+                                </th>
+                                <td>
+                                    <img src="assets/images/users/avatar-8.jpg" alt="" class="avatar-xs rounded-circle mr-2">
+                                    <a href="#" class="text-body">Cecelia Farrell</a>
+                                </td>
+                                <td>Angular Developer</td>
+                                <td>CeceliaFarrell@drezon.com</td>
+                                <td>
+                                    <ul class="list-inline mb-0">
+                                        <li class="list-inline-item">
+                                            <a href="javascript:void(0);" class="px-2 text-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="uil uil-pen font-size-18"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="javascript:void(0);" class="px-2 text-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="uil uil-trash font-size-18"></i></a>
+                                        </li>
+                                        <li class="list-inline-item dropdown">
+                                            <a class="text-muted dropdown-toggle font-size-18 px-2" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true">
+                                                <i class="uil uil-ellipsis-v"></i>
+                                            </a>
+                                        
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="contacusercheck9">
+                                        <label class="custom-control-label" for="contacusercheck9"></label>
+                                    </div>
+                                </th>
+                                <td>
+                                    <img src="assets/images/users/avatar-2.jpg" alt="" class="avatar-xs rounded-circle mr-2">
+                                    <a href="#" class="text-body">Helen Barron</a>
+                                </td>
+                                <td>Web Designer</td>
+                                <td>HelenBarron@drezon.com</td>
+                                <td>
+                                    <ul class="list-inline mb-0">
+                                        <li class="list-inline-item">
+                                            <a href="javascript:void(0);" class="px-2 text-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="uil uil-pen font-size-18"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="javascript:void(0);" class="px-2 text-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="uil uil-trash font-size-18"></i></a>
+                                        </li>
+                                        <li class="list-inline-item dropdown">
+                                            <a class="text-muted dropdown-toggle font-size-18 px-2" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true">
+                                                <i class="uil uil-ellipsis-v"></i>
+                                            </a>
+                                        
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="contacusercheck10">
+                                        <label class="custom-control-label" for="contacusercheck10"></label>
+                                    </div>
+                                </th>
+                                <td>
+                                    <img src="assets/images/users/avatar-4.jpg" alt="" class="avatar-xs rounded-circle mr-2">
+                                    <a href="#" class="text-body">Gerald Moyer</a>
+                                </td>
+                                <td>Backend Developer</td>
+                                <td>GeraldMoyer@drezon.com</td>
+                                <td>
+                                    <ul class="list-inline mb-0">
+                                        <li class="list-inline-item">
+                                            <a href="javascript:void(0);" class="px-2 text-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="uil uil-pen font-size-18"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="javascript:void(0);" class="px-2 text-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="uil uil-trash font-size-18"></i></a>
+                                        </li>
+                                        <li class="list-inline-item dropdown">
+                                            <a class="text-muted dropdown-toggle font-size-18 px-2" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true">
+                                                <i class="uil uil-ellipsis-v"></i>
+                                            </a>
+                                        
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </td>
+                              </tr> -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+    
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+    
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+  </div>
+  
+</div>
+
+{%endblock%}

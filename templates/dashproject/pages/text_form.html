@@ -1,0 +1,69 @@
+<div class="container mt-4">
+    <h2 class="mt-2">Add New Text</h2>
+    <form action="/subjects/" method="post">
+        <div class="form-group mb-3">
+            <input type="text" class="form-control text-black-50" id="first_name" name="first_name" placeholder="Text" />
+        </div>
+        <div class="form-group mb-3">
+            <label>Select a Source Evaluation</label>
+            <div class="row">
+                <!-- Card 1 -->
+                <div class="col-md-2 mb-3">
+                    <div class="card card-selection" data-value="option1">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">A</h5>
+                            <p class="card-text">Always Reliable</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="col-md-2 mb-3">
+                    <div class="card card-selection" data-value="option2">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">B</h5>
+                            <p class="card-text">Most Reliable</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="col-md-2 mb-3">
+                    <div class="card card-selection" data-value="option3">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">C</h5>
+                            <p class="card-text">Fairly Reliable</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="col-md-2 mb-3">
+                    <div class="card card-selection" data-value="option4">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">D</h5>
+                            <p class="card-text">Not usual Reliable</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="col-md-2 mb-3">
+                    <div class="card card-selection" data-value="option4">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">D</h5>
+                            <p class="card-text">Not usual Reliable</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="col-md-2 mb-3">
+                    <div class="card card-selection" data-value="option4">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">D</h5>
+                            <p class="card-text">Not usual Reliable</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="selected_option" name="selected_option" />
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

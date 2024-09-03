@@ -1,0 +1,24 @@
+{% extends 'dashproject/base/layout.html' %} {% load static %} {% block content%}
+<div class="container">
+  <div class="card mt-1">
+    <div class="card-body">
+      <h2>Create New Group</h2>
+      <form method="POST" action="">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="agency">Group Name :</label>
+          <input
+            name="name"
+            type="text"
+            class="form-control"
+            id="name"
+            value="{{ form.name.value|default_if_none:'' }}"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+      </form>
+    </div>
+  </div>
+</div>
+{%endblock%}

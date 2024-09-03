@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <form action="POST" method="post">
+        {% csrf_token %} {{comments_form}}
+        <button
+          class="btn btn-primary mb-1 mt-1 toastrDefaultSuccess"
+          type="submit"
+          name="comments_form"
+        >
+          <i class="fa fa-plus"> </i
+          ><span class="text-uppercase">Add New Comment</span>
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Analyst Comments(s)</th>
+          <th scope="col">User</th>
+          <th scope="col">Update at</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for comments in comments %}
+        <tr>
+          <td scope="row">{{comments.comment}}</td>
+          <td>{{comments.user.first_name}}</td>
+          <td>{{comments.updated_at}}</td>
+        </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+  </div>
+</div>
