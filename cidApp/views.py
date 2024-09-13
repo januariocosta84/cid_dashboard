@@ -15,7 +15,17 @@ from django.contrib.auth.views import LoginView
 from .decorator_costum import GroupRequiredMixin
 from django.http import JsonResponse
 from django.core.paginator import Paginator,PageNotAnInteger, EmptyPage
+import requests
+from .api_consuming import insert_subject
 
+class SyncSubjectsView(View):
+    def get(self, request, *args, **kwargs):
+        try:
+            insert_subject()  
+            return JsonResponse({'status': 'success', 'message': 'Subjects synchronized successfully!'})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+        
 class HotLineAndWebView(LoginRequiredMixin,GroupRequiredMixin,TemplateView):
     template_name = 'dashproject/pages/call_web_page.html'
     group_names =['administrator']
@@ -67,8 +77,6 @@ class ViewAllReport(LoginRequiredMixin,TemplateView):
         context['report_form'] = self.report_form
         return context
 
-
-    
 class CreateReportWebCallView(LoginRequiredMixin, GroupRequiredMixin, TemplateView):
     template_name = 'dashproject/pages/report.html'
     group_names = ['administrator']
@@ -80,7 +88,9 @@ class CreateReportWebCallView(LoginRequiredMixin, GroupRequiredMixin, TemplateVi
     comments_form = CommentForm
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         web_id =self.kwargs.get('web_id')
+        print("print webid",web_id)
         context = super().get_context_data(**kwargs)
+        context['webformID']= CallAndWebForm.objects.get(id=web_id)
         context['call_web'] = CallAndWebForm.objects.all()
         context['id'] = self.request.user.id
         user_group = self.request.user.groups.values_list('name', flat=True)
@@ -273,7 +283,8 @@ class CreateReportWebView(LoginRequiredMixin, GroupRequiredMixin, TemplateView):
                 initial=initial_instance,
                 agency=agency,
                 status="Incomplete",
-                information_other=initial_instance.information_source
+                information_other=initial_instance.information_source,
+                #source =initial_instance.id
             )
             request.session['report_id'] = report.id
             request.session['report_status'] = report.status
@@ -325,7 +336,6 @@ class CreateReportWebView(LoginRequiredMixin, GroupRequiredMixin, TemplateView):
             request.session.pop('report_id', None)
             return redirect('report-list')
   
-
 class ReportDetail(DetailView):
     model = Report
     template_name ='dashproject/pages/detail_report.html'
@@ -348,31 +358,75 @@ class ReportDetail(DetailView):
 class DetailSubject(DetailView,):
     login_url ='login'
     model = WebForm
-    #template_name = 'dashproject/base/detail_subject.html'
+    template_name = 'dashproject/pages/detail_subject.html'
     def get(self, request, *args, **kwargs):
         if request.headers.get('x-requested-with') == 'XMLHttpRequest':
             detail_webform = self.get_object()
+            print("Print first name",detail_webform.created_at)
+            
             data = {
-                 'name': detail_webform.first_name,
+                'id':detail_webform.id,
+                'first_name': detail_webform.first_name,
                 'last_name': detail_webform.last_name,
-                'nationality': detail_webform.nationality,
-                # Add other necessary fields here
-                'gender': detail_webform.gender,
-                'dob': detail_webform.dob,
-                'approx_age': detail_webform.approx_age,
-                'id_type': detail_webform.id_type,
-                'id_number': detail_webform.id_number,
-                'home_address': detail_webform.home_address,
+                'middle_name': detail_webform.middle_name,
+                'nick_name': detail_webform.nick_name,
+                'description_subject': detail_webform.description_subject,
                 'business_name': detail_webform.business_name,
-                'business_address': detail_webform.business_address,
-                'bin_tin': detail_webform.bin_tin,
-                'telephone': detail_webform.telephone,
-                'description': detail_webform.description,
+                
+                # Contact information
+                'address': detail_webform.address,
+                'post_code': detail_webform.post_code,
+                'country': detail_webform.country,
+                'phone_num': detail_webform.phone_num,
+                
+                # Transportation information
+                'vehicle': detail_webform.vehicle,
+                'routing': detail_webform.routing,
+                'ferry': detail_webform.ferry,
+                'vessel': detail_webform.vessel,
+                'cargo': detail_webform.cargo,
+                'other_trans': detail_webform.other_trans,
+                
+                # Personal details
+                'approx_age': detail_webform.approx_age,
+                'dob': detail_webform.dob,
+                'nationality': detail_webform.nationality,
+                
+                # Event details
+                'any_other': detail_webform.any_other,
+                'what': detail_webform.what,
+                'location': detail_webform.location,
+                'quando': detail_webform.quando,
+                'how_happen': detail_webform.how_happen,
+                'how_long': detail_webform.how_long,
+                
+                # Additional information
+                'other_infor': detail_webform.other_infor,
+                'your_connection': detail_webform.your_connection,
+                'still_connect': detail_webform.still_connect,
+                
+                # Involvement details
+                'how_did': detail_webform.how_did,
+                'others_know_information': detail_webform.others_know_information,
+                'how_many': detail_webform.how_many,
+                'affect_information': detail_webform.affect_information,
+                
+                # Anonymous details
+                'if_yes': detail_webform.if_yes,
+                'prefer_anonymous': detail_webform.prefer_anonymous,
+                'an_first_name': detail_webform.an_first_name,
+                'an_last_name': detail_webform.an_last_name,
+                'an_middle_name': detail_webform.an_middle_name,
+                'an_phone_number': detail_webform.an_phone_number,
+                'an_email': detail_webform.an_email,
+                
+                # Additional fields
                 'created_at': detail_webform.created_at,
-                'updated_at': detail_webform.updated_at,
-                'conveyance_description': detail_webform.description,
                 'status': detail_webform.status,
-            }
+                
+                # Call preference
+                'ligar': detail_webform.ligar,
+}
             print(data)
             return JsonResponse(data)
         else:
@@ -384,11 +438,16 @@ class EditReport(LoginRequiredMixin,GroupRequiredMixin,View):
     def get(self,request,*args, **kwargs):
         report_id = kwargs.get('report_id')
         report = get_object_or_404(Report, id= report_id)
+        # try:
+        #     source = get_object_or_404(CallAndWebForm, id=report.source_id)
+        #     source_type = source.type
+        #     webform_id = source
+        # except (CallAndWebForm.DoesNotExist, AttributeError):
+        #     source = None
+        #     webform_id = None
+        source = get_object_or_404(CallAndWebForm, id=report.source_id)
         comments = Comments.objects.filter(report= report)
         text_list = TextAttach.objects.filter(report=report)
-        for i in comments:
-            print(i.comment)
-        print(report.status)
         initial_form = InitialForm(instance = report.initial)
         try:
             subject_form = SubjectForm(instance=report.Subject)
@@ -410,6 +469,9 @@ class EditReport(LoginRequiredMixin,GroupRequiredMixin,View):
             'comments_form': comments_form,
             'comments':comments,
             'text_list':text_list,
+            'webformID':source,
+            #'check':source.type
+            
         }
         
         return render(request, 'dashproject/pages/report_edit.html', context)
@@ -425,7 +487,7 @@ class EditReport(LoginRequiredMixin,GroupRequiredMixin,View):
                 return redirect(f'/report/{report_id}/?tab=subjects')  # Include report_id in the URL
 
         elif 'subject_form' in request.POST and request.method=='POST':
-            if report.Subject_id is None:
+            if report.subject_id is None:
                 subject_form = SubjectForm(request.POST)
                 if subject_form.is_valid():
                     subjects=subject_form.save()
@@ -523,6 +585,7 @@ class EditReportReview(LoginRequiredMixin,GroupRequiredMixin,View):
     def get(self,request,*args, **kwargs):
         report_id = kwargs.get('report_id')
         report = get_object_or_404(Report, id= report_id)
+        print("bug",report)
         comments = Comments.objects.filter(report= report)
         text_list = TextAttach.objects.filter(report=report)
         user_group = self.request.user.groups.values_list('name', flat=True)

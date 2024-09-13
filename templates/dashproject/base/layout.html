@@ -1,268 +1,256 @@
 <!DOCTYPE html>
 {%load static%}
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="{% static 'dashproject/admin-lte/dist/img/icon-costume.png'%}"
-      rel="icon"
-    />
-    <title>CID - Costums Intelligence Database</title>
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="{% static 'dashproject/admin-lte/plugins/fontawesome-free/css/all.min.css'%}"
-    />
-    <link
-      rel="stylesheet"
-      href="{% static 'dashproject/admin-lte/plugins/flag-icon-css/css/flag-icon.min.css'%}"
-    />
-    <!-- Ionicons -->
-    <link
-      rel="stylesheet"
-      href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
-    />
-    <!-- Tempusdominus Bbootstrap 4 -->
-    <link
-      rel="stylesheet"
-      href="{% static 'dashproject/admin-lte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css'%}"
-    />
-    <!-- iCheck -->
-    <link
-      rel="stylesheet"
-      href="{% static 'dashproject/admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css'%}"
-    />
-    <!-- JQVMap -->
-    <link
-      rel="stylesheet"
-      href="{% static 'dashproject/admin-lte/plugins/jqvmap/jqvmap.min.css'%}"
-    />
-    <!-- Theme style -->
-    <link
-      rel="stylesheet"
-      href="{% static 'dashproject/admin-lte/dist/css/adminlte.min.css'%}"
-    />
-    <!-- overlayScrollbars -->
-    <link
-      rel="stylesheet"
-      href="{% static 'dashproject/admin-lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css'%}"
-    />
-    <!-- Daterange picker -->
-    <link
-      rel="stylesheet"
-      href="{% static 'dashproject/admin-lte/plugins/daterangepicker/daterangepicker.css'%}"
-    />
-    <!-- summernote -->
-    <link
-      rel="stylesheet"
-      href="{% static 'dashproject/admin-lte/plugins/summernote/summernote-bs4.css'%}"
-    />
-    <!-- Google Font: Source Sans Pro -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="{% static 'dashproject/admin-lte/dist/css/style.css'%}"
-    />
-    <link rel="stylesheet" href="{% static 'dashboard/css/style.css'%}" />
-    <!-- DataTables -->
-    <link
-      rel="stylesheet"
-      href="{% static 'dashproject/admin-lte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css'%}"
-    />
-    <link
-      rel="stylesheet"
-      href="{% static 'dashproject/admin-lte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css'%}"
-    />
-    <link
-      rel="stylesheet"
-      href="{% static 'dashproject/admin-lte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css'%}"
-    />
-    <link
-      rel="stylesheet"
-      href="{% static 'dashproject/admin-lte/plugins/toastr/toastr.min.css'%}"
-    />
-  </head>
-  <body class="hold-transition sidebar-mini layout-fixed">
-    <div class="wrapper">
-      <!--Start Navbar Section-->
 
-      {% include 'dashproject/base/navbar.html'%}
-      <!--Closed Navbar Section-->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="{% static 'dashproject/admin-lte/dist/img/icon-costume.png'%}" rel="icon" />
+  <title>CID - Costums Intelligence Database</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static 'dashproject/admin-lte/plugins/fontawesome-free/css/all.min.css'%}" />
+  <link rel="stylesheet" href="{% static 'dashproject/admin-lte/plugins/flag-icon-css/css/flag-icon.min.css'%}" />
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <link rel="stylesheet"
+    href="{% static 'dashproject/admin-lte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css'%}" />
+  <!-- iCheck -->
+  <link rel="stylesheet" href="{% static 'dashproject/admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css'%}" />
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="{% static 'dashproject/admin-lte/plugins/jqvmap/jqvmap.min.css'%}" />
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'dashproject/admin-lte/dist/css/adminlte.min.css'%}" />
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet"
+    href="{% static 'dashproject/admin-lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css'%}" />
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="{% static 'dashproject/admin-lte/plugins/daterangepicker/daterangepicker.css'%}" />
+  <!-- summernote -->
+  <link rel="stylesheet" href="{% static 'dashproject/admin-lte/plugins/summernote/summernote-bs4.css'%}" />
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'dashproject/admin-lte/dist/css/style.css'%}" />
+  <link rel="stylesheet" href="{% static 'dashboard/css/style.css'%}" />
+  <!-- DataTables -->
+  <link rel="stylesheet"
+    href="{% static 'dashproject/admin-lte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css'%}" />
+  <link rel="stylesheet"
+    href="{% static 'dashproject/admin-lte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css'%}" />
+  <link rel="stylesheet"
+    href="{% static 'dashproject/admin-lte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css'%}" />
+  <link rel="stylesheet" href="{% static 'dashproject/admin-lte/plugins/toastr/toastr.min.css'%}" />
+</head>
 
-      <!--Start Sidebar Section-->
-      {%include 'dashproject/base/sidebar.html'%}
+<body class="hold-transition sidebar-mini layout-fixed">
+  <div class="wrapper">
+    <!--Start Navbar Section-->
 
-      <!--Start Content-->
-      {%block content%} {% endblock %}
-      <!--End content-->
-      {% include 'dashproject/base/footer.html'%}
-    </div>
+    {% include 'dashproject/base/navbar.html'%}
+    <!--Closed Navbar Section-->
 
-    <!-- Logout Modal-->
-    <div
-      class="modal fade"
-      id="logoutModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to leave?</h5>
-            <button
-              class="close"
-              type="button"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Select "Logout" below if you are ready to end your current session.
-          </div>
-          <div class="modal-footer">
-            <button
-              class="btn btn-secondary"
-              type="button"
-              data-dismiss="modal"
-            >
-              Cancel
-            </button>
-            <a class="btn btn-primary" href="{%url 'logout'%}">Log out</a>
-          </div>
+    <!--Start Sidebar Section-->
+    {%include 'dashproject/base/sidebar.html'%}
+
+    <!--Start Content-->
+    {%block content%} {% endblock %}
+    <!--End content-->
+    {% include 'dashproject/base/footer.html'%}
+  </div>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Select "Logout" below if you are ready to end your current session.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">
+            Cancel
+          </button>
+          <a class="btn btn-primary" href="{%url 'logout'%}">Log out</a>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- jQuery -->
-    <script src="{% static 'dashproject/admin-lte/plugins/jquery/jquery.min.js'%}"></script>
-    <!-- jQuery UI 1.11.4 -->
-    <script src="{% static 'dashproject/admin-lte/plugins/jquery-ui/jquery-ui.min.js'%}"></script>
-    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-    <script>
-      $.widget.bridge("uibutton", $.ui.button);
-    </script>
-    <!-- Bootstrap 4 -->
-    <script src="{% static 'dashproject/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
-    <!-- ChartJS -->
-    <script src="{% static 'dashproject/admin-lte/plugins/chart.js/Chart.min.js'%}"></script>
-    <!-- Sparkline -->
-    <script src="{% static 'dashproject/admin-lte/plugins/sparklines/sparkline.js'%}"></script>
-    <!-- JQVMap -->
-    <script src="{% static 'dashproject/admin-lte/plugins/jqvmap/jquery.vmap.min.js'%}"></script>
-    <script src="{% static 'dashproject/admin-lte/plugins/jqvmap/maps/jquery.vmap.usa.js'%}"></script>
-    <!-- jQuery Knob Chart -->
-    <script src="{% static 'dashproject/admin-lte/plugins/jquery-knob/jquery.knob.min.js'%}"></script>
-    <!-- daterangepicker -->
-    <script src="{% static 'dashproject/admin-lte/plugins/moment/moment.min.js'%}"></script>
-    <script src="{% static 'dashproject/admin-lte/plugins/daterangepicker/daterangepicker.js'%}"></script>
-    <!-- Tempusdominus Bootstrap 4 -->
-    <script src="{% static 'dashproject/admin-lte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js'%}"></script>
-    <!-- Summernote -->
-    <script src="{% static 'dashproject/admin-lte/plugins/summernote/summernote-bs4.min.js'%}"></script>
-    <!-- overlayScrollbars -->
-    {% comment %}
-    <script src="{% static 'dashproject/admin-lte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js'%}"></script>
-    {% endcomment %}
-    <!-- AdminLTE App -->
-    <script src="{% static 'dashproject/admin-lte/dist/js/adminlte.js'%}"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="{% static 'dashproject/admin-lte/dist/js/pages/dashboard.js'%}"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="{% static 'dashproject/admin-lte/dist/js/demo.js'%}"></script>
+  <!-- jQuery -->
+  <script src="{% static 'dashproject/admin-lte/plugins/jquery/jquery.min.js'%}"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script src="{% static 'dashproject/admin-lte/plugins/jquery-ui/jquery-ui.min.js'%}"></script>
+  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+  <script>
+    $.widget.bridge("uibutton", $.ui.button);
+  </script>
+  <!-- Bootstrap 4 -->
+  <script src="{% static 'dashproject/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+  <!-- ChartJS -->
+  <script src="{% static 'dashproject/admin-lte/plugins/chart.js/Chart.min.js'%}"></script>
+  <!-- Sparkline -->
+  <script src="{% static 'dashproject/admin-lte/plugins/sparklines/sparkline.js'%}"></script>
+  <!-- JQVMap -->
+  <script src="{% static 'dashproject/admin-lte/plugins/jqvmap/jquery.vmap.min.js'%}"></script>
+  <script src="{% static 'dashproject/admin-lte/plugins/jqvmap/maps/jquery.vmap.usa.js'%}"></script>
+  <!-- jQuery Knob Chart -->
+  <script src="{% static 'dashproject/admin-lte/plugins/jquery-knob/jquery.knob.min.js'%}"></script>
+  <!-- daterangepicker -->
+  <script src="{% static 'dashproject/admin-lte/plugins/moment/moment.min.js'%}"></script>
+  <script src="{% static 'dashproject/admin-lte/plugins/daterangepicker/daterangepicker.js'%}"></script>
+  <!-- Tempusdominus Bootstrap 4 -->
+  <script
+    src="{% static 'dashproject/admin-lte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js'%}"></script>
+  <!-- Summernote -->
+  <script src="{% static 'dashproject/admin-lte/plugins/summernote/summernote-bs4.min.js'%}"></script>
+  <!-- overlayScrollbars -->
+  {% comment %}
+  <script
+    src="{% static 'dashproject/admin-lte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js'%}"></script>
+  {% endcomment %}
+  <!-- AdminLTE App -->
+  <script src="{% static 'dashproject/admin-lte/dist/js/adminlte.js'%}"></script>
+  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+  <script src="{% static 'dashproject/admin-lte/dist/js/pages/dashboard.js'%}"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="{% static 'dashproject/admin-lte/dist/js/demo.js'%}"></script>
 
-    <script src="{% static 'dashproject/admin-lte/plugins/toastr/toastr.min.js'%}"></script>
+  <script src="{% static 'dashproject/admin-lte/plugins/toastr/toastr.min.js'%}"></script>
 
-    <!-- DataTables  & Plugins -->
-    <script src="{% static 'dashproject/admin-lte/plugins/datatables/jquery.dataTables.min.js'%}"></script>
-    <script src="{% static 'dashproject/admin-lte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js'%}"></script>
-    <script src="{% static 'dashproject/admin-lte/plugins/datatables-responsive/js/dataTables.responsive.min.js'%}"></script>
-    <script src="{% static 'dashproject/admin-lte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js'%}"></script>
-    <script src="{% static 'dashproject/admin-lte/plugins/datatables-buttons/js/dataTables.buttons.min.js'%}"></script>
-    <script src="{% static 'dashproject/admin-lte/plugins/datatables-buttons/js/buttons.bootstrap4.min.js'%}"></script>
-    <script>
-      $(document).ready(function () {
-        $(".view-subject-btn").on("click", function () {
-          var subjectId = $(this).data("id");
-          console.log("Bug", subjectId);
-          $.ajax({
-            url: "/record_details/" + subjectId,
-            method: "GET",
-            success: function (data) {
-              console.log(data);
-              $(".subject-first-name").text(data.name);
-            },
-          });
+  <!-- DataTables  & Plugins -->
+  <script src="{% static 'dashproject/admin-lte/plugins/datatables/jquery.dataTables.min.js'%}"></script>
+  <script src="{% static 'dashproject/admin-lte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js'%}"></script>
+  <script
+    src="{% static 'dashproject/admin-lte/plugins/datatables-responsive/js/dataTables.responsive.min.js'%}"></script>
+  <script
+    src="{% static 'dashproject/admin-lte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js'%}"></script>
+  <script src="{% static 'dashproject/admin-lte/plugins/datatables-buttons/js/dataTables.buttons.min.js'%}"></script>
+  <script src="{% static 'dashproject/admin-lte/plugins/datatables-buttons/js/buttons.bootstrap4.min.js'%}"></script>
+  <script>
+    $(document).ready(function () {
+      $(".view-subject-btn").on("click", function () {
+        var subjectId = $(this).data("id");
+        console.log("Bug", subjectId);
+        $.ajax({
+          url: "/record_details/" + subjectId,
+          method: "GET",
+          success: function (data) {
+            console.log(data);
+            $(".subject-first-name").text(data.name);
+          },
         });
       });
-      $(document).ready(function () {
-        $(".view-subject-btn").on("click", function () {
-          var subjectId = $(this).data("id");
-          console.log(subjectId);
-          $.ajax({
-            url: "/subject_details/" + subjectId,
-            method: "GET",
-            success: function (data) {
-              $("#name-data").text(data.name);
-              $("#last-data").text(data.last_name);
-              if (data.gender === "M") {
-                $("#gender-male").prop("checked", true);
-              } else if (data.gender === "F") {
-                $("#gender-female").prop("checked", true);
-              }
-              // Disable the radio buttons to make them unchangeable
-              $("input[name='gender']").prop("disabled", true);
-              $("#dob-data").text(data.dob);
-              $("#nat-data").text(data.nationality);
-              $("#approx-age-data").text(data.approx_age);
-              $("#id-type-data").text(data.id_type);
-              $("#id-number-data").text(data.id_number);
-              $("#home-address-data").text(data.home_address);
-              $("#business-name-data").text(data.business_name);
-              $("#business-address-data").text(data.business_address);
-              $("#bin-tin-data").text(data.bin_tin);
-              $("#telephone-data").text(data.telephone);
-              $("#description-data").text(data.description);
-              $("#created-at-data").text(data.created_at);
-              $("#updated-at-data").text(data.updated_at);
-              $("#conveyance-description-data").text(
-                data.conveyance_description
-              );
-              $("#status-data").text(data.status);
+    });
+    $(document).ready(function () {
+      $(".view-subject-btn").on("click", function () {
+        var subjectId = $(this).data("id");
+        console.log(subjectId);
+        $.ajax({
+          url: "/subject_details/" + subjectId,
+          method: "GET",
+          success: function (data) {
+            $("#id_num").text(data.id);
+            $("#name-data").text(data.first_name);
+            $("#last-data").text(data.last_name);
+            $("#middle-name-data").text(data.middle_name);
+            $("#nick-name-data").text(data.nick_name);
+            $("#description-data").text(data.description_subject);
+            $("#business-name-data").text(data.business_name);
 
-              // Populate other fields as necessary
-            },
-          });
+            if (data.gender === "M") {
+              $("#gender-male").prop("checked", true);
+            } else if (data.gender === "F") {
+              $("#gender-female").prop("checked", true);
+            }
+            // Disable the radio buttons to make them unchangeable
+            $("input[name='gender']").prop("disabled", true);
+            // Contact information
+            $("#address-data").text(data.address);
+            $("#post-code-data").text(data.post_code);
+            $("#country-data").text(data.country);
+            $("#phone-data").text(data.phone_num);
+
+            // Transportation information
+            $("#vehicle-data").text(data.vehicle);
+            $("#routing-data").text(data.routing);
+            $("#ferry-data").text(data.ferry);
+            $("#vessel-data").text(data.vessel);
+            $("#cargo-data").text(data.cargo);
+            $("#other-trans-data").text(data.other_trans);
+
+            // Personal details
+            $("#approx-age-data").text(data.approx_age);
+            $("#dob-data").text(data.dob);
+            $("#nat-data").text(data.nationality);
+
+            // Event details
+            $("#any-other-data").text(data.any_other);
+            $("#what-data").text(data.what);
+            $("#location-data").text(data.location);
+            $("#quando-data").text(data.quando);
+            $("#how-happen-data").text(data.how_happen);
+            $("#how-long-data").text(data.how_long);
+
+            // Additional information
+            $("#other-infor-data").text(data.other_infor);
+            $("#your-connection-data").text(data.your_connection);
+            $("#still-connect-data").text(data.still_connect);
+
+            // Involvement details
+            $("#how-did-data").text(data.how_did);
+            $("#others-know-information-data").text(data.others_know_information ? 'Yes' : 'No');
+            $("#how-many-data").text(data.how_many);
+            $("#affect-information-data").text(data.affect_information ? 'Yes' : 'No');
+
+            // Anonymous details
+            $("#if-yes-data").text(data.if_yes);
+            $("#prefer-anonymous-data").text(data.prefer_anonymous ? 'Yes' : 'No');
+            $("#an-first-name-data").text(data.an_first_name);
+            $("#an-last-name-data").text(data.an_last_name);
+            $("#an-middle-name-data").text(data.an_middle_name);
+            $("#an-phone-number-data").text(data.an_phone_number);
+            $("#an-email-data").text(data.an_email);
+
+            // Metadata
+            $("#created-at-data").text(data.created_at);
+            $("#status-data").text(data.status);
+
+            // Call preference
+            $("#ligar-data").text(data.ligar ? 'Yes' : 'No');
+
+            // Populate other fields as necessary
+          },
         });
       });
-      $(function () {
-        $("#example1")
-          .DataTable({
-            responsive: true,
-            lengthChange: false,
-            autoWidth: false,
-            buttons: ["copy", "csv", "excel", "pdf", "print", "colvis"],
-          })
-          .buttons()
-          .container()
-          .appendTo("#example1_wrapper .col-md-6:eq(0)");
-        $("#example2").DataTable({
-          paging: true,
-          lengthChange: false,
-          searching: false,
-          ordering: true,
-          info: true,
-          autoWidth: false,
+    });
+    $(function () {
+      $("#example1")
+        .DataTable({
           responsive: true,
-        });
+          lengthChange: false,
+          autoWidth: false,
+          buttons: ["copy", "csv", "excel", "pdf", "print", "colvis"],
+        })
+        .buttons()
+        .container()
+        .appendTo("#example1_wrapper .col-md-6:eq(0)");
+      $("#example2").DataTable({
+        paging: true,
+        lengthChange: false,
+        searching: false,
+        ordering: true,
+        info: true,
+        autoWidth: false,
+        responsive: true,
       });
-    </script>
-  </body>
+    });
+  </script>
+</body>
+
 </html>

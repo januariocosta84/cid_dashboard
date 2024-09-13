@@ -114,7 +114,7 @@ class EditUserView(GroupRequiredMixin, View):
             'user_edit_form': user_edit_form,
             'staff_edit_form': staff_edit_form,
             'user': user,
-            'user_groups': user_groups,
+            'user_group': user_groups,
             'id': id
         })
 
@@ -141,7 +141,7 @@ class EditUserView(GroupRequiredMixin, View):
             'user_edit_form': user_edit_form,
             'staff_edit_form': staff_edit_form,
             'user': user,
-            'user_groups': user_groups,
+            'user_group': user_groups,
             'id': id
         })
         

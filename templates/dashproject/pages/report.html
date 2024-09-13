@@ -1,75 +1,6 @@
 {% extends 'dashproject/base/layout.html' %} {% load static %} {% block content%}
-<!-- <script type = "text/javascript" >
-    function preventBack(){window.history.forward();}
-     setTimeout("preventBack()", 0);
-     window.onunload=function(){null};
- </script> -->
-<style>
-  .nav-tabs .nav-item {
-    margin-right: 1rem;
-    /* Adjust this value for more or less spacing */
-  }
-
-  .nav-tabs .nav-link {
-    text-align: center;
-    border-radius: 0;
-    /* Remove border-radius if desired */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    /* Adjust padding if necessary */
-  }
-
-  .nav-tabs .nav-link i {
-    font-size: 1.5rem;
-    /* Adjust icon size if necessary */
-  }
-
-  .nav-tabs .nav-link span {
-    display: block;
-  }
-</style>
 <div class="container-fluid">
-  <!-- Start page title -->
-  <div class="row content-home mt-1 mb-1">
-    <div class="col-12">
-      <div
-        class="page-title-box d-flex align-items-center justify-content-between"
-      >
-        <div class="row">
-          <div class="col">
-            <button class="btn btn-warning">
-              <i class="fa fa-key"></i> URN ID :{{report_id}}
-            </button>
-            <button class="btn btn-light">
-              <i class="fa fa-user"></i>{{ user.first_name|upper }} {{ user.last_name|upper }}
-            </button>
-            <button class="btn btn-light">
-              <i class="fa fa-clock"></i>{{report_created}}
-            </button>
-            <button class="btn btn-secondary">
-              <i class="fa fa-pencil-square"></i>{{report_status}}
-            </button>
-            {%if view_id %}
-            <button class="btn btn-secondary">
-              <i class="fa fa-pencil-square"></i>View
-            </button>
-            {%endif %}
-          </div>
-        </div>
-        <div class="page-title-right">
-          <ol class="breadcrumb m-0">
-            <li class="breadcrumb-item">
-              <a href="javascript: void(0);">Reporting</a>
-            </li>
-            <li class="breadcrumb-item active">Report</li>
-          </ol>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  {%include './report_header.html'%}
   <!-- Tab content -->
   <div class="row content-home">
     <div class="col-lg-12">
@@ -79,128 +10,64 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item">
-                <a
-                  class="nav-link {% if request.GET.tab == 'initial' or not request.GET.tab %}active {%else%}disabled{% endif %}"
-                  id="initial-tab"
-                  data-toggle="tab"
-                  href="#initial"
-                  role="tab"
-                  aria-controls="initial"
-                  aria-selected="true"
-                >
+                <a class="nav-link {% if request.GET.tab == 'initial' or not request.GET.tab %}active {%else%}disabled{% endif %}"
+                  id="initial-tab" data-toggle="tab" href="#initial" role="tab" aria-controls="initial"
+                  aria-selected="true">
                   <span class="d-block"><i class="fa fa-info"></i></span>
                   <span class="d-block">Initial</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a
-                  class="nav-link {% if request.GET.tab == 'subjects' %}active{%else%}disabled{% endif %}"
-                  id="subjects-tab"
-                  data-toggle="tab"
-                  href="#subjects"
-                  role="tab"
-                  aria-controls="subjects"
-                  aria-selected="false"
-                >
-                  <span class="d-block"
-                    ><i class="fa fa-people-carry" aria-hidden="true"></i
-                  ></span>
+                <a class="nav-link {% if request.GET.tab == 'subjects' %}active{%else%}disabled{% endif %}"
+                  id="subjects-tab" data-toggle="tab" href="#subjects" role="tab" aria-controls="subjects"
+                  aria-selected="false">
+                  <span class="d-block"><i class="fa fa-people-carry" aria-hidden="true"></i></span>
                   <span class="d-block">Subjects</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a
-                  class="nav-link {% if request.GET.tab == 'text' %}active{%else%}disabled{% endif %}"
-                  id="text-tab"
-                  data-toggle="tab"
-                  href="#text"
-                  role="tab"
-                  aria-controls="text"
-                  aria-selected="false"
-                >
-                  <span class="d-block"
-                    ><i class="fa fa-address-book" aria-hidden="true"></i
-                  ></span>
+                <a class="nav-link {% if request.GET.tab == 'text' %}active{%else%}disabled{% endif %}" id="text-tab"
+                  data-toggle="tab" href="#text" role="tab" aria-controls="text" aria-selected="false">
+                  <span class="d-block"><i class="fa fa-address-book" aria-hidden="true"></i></span>
                   <span class="d-block">Text</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a
-                  class="nav-link {% if request.GET.tab == 'attach' %}active{%else%}disabled{% endif %}"
-                  id="attachment-tab"
-                  data-toggle="tab"
-                  href="#attachment"
-                  role="tab"
-                  aria-controls="attachment"
-                  aria-selected="false"
-                >
-                  <span class="d-block"
-                    ><i class="fa fa-file" aria-hidden="true"></i
-                  ></span>
+                <a class="nav-link {% if request.GET.tab == 'attach' %}active{%else%}disabled{% endif %}"
+                  id="attachment-tab" data-toggle="tab" href="#attachment" role="tab" aria-controls="attachment"
+                  aria-selected="false">
+                  <span class="d-block"><i class="fa fa-file" aria-hidden="true"></i></span>
                   <span class="d-block">Attachment</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a
-                  class="nav-link {% if request.GET.tab == 'analyst' %}active{%else%}disabled{% endif %}"
-                  id="comment-tab"
-                  data-toggle="tab"
-                  href="#comment"
-                  role="tab"
-                  aria-controls="comment"
-                  aria-selected="false"
-                >
-                  <span class="d-block"
-                    ><i class="fa fa-comment" aria-hidden="true"></i
-                  ></span>
+                <a class="nav-link {% if request.GET.tab == 'analyst' %}active{%else%}disabled{% endif %}"
+                  id="comment-tab" data-toggle="tab" href="#comment" role="tab" aria-controls="comment"
+                  aria-selected="false">
+                  <span class="d-block"><i class="fa fa-comment" aria-hidden="true"></i></span>
                   <span class="d-block">Analyst Comment</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a
-                  class="nav-link"
-                  id="status-tab"
-                  data-toggle="tab"
-                  href="#status"
-                  role="tab"
-                  aria-controls="status"
-                  aria-selected="false"
-                >
-                  <span class="d-block"
-                    ><i class="fa fa-clock" aria-hidden="true"></i
-                  ></span>
+                <a class="nav-link" id="status-tab" data-toggle="tab" href="#status" role="tab" aria-controls="status"
+                  aria-selected="false">
+                  <span class="d-block"><i class="fa fa-clock" aria-hidden="true"></i></span>
                   <span class="d-block">Status Timeline</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a
-                  class="nav-link {% if request.GET.tab == 'review' %}active{%else%}disabled{% endif %}"
-                  id="review-tab"
-                  data-toggle="tab"
-                  href="#review"
-                  role="tab"
-                  aria-controls="review"
-                  aria-selected="false"
-                >
-                  <span class="d-block"
-                    ><i class="fa fa-ad" aria-hidden="true"></i
-                  ></span>
+                <a class="nav-link {% if request.GET.tab == 'review' %}active{%else%}disabled{% endif %}"
+                  id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
+                  aria-selected="false">
+                  <span class="d-block"><i class="fa fa-ad" aria-hidden="true"></i></span>
                   <span class="d-block">Review</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a
-                  class="nav-link {% if request.GET.tab == 'disseminate' %}active{%else%}disabled{% endif %}"
-                  id="dissemination-tab"
-                  data-toggle="tab"
-                  href="#dissemination"
-                  role="tab"
-                  aria-controls="dissemination"
-                  aria-selected="false"
-                >
-                  <span class="d-block"
-                    ><i class="fa fa-fan" aria-hidden="true"></i
-                  ></span>
+                <a class="nav-link {% if request.GET.tab == 'disseminate' %}active{%else%}disabled{% endif %}"
+                  id="dissemination-tab" data-toggle="tab" href="#dissemination" role="tab"
+                  aria-controls="dissemination" aria-selected="false">
+                  <span class="d-block"><i class="fa fa-fan" aria-hidden="true"></i></span>
                   <span class="d-block">Dissemination</span>
                 </a>
               </li>
@@ -211,67 +78,36 @@
             <div class="tab-content" id="myTabContent">
               <div
                 class="tab-pane fade {% if request.GET.tab == 'initial' or not request.GET.tab %}show active{% endif %}"
-                id="initial"
-                role="tabpanel"
-                aria-labelledby="initial-tab"
-              >
+                id="initial" role="tabpanel" aria-labelledby="initial-tab">
                 <form method="POST" action="">
                   {% csrf_token %} {{ initial_form }}
-                  <button
-                    type="submit"
-                    class="btn btn-primary mt-1"
-                    name="initial_form"
-                  >
+                  <button type="submit" class="btn btn-primary mt-1" name="initial_form">
                     Submit to Next Proccess
                   </button>
                 </form>
               </div>
 
-              <div
-                class="tab-pane fade {% if request.GET.tab == 'subjects' %}show active{% endif %}"
-                id="subjects"
-                role="tabpanel"
-                aria-labelledby="subjects-tab"
-              >
+              <div class="tab-pane fade {% if request.GET.tab == 'subjects' %}show active{% endif %}" id="subjects"
+                role="tabpanel" aria-labelledby="subjects-tab">
                 <form method="POST" action="">
                   {% csrf_token %} {{ subject_form }}
-                  <button
-                    type="submit"
-                    class="btn btn-primary mt-1"
-                    name="subject_form"
-                  >
+                  <button type="submit" class="btn btn-primary mt-1" name="subject_form">
                     Submit Subject
                   </button>
 
-                  <a href="{%url 'report-list'%}" class="btn btn-warning mt-1"
-                    >Save</a
-                  >
+                  <a href="{%url 'report-list'%}" class="btn btn-warning mt-1">Save</a>
                 </form>
               </div>
 
-              <div
-                class="tab-pane fade {% if request.GET.tab == 'text' %}show active{% endif %}"
-                id="text"
-                role="tabpanel"
-                aria-labelledby="text-tab"
-              >
+              <div class="tab-pane fade {% if request.GET.tab == 'text' %}show active{% endif %}" id="text"
+                role="tabpanel" aria-labelledby="text-tab">
                 <form method="POST" action="">
                   {% csrf_token %} {{text_form}}
-                  <button
-                    type="submit"
-                    class="btn btn-primary mt-1"
-                    name="text_form"
-                  >
+                  <button type="submit" class="btn btn-primary mt-1" name="text_form">
                     Add New text
                   </button>
-                  <a href="{%url 'report-list'%}" class="btn btn-warning mt-1"
-                    >Save</a
-                  >
-                  <button
-                    type="button"
-                    class="btn btn-warning mt-1"
-                    id="goToNextStep"
-                  >
+                  <a href="{%url 'report-list'%}" class="btn btn-warning mt-1">Save</a>
+                  <button type="button" class="btn btn-warning mt-1" id="goToNextStep">
                     <i class="fa fa-plus"></i>
                     <span class="text-uppercase">Go to Next Step</span>
                   </button>
@@ -279,41 +115,25 @@
                 {%include './text_list.html'%}
               </div>
 
-              <div
-                class="tab-pane fade {% if request.GET.tab == 'attach' %}show active{% endif %}"
-                id="attachment"
-                role="tabpanel"
-                aria-labelledby="attachment-tab"
-              >
+              <div class="tab-pane fade {% if request.GET.tab == 'attach' %}show active{% endif %}" id="attachment"
+                role="tabpanel" aria-labelledby="attachment-tab">
                 <form method="POST" action="" enctype="multipart/form-data">
                   {% csrf_token %} {{file_form}}
-                  <button
-                    type="submit"
-                    class="btn btn-primary mt-1"
-                    name="file_form"
-                  >
+                  <button type="submit" class="btn btn-primary mt-1" name="file_form">
                     Submit
                   </button>
                 </form>
               </div>
 
-              <div
-                class="tab-pane fade {% if request.GET.tab == 'comments' %}show active{% endif %}"
-                id="attachment"
-                role="tabpanel"
-                aria-labelledby="attachment-tab"
-              >
+              <div class="tab-pane fade {% if request.GET.tab == 'comments' %}show active{% endif %}" id="attachment"
+                role="tabpanel" aria-labelledby="attachment-tab">
                 {%include './comments.html'%}
               </div>
 
               <!-- Add other tab contents here -->
 
-              <div
-                class="tab-pane fade {% if request.GET.tab == 'review' %}show active{% endif %}"
-                id="review"
-                role="tabpanel"
-                aria-labelledby="review-tab"
-              >
+              <div class="tab-pane fade {% if request.GET.tab == 'review' %}show active{% endif %}" id="review"
+                role="tabpanel" aria-labelledby="review-tab">
                 {%include './review.html'%}
               </div>
             </div>
@@ -322,34 +142,275 @@
       </div>
     </div>
   </div>
-</div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<!--This query is for hide and show text box in the intial form-->
-<script>
-  $(document).ready(function () {
-    // Hide the textarea initially
-    $("#id_information_source").hide();
 
-    // Show/hide the textarea based on the selected option
-    $("#id_source").change(function () {
-      if ($(this).val() === "Information other") {
-        $("#id_information_source").show();
-      } else {
-        $("#id_information_source").hide();
-      }
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="modal-default-label"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-success" id="modal-default-label">Subject - Web form ID Number <span id="id_num">
+            </span> </span></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-header">
+                <h4>Subject you are giving information about</h4>
+              </div>
+              <p class="text-mute">First Name</p>
+              <p><strong><span id="name-data"></span></strong></p>
+
+              <p class="text-mute">Last Name</p>
+              <p><strong><span id="last-data"></span></strong></p>
+
+              <p class="text-mute">Middle Name</p>
+              <p><strong><span id="middle-name-data"></span></strong></p>
+
+              <p class="text-mute">Nick Name</p>
+              <p><strong><span id="nick-name-data"></span></strong></p>
+
+              <p class="text-mute">Description of Subject</p>
+              <p><strong><span id="description-data"></span></strong></p>
+
+              <p class="text-mute">Business Name</p>
+              <p><strong><span id="business-name-data"></span></strong></p>
+
+              <h4>The address of the person or business </h4>
+              <hr>
+              <p class="text-mute">Address</p>
+              <p><strong><span id="address-data"></span></strong></p>
+
+              <p class="text-mute">Post Code</p>
+              <p><strong><span id="post-code-data"></span></strong></p>
+
+
+              <p class="text-mute">Country</p>
+              <p><strong><span id="country-data"></span></strong></p>
+
+              <p class="text-mute">Phone Number</p>
+              <p><strong><span id="phone-data"></span></strong></p>
+
+              <h4>Transportation information</h4>
+              <hr>
+              <p class="text-mute">Vehicles</p>
+              <p><strong><span id="vehicle-data"></span></strong></p>
+
+              <p class="text-mute">Flight and Routing</p>
+              <p><strong><span id="routing-data"></span></strong></p>
+
+              <p class="text-mute">Ferry crossings</p>
+              <p><strong><span id="ferry-data"></span></strong></p>
+
+              <p class="text-mute">Vessel and Yachts</p>
+              <p><strong><span id="vessel-data"></span></strong></p>
+
+              <p class="text-mute">Cargo and Fast parcel</p>
+              <p><strong><span id="cargo-data"></span></strong></p>
+
+              <p class="text-mute">Other Transport and travels</p>
+              <p><strong><span id="other-trans-data"></span></strong></p>
+
+
+              <!-- <p class="text-mute">Gender</p>
+          <div class="row">
+            <div class="col"><input type="radio" id="gender-male" name="gender" value="M"> Male<br></div>
+            <div class="col"><input type="radio" id="gender-female" name="gender" value="F"> Female</div>
+          </div> -->
+              <h4>The approximate age or date of birth and nationality of the person</h4>
+              <hr>
+              <p class="text-mute">Approximate Age</p>
+              <p><strong><span id="approx-age-data"></span></strong></p>
+
+
+              <p class="text-mute">Date of Birth</p>
+              <p><strong><span id="dob-data"></span></strong></p>
+
+              <p class="text-mute">Nationality</p>
+              <p><strong><span id="nat-data"></span></strong></p>
+              <h4>Names of others involved</h4>
+              <hr>
+              <p class="text-mute">Name of any other involved</p>
+              <p><strong><span id="any-other-data"></span></strong></p>
+              <h4>Event details</h4>
+              <hr>
+              <p class="text-mute">What is taking place?</p>
+              <p><strong><span id="what-data"></span></strong></p>
+
+
+              <p class="text-mute">Where is happening?</p>
+              <p><strong><span id="location-data"></span></strong></p>
+
+
+              <p class="text-mute">How often does this happeng?</p>
+              <p><strong><span id="quando-data"></span></strong></p>
+
+
+              <p class="text-mute">How long has been going on?</p>
+              <p><strong><span id="how-long-data"></span></strong></p>
+
+              <h4>Additional information</h4>
+              <hr>
+              <p class="text-mute">Other information would be relevant</p>
+              <p><strong><span id="other-infor-data"></span></strong></p>
+
+
+              <p class="text-mute">Your connection with the person or business</p>
+              <p><strong><span id="your-connection-data"></span></strong></p>
+
+              <p class="text-mute">Are you still connected to the person or bussiness</p>
+              <p><strong><span id="still-connect-data"></span></strong></p>
+              <h4>Involvement details</h4>
+              <hr>
+              <p class="text-mute">How did you obtain this information?</p>
+              <p><strong><span id="how-did-data"></span></strong></p>
+
+              <p class="text-mute">Does anyone else know this information? if so how many</p>
+              <p><strong><span id="others-know-information-data"></span></strong></p>
+
+              <p class="text-mute">How many?</p>
+              <p><strong><span id="how-many-data"></span></strong></p>
+
+              <p class="text-mute">Will it affect you if we use the information?</p>
+              <p><strong><span id="affect-information-data"></span></strong></p>
+
+              <h4>Reporter details</h4>
+              <hr>
+
+              <p class="text-mute">First Name</p>
+              <p><strong><span id="an-first-name-data"></span></strong></p>
+
+              <p class="text-mute">Last Name</p>
+              <p><strong><span id="an-last-name-data"></span></strong></p>
+
+              <p class="text-mute">Middle Name</p>
+              <p><strong><span id="an-middle-name-data"></span></strong></p>
+
+              <p class="text-mute">Telephone number(s) including STD</p>
+              <p><strong><span id="an-phone-number-data"></span></strong></p>
+
+              <p class="text-mute">Email</p>
+              <p><strong><span id="an-email-data"></span></strong></p>
+
+              <p class="text-mute">Would you like someone to call you back?</p>
+              <p><strong><span id="ligar-data"></span></strong></p>
+
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!--This query is for hide and show text box in the intial form-->
+  <script>
+    $(document).ready(function () {
+      // Hide the textarea initially
+      $("#id_information_source").hide();
+
+      // Show/hide the textarea based on the selected option
+      $("#id_source").change(function () {
+        if ($(this).val() === "Information other") {
+          $("#id_information_source").show();
+        } else {
+          $("#id_information_source").hide();
+        }
+      });
+
+      // Trigger the change event on page load to handle the default selected option
+      $("#id_source").trigger("change");
+    });
+    $(document).ready(function () {
+      $("#goToNextStep").click(function () {
+        window.location.href = "{% url 'new-report' %}?tab=attach";
+      });
     });
 
-    // Trigger the change event on page load to handle the default selected option
-    $("#id_source").trigger("change");
-  });
-</script>
+    //For modal
+    function fetchSubjectDetails(subjectId) {
+      $.ajax({
+        url: '/subject_details/' + subjectId + '/',  // Update with the correct URL
+        method: 'GET',
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+        },
+        success: function (data) {
+          // Populate the modal with data
+          $('#id_num').text(data.id);
+          $('#name-data').text(data.first_name);
+          $('#last-data').text(data.last_name);
+          $('#middle-name-data').text(data.middle_name);
+          $('#nick-name-data').text(data.nick_name);
+          $('#description-data').text(data.description_subject);
+          $('#business-name-data').text(data.business_name);
 
-<script>
-  $(document).ready(function () {
-    $("#goToNextStep").click(function () {
-      window.location.href = "{% url 'new-report' %}?tab=attach";
-    });
-  });
-</script>
-{% endblock %}
+          // Contact Information
+          $('#address-data').text(data.address);
+          $('#post-code-data').text(data.post_code);
+          $('#country-data').text(data.country);
+          $('#phone-data').text(data.phone_num);
+
+          // Transportation Information
+          $('#vehicle-data').text(data.vehicle);
+          $('#routing-data').text(data.routing);
+          $('#ferry-data').text(data.ferry);
+          $('#vessel-data').text(data.vessel);
+          $('#cargo-data').text(data.cargo);
+          $('#other-trans-data').text(data.other_trans);
+
+          // Personal Details
+          $('#approx-age-data').text(data.approx_age);
+          $('#dob-data').text(data.dob);
+          $('#nat-data').text(data.nationality);
+
+          // Event Details
+          $('#any-other-data').text(data.any_other);
+          $('#what-data').text(data.what);
+          $('#location-data').text(data.location);
+          $('#quando-data').text(data.quando);
+          $('#how-long-data').text(data.how_long);
+
+          // Additional Information
+          $('#other-infor-data').text(data.other_infor);
+          $('#your-connection-data').text(data.your_connection);
+          $('#still-connect-data').text(data.still_connect);
+
+          // Involvement Details
+          $('#how-did-data').text(data.how_did);
+          $('#others-know-information-data').text(data.others_know_information);
+          $('#how-many-data').text(data.how_many);
+          $('#affect-information-data').text(data.affect_information);
+
+          // Anonymous Reporter Details
+          $('#an-first-name-data').text(data.an_first_name);
+          $('#an-last-name-data').text(data.an_last_name);
+          $('#an-middle-name-data').text(data.an_middle_name);
+          $('#an-phone-number-data').text(data.an_phone_number);
+          $('#an-email-data').text(data.an_email);
+
+          // Call Preference
+          $('#ligar-data').text(data.ligar);
+
+          // Show the modal
+          $('#exampleModal').modal('show');
+        },
+        error: function (error) {
+          console.error("There was an error fetching the details.", error);
+        }
+      });
+    }
+
+  </script>
+
+
+  {% endblock %}

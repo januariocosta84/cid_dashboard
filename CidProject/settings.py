@@ -27,8 +27,12 @@ SECRET_KEY = 'django-insecure-3(u(^9o#1x0a*w+r@2wf*84*dr*kect4iolwxxux$1uy))0n=y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ciddash.tlictprojects.com']
+ALLOWED_HOSTS = ['ciddash.tlictprojects.com', '127.0.0.1', '10.8.0.21','localhost']
 
+
+#Here the two lines I added
+CSRF_TRUSTED_ORIGINS = ['https://ciddash.tlictprojects.com/']
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Application definition
 
@@ -100,9 +104,9 @@ pymysql.install_as_MySQLdb()
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "ciddash_db",
-        "USER": "ciddash_user",
-        "PASSWORD": "cid2024!",
+        "NAME": "ciddash_new_db",
+        "USER": "ict",
+        "PASSWORD": "customs2024!",
         "HOST": "localhost",
         "PORT": "3306",
     }
@@ -145,9 +149,9 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-MEDIA_URL ='media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -163,10 +167,10 @@ LOGIN_URL = '/login/'
 
 LOGIN_REDIRECT_URL ='/'
 
-LOGIN_URL = 'two_factor:login'
+#LOGIN_URL = 'two_factor:login'
 
 # this one is optional
-LOGIN_REDIRECT_URL = 'two_factor:profile'
+#LOGIN_REDIRECT_URL = 'two_factor:profile'
 
 
 

@@ -4,11 +4,6 @@ from .crud import(
     agency_create,
     agency_update,
     agency_delete,
-    # user_group_create,
-    # create_group,
-    # group_list,
-    # update_group,
-    # position_list
 )
 from .user_management import(
     Login_View,
@@ -16,16 +11,7 @@ from .user_management import(
     RegisterUsers,
     UserListsView,
     EditUserView,
-  
 )
-# # from .user_management import(
-# #     Login_View,
-# #     Logout_View,
-# #     RegisterUsers,
-# #     ChangePasswordView,
-# #     UserListsView,
-# #       ResetPasswordView,
-# # )
 
 from .views import(
     HotLineAndWebView,
@@ -38,19 +24,19 @@ from .views import(
       EditReport,
       EditReportComment,
       EditReportReview,
+      SyncSubjectsView,
     )
-    # RecordView,
-    # DetailSubject,
-    # SearchForm,
-    # DetailRecordResource,
-    # TwoStepVerification,)
-    
+
 urlpatterns = [
+        #Call API from Web form to insert local database
+    path('call-api/', SyncSubjectsView.as_view(), name= 'call-api'),
+    
+        #Hotline and Subjectdetail webview
     path('', HotLineAndWebView.as_view(), name='records'),
     path('subject_details/<int:pk>/', DetailSubject.as_view(), name='detail_subject'),
     
-    
-    
+        #User Managament
+
     path('login/', Login_View.as_view(), name='login'),
     path('logout/', Logout_View.as_view(), name='logout'),
     path('<int:pk>/edit-user/', EditUserView.as_view(), name='change'),
@@ -70,6 +56,8 @@ urlpatterns = [
     path('report-list/', ViewAllReport.as_view(), name='report-list'),
     path('add/new-report/',CreateReportWebView.as_view(), name='new-report'),
     path('add/new-report/<int:web_id>/',CreateReportWebCallView.as_view(), name ='report-web'),
+     
+    #CRUD for Report 
     
     path('<pk>/report-details', ReportDetail.as_view(), name='report-detail'),
     path('report/<int:report_id>/', EditReport.as_view(), name='edit_report'),

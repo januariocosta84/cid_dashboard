@@ -280,7 +280,7 @@ class ReportForm(forms.ModelForm):
         fields = [
             'source',
             'user',
-            'Subject',
+            'subject',
             'agency',
             #'source_information_date',
             'information_other',

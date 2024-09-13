@@ -1,0 +1,216 @@
+<!-- <script type = "text/javascript" >
+    function preventBack(){window.history.forward();}
+     setTimeout("preventBack()", 0);
+     window.onunload=function(){null};
+ </script> -->
+<!--Start CSS header-->
+{%include './header_css.html'%}
+<!-- Start page title -->
+<div class="row content-home mt-1 mb-1">
+    <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-warning">
+                        <i class="fa fa-key"></i> URN ID :{{report_id}}
+                    </button>
+                    <button class="btn btn-light">
+                        <i class="fa fa-user"></i>{{ user.first_name|upper }} {{ user.last_name|upper }}
+                    </button>
+                    <button class="btn btn-light">
+                        <i class="fa fa-clock"></i>{{report_created}}
+                    </button>
+
+                    <button class="btn btn-secondary">
+                        <i class="fa fa-pencil-square"></i>{{report_status}}
+                        {{call_and_webform}}
+                    </button>
+                    
+                    <button class="btn btn-secondary" data-toggle="modal" data-id="{{webformID.webform_id}}"
+                        id="subjectDetailBtn" data-target="#exampleModal"
+                        onclick="fetchSubjectDetails('{{webformID.webform_id}}')">
+                        {{webformID.webform_id}}
+                        <i class="fa fa-pencil-square"></i>View
+                    </button>
+
+
+                </div>
+            </div>
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item">
+                        <a href="javascript: void(0);">Reporting</a>
+                    </li>
+                    <li class="breadcrumb-item active">Report</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="modal-default-label"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-success" id="modal-default-label">Subject - Web form ID Number <span
+                        id="id_num">
+                    </span> </span></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-header">
+                            <h4>Subject you are giving information about</h4>
+                        </div>
+                        <p class="text-mute">First Name</p>
+                        <p><strong><span id="name-data"></span></strong></p>
+
+                        <p class="text-mute">Last Name</p>
+                        <p><strong><span id="last-data"></span></strong></p>
+
+                        <p class="text-mute">Middle Name</p>
+                        <p><strong><span id="middle-name-data"></span></strong></p>
+
+                        <p class="text-mute">Nick Name</p>
+                        <p><strong><span id="nick-name-data"></span></strong></p>
+
+                        <p class="text-mute">Description of Subject</p>
+                        <p><strong><span id="description-data"></span></strong></p>
+
+                        <p class="text-mute">Business Name</p>
+                        <p><strong><span id="business-name-data"></span></strong></p>
+
+                        <h4>The address of the person or business </h4>
+                        <hr>
+                        <p class="text-mute">Address</p>
+                        <p><strong><span id="address-data"></span></strong></p>
+
+                        <p class="text-mute">Post Code</p>
+                        <p><strong><span id="post-code-data"></span></strong></p>
+
+
+                        <p class="text-mute">Country</p>
+                        <p><strong><span id="country-data"></span></strong></p>
+
+                        <p class="text-mute">Phone Number</p>
+                        <p><strong><span id="phone-data"></span></strong></p>
+
+                        <h4>Transportation information</h4>
+                        <hr>
+                        <p class="text-mute">Vehicles</p>
+                        <p><strong><span id="vehicle-data"></span></strong></p>
+
+                        <p class="text-mute">Flight and Routing</p>
+                        <p><strong><span id="routing-data"></span></strong></p>
+
+                        <p class="text-mute">Ferry crossings</p>
+                        <p><strong><span id="ferry-data"></span></strong></p>
+
+                        <p class="text-mute">Vessel and Yachts</p>
+                        <p><strong><span id="vessel-data"></span></strong></p>
+
+                        <p class="text-mute">Cargo and Fast parcel</p>
+                        <p><strong><span id="cargo-data"></span></strong></p>
+
+                        <p class="text-mute">Other Transport and travels</p>
+                        <p><strong><span id="other-trans-data"></span></strong></p>
+
+
+                        <!-- <p class="text-mute">Gender</p>
+          <div class="row">
+            <div class="col"><input type="radio" id="gender-male" name="gender" value="M"> Male<br></div>
+            <div class="col"><input type="radio" id="gender-female" name="gender" value="F"> Female</div>
+          </div> -->
+                        <h4>The approximate age or date of birth and nationality of the person</h4>
+                        <hr>
+                        <p class="text-mute">Approximate Age</p>
+                        <p><strong><span id="approx-age-data"></span></strong></p>
+
+
+                        <p class="text-mute">Date of Birth</p>
+                        <p><strong><span id="dob-data"></span></strong></p>
+
+                        <p class="text-mute">Nationality</p>
+                        <p><strong><span id="nat-data"></span></strong></p>
+                        <h4>Names of others involved</h4>
+                        <hr>
+                        <p class="text-mute">Name of any other involved</p>
+                        <p><strong><span id="any-other-data"></span></strong></p>
+                        <h4>Event details</h4>
+                        <hr>
+                        <p class="text-mute">What is taking place?</p>
+                        <p><strong><span id="what-data"></span></strong></p>
+
+
+                        <p class="text-mute">Where is happening?</p>
+                        <p><strong><span id="location-data"></span></strong></p>
+
+
+                        <p class="text-mute">How often does this happeng?</p>
+                        <p><strong><span id="quando-data"></span></strong></p>
+
+
+                        <p class="text-mute">How long has been going on?</p>
+                        <p><strong><span id="how-long-data"></span></strong></p>
+
+                        <h4>Additional information</h4>
+                        <hr>
+                        <p class="text-mute">Other information would be relevant</p>
+                        <p><strong><span id="other-infor-data"></span></strong></p>
+
+
+                        <p class="text-mute">Your connection with the person or business</p>
+                        <p><strong><span id="your-connection-data"></span></strong></p>
+
+                        <p class="text-mute">Are you still connected to the person or bussiness</p>
+                        <p><strong><span id="still-connect-data"></span></strong></p>
+                        <h4>Involvement details</h4>
+                        <hr>
+                        <p class="text-mute">How did you obtain this information?</p>
+                        <p><strong><span id="how-did-data"></span></strong></p>
+
+                        <p class="text-mute">Does anyone else know this information? if so how many</p>
+                        <p><strong><span id="others-know-information-data"></span></strong></p>
+
+                        <p class="text-mute">How many?</p>
+                        <p><strong><span id="how-many-data"></span></strong></p>
+
+                        <p class="text-mute">Will it affect you if we use the information?</p>
+                        <p><strong><span id="affect-information-data"></span></strong></p>
+
+                        <h4>Reporter details</h4>
+                        <hr>
+
+                        <p class="text-mute">First Name</p>
+                        <p><strong><span id="an-first-name-data"></span></strong></p>
+
+                        <p class="text-mute">Last Name</p>
+                        <p><strong><span id="an-last-name-data"></span></strong></p>
+
+                        <p class="text-mute">Middle Name</p>
+                        <p><strong><span id="an-middle-name-data"></span></strong></p>
+
+                        <p class="text-mute">Telephone number(s) including STD</p>
+                        <p><strong><span id="an-phone-number-data"></span></strong></p>
+
+                        <p class="text-mute">Email</p>
+                        <p><strong><span id="an-email-data"></span></strong></p>
+
+                        <p class="text-mute">Would you like someone to call you back?</p>
+                        <p><strong><span id="ligar-data"></span></strong></p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

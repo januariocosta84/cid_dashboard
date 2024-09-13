@@ -5,71 +5,9 @@
      setTimeout("preventBack()", 0);
      window.onunload=function(){null};
  </script> -->
-<style>
-  .nav-tabs .nav-item {
-    margin-right: 1rem;
-    /* Adjust this value for more or less spacing */
-  }
 
-  .nav-tabs .nav-link {
-    text-align: center;
-    border-radius: 0;
-    /* Remove border-radius if desired */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    /* Adjust padding if necessary */
-  }
-
-  .nav-tabs .nav-link i {
-    font-size: 1.5rem;
-    /* Adjust icon size if necessary */
-  }
-
-  .nav-tabs .nav-link span {
-    display: block;
-  }
-</style>
 <div class="container-fluid">
-  <!-- Start page title -->
-  <div class="row content-home mt-1 mb-1">
-    <div class="col-12">
-      <div
-        class="page-title-box d-flex align-items-center justify-content-between"
-      >
-        <div class="row">
-          <div class="col">
-            <button class="btn btn-warning">
-              <i class="fa fa-key"></i> URN ID :{{report_id}}
-            </button>
-            <button class="btn btn-light">
-              <i class="fa fa-user"></i>{{ user.first_name|upper }}
-              {{user.last_name|upper }}
-            </button>
-            <button class="btn btn-light">
-              <i class="fa fa-clock"></i>{{report_created}}
-            </button>
-            <button class="btn btn-secondary">
-              <i class="fa fa-pencil-square"></i>{{report_status}}
-            </button>
-            <button class="btn btn-secondary">
-              <i class="fa fa-pencil-square"></i>View
-            </button>
-          </div>
-        </div>
-        <div class="page-title-right">
-          <ol class="breadcrumb m-0">
-            <li class="breadcrumb-item">
-              <a href="javascript: void(0);">Reporting</a>
-            </li>
-            <li class="breadcrumb-item active">Report</li>
-          </ol>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  {%include './report_header.html'%}
   <!-- Tab content -->
   <div class="row content-home">
     <div class="col-lg-12">
@@ -79,112 +17,56 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item">
-                <a
-                  class="nav-link {% if request.GET.tab == 'initial' or not request.GET.tab %}active {%else%}disabled{% endif %}"
-                  id="initial-tab"
-                  data-toggle="tab"
-                  href="#initial"
-                  role="tab"
-                  aria-controls="initial"
-                  aria-selected="true"
-                >
+                <a class="nav-link {% if request.GET.tab == 'initial' or not request.GET.tab %}active {%else%}disabled{% endif %}"
+                  id="initial-tab" data-toggle="tab" href="#initial" role="tab" aria-controls="initial"
+                  aria-selected="true">
                   <span class="d-block"><i class="fa fa-info"></i></span>
                   <span class="d-block">Initial</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a
-                  class="nav-link {% if request.GET.tab == 'subjects' %}active{%else%}disabled{% endif %}"
-                  id="subjects-tab"
-                  data-toggle="tab"
-                  href="#subjects"
-                  role="tab"
-                  aria-controls="subjects"
-                  aria-selected="false"
-                >
-                  <span class="d-block"
-                    ><i class="fa fa-people-carry" aria-hidden="true"></i
-                  ></span>
+                <a class="nav-link {% if request.GET.tab == 'subjects' %}active{%else%}disabled{% endif %}"
+                  id="subjects-tab" data-toggle="tab" href="#subjects" role="tab" aria-controls="subjects"
+                  aria-selected="false">
+                  <span class="d-block"><i class="fa fa-people-carry" aria-hidden="true"></i></span>
                   <span class="d-block">Subjects</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a
-                  class="nav-link {% if request.GET.tab == 'text' %}active{%else%}disabled{% endif %}"
-                  id="text-tab"
-                  data-toggle="tab"
-                  href="#text"
-                  role="tab"
-                  aria-controls="text"
-                  aria-selected="false"
-                >
-                  <span class="d-block"
-                    ><i class="fa fa-address-book" aria-hidden="true"></i
-                  ></span>
+                <a class="nav-link {% if request.GET.tab == 'text' %}active{%else%}disabled{% endif %}" id="text-tab"
+                  data-toggle="tab" href="#text" role="tab" aria-controls="text" aria-selected="false">
+                  <span class="d-block"><i class="fa fa-address-book" aria-hidden="true"></i></span>
                   <span class="d-block">Text</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a
-                  class="nav-link {% if request.GET.tab == 'attach' %}active{%else%}disabled{% endif %}"
-                  id="attachment-tab"
-                  data-toggle="tab"
-                  href="#attachment"
-                  role="tab"
-                  aria-controls="attachment"
-                  aria-selected="false"
-                >
-                  <span class="d-block"
-                    ><i class="fa fa-file" aria-hidden="true"></i
-                  ></span>
+                <a class="nav-link {% if request.GET.tab == 'attach' %}active{%else%}disabled{% endif %}"
+                  id="attachment-tab" data-toggle="tab" href="#attachment" role="tab" aria-controls="attachment"
+                  aria-selected="false">
+                  <span class="d-block"><i class="fa fa-file" aria-hidden="true"></i></span>
                   <span class="d-block">Attachment</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a
-                  class="nav-link {% if request.GET.tab == 'comments' %}active{%else%}disabled{% endif %}"
-                  id="comment-tab"
-                  data-toggle="tab"
-                  href="#comment"
-                  role="tab"
-                  aria-controls="comment"
-                  aria-selected="false"
-                >
-                  <span class="d-block"
-                    ><i class="fa fa-comment" aria-hidden="true"></i
-                  ></span>
+                <a class="nav-link {% if request.GET.tab == 'comments' %}active{%else%}disabled{% endif %}"
+                  id="comment-tab" data-toggle="tab" href="#comment" role="tab" aria-controls="comment"
+                  aria-selected="false">
+                  <span class="d-block"><i class="fa fa-comment" aria-hidden="true"></i></span>
                   <span class="d-block">Analyst Comment</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a
-                  class="nav-link {% if request.GET.tab == 'review' %}active{% endif %}"
-                  id="review-tab"
-                  data-toggle="tab"
-                  href="#review"
-                  role="tab"
-                  aria-controls="review"
-                  aria-selected="false"
-                >
-                  <span class="d-block"
-                    ><i class="fa fa-ad" aria-hidden="true"></i
-                  ></span>
+                <a class="nav-link {% if request.GET.tab == 'review' %}active{% endif %}" id="review-tab"
+                  data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">
+                  <span class="d-block"><i class="fa fa-ad" aria-hidden="true"></i></span>
                   <span class="d-block">Review</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a
-                  class="nav-link {% if request.GET.tab == 'disseminate' %}active{%else%}disabled{% endif %}"
-                  id="dissemination-tab"
-                  data-toggle="tab"
-                  href="#dissemination"
-                  role="tab"
-                  aria-controls="dissemination"
-                  aria-selected="false"
-                >
-                  <span class="d-block"
-                    ><i class="fa fa-fan" aria-hidden="true"></i
-                  ></span>
+                <a class="nav-link {% if request.GET.tab == 'disseminate' %}active{%else%}disabled{% endif %}"
+                  id="dissemination-tab" data-toggle="tab" href="#dissemination" role="tab"
+                  aria-controls="dissemination" aria-selected="false">
+                  <span class="d-block"><i class="fa fa-fan" aria-hidden="true"></i></span>
                   <span class="d-block">Dissemination</span>
                 </a>
               </li>
@@ -307,29 +189,21 @@
               <div class="card">
                 <!--Start Card body from Initial-->
                 <div class="card-body">
-                  <div
-                    class="tab-pane fade {% if request.GET.tab == 'review' %}show active{% endif %}"
-                    id="review"
-                    role="tabpanel"
-                    aria-labelledby="review-tab"
-                  >
+                  <div class="tab-pane fade {% if request.GET.tab == 'review' %}show active{% endif %}" id="review"
+                    role="tabpanel" aria-labelledby="review-tab">
                     <div>
                       <h4 class="bg bg-success text-center">
                         Initial Information
                       </h4>
                       <form method="POST" action="">
-                        {% csrf_token %} {{ initial_form }} 
-                       
-                        <button
-                          type="submit"
-                          class="btn btn-primary mt-1"
-                          name="initial_form"
-                          class="btn btn-tool" data-card-widget="collapse" title="Confirm Attachment"
-                        >
-                         Confirm
+                        {% csrf_token %} {{ initial_form }}
+
+                        <button type="submit" class="btn btn-primary mt-1" name="initial_form" class="btn btn-tool"
+                          data-card-widget="collapse" title="Confirm Attachment">
+                          Confirm
                         </button>
                       </form>
-            
+
                     </div>
                   </div>
                 </div>
@@ -339,22 +213,14 @@
               <div class="card">
                 <!--Start Card body from Initial-->
                 <div class="card-body">
-                  <div
-                    class="tab-pane fade {% if request.GET.tab == 'review' %}show active{% endif %}"
-                    id="review"
-                    role="tabpanel"
-                    aria-labelledby="review-tab"
-                  >
+                  <div class="tab-pane fade {% if request.GET.tab == 'review' %}show active{% endif %}" id="review"
+                    role="tabpanel" aria-labelledby="review-tab">
                     <div>
                       <h4 class="bg bg-success text-center">Subject Form</h4>
                       <form method="POST" action="">
                         {% csrf_token %} {{ subject_form }}
-                        <button
-                          type="submit"
-                          class="btn btn-primary mt-1"
-                          name="initial_form"
-                           class="btn btn-tool" data-card-widget="collapse" title="Confirm Attachment"
-                        >
+                        <button type="submit" class="btn btn-primary mt-1" name="initial_form" class="btn btn-tool"
+                          data-card-widget="collapse" title="Confirm Attachment">
                           Confirm
                         </button>
                       </form>
@@ -367,41 +233,25 @@
               <div class="card">
                 <!--Start Card body from Initial-->
                 <div class="card-body">
-                  <div
-                    class="tab-pane fade {% if request.GET.tab == 'review' %}show active{% endif %}"
-                    id="review"
-                    role="tabpanel"
-                    aria-labelledby="review-tab"
-                  >
+                  <div class="tab-pane fade {% if request.GET.tab == 'review' %}show active{% endif %}" id="review"
+                    role="tabpanel" aria-labelledby="review-tab">
                     <div>
                       <h4 class="text-center bg bg-success">Text Form</h4>
                       <form method="POST" action="">
                         {% csrf_token %} {{text_form}}
-                        <button
-                          type="submit"
-                          class="btn btn-transparent mt-1 disabled"
-                          name="text_form"
-                          
-                        >
+                        <button type="submit" class="btn btn-transparent mt-1 disabled" name="text_form">
                           Add New text
                         </button>
-                        <a
-                          href="{%url 'report-list'%}"
-                          class="btn btn-warning mt-1 disabled"
-                          >Terminate</a
-                        >
-                        <button
-                          type="button"
-                          class="btn btn-warning mt-1 disabled"
-                          id="goToNextStep"
-                        >
+                        <a href="{%url 'report-list'%}" class="btn btn-warning mt-1 disabled">Terminate</a>
+                        <button type="button" class="btn btn-warning mt-1 disabled" id="goToNextStep">
                           <i class="fa fa-plus"></i>
                           <span class="text-uppercase">Confirm</span>
                         </button>
-                        
+
                       </form>
                       {%include './text_list.html'%}
-                      <button class="btn btn-primary"  class="btn btn-tool" data-card-widget="collapse" title="Confirm Attachment">Confirm</button>
+                      <button class="btn btn-primary" class="btn btn-tool" data-card-widget="collapse"
+                        title="Confirm Attachment">Confirm</button>
                     </div>
                   </div>
                 </div>
@@ -412,26 +262,14 @@
               <div class="card">
                 <!--Start Card body from Initial-->
                 <div class="card-body">
-                  <div
-                    class="tab-pane fade {% if request.GET.tab == 'review' %}show active{% endif %}"
-                    id="review"
-                    role="tabpanel"
-                    aria-labelledby="review-tab"
-                  >
+                  <div class="tab-pane fade {% if request.GET.tab == 'review' %}show active{% endif %}" id="review"
+                    role="tabpanel" aria-labelledby="review-tab">
                     <div class="card-tools">
                       <h4 class="text-center bg bg-success">Attach Form</h4>
-                      <form
-                        method="POST"
-                        action=""
-                        enctype="multipart/form-data"
-                      >
+                      <form method="POST" action="" enctype="multipart/form-data">
                         {% csrf_token %} {{ file_form }}
-                        <button
-                          type="submit"
-                          class="btn btn-primary mt-1"
-                          name="file_form"
-                          class="btn btn-tool" data-card-widget="collapse" title="Confirm Attachment"
-                        >
+                        <button type="submit" class="btn btn-primary mt-1" name="file_form" class="btn btn-tool"
+                          data-card-widget="collapse" title="Confirm Attachment">
                           Confirm
                         </button>
                       </form>
@@ -445,46 +283,39 @@
               <div class="card">
                 <!--Start Card body from comment-->
                 <div class="card-body">
-                  <div
-                    class="tab-pane fade {% if request.GET.tab == 'review' %}show active{% endif %}"
-                    id="review"
-                    role="tabpanel"
-                    aria-labelledby="review-tab"
-                  >
+                  <div class="tab-pane fade {% if request.GET.tab == 'review' %}show active{% endif %}" id="review"
+                    role="tabpanel" aria-labelledby="review-tab">
                     <div>
                       <h4 class="text-center bg bg-success">Comment Form</h4>
                       <form method="POST" action="">
                         {% csrf_token %} {%include './comments_review.html'%}
-                        <button class="btn btn-primary"  class="btn btn-tool" data-card-widget="collapse" title="Confirm Attachment">Confirm</button>
+                        <button class="btn btn-primary" class="btn btn-tool" data-card-widget="collapse"
+                          title="Confirm Attachment">Confirm</button>
                       </form>
                     </div>
                   </div>
                 </div>
               </div>
               <!--End of Subject form Card -->
-              
-                    <!--Card for Comment form information-->
-                    <div class="card">
-                      <!--Start Card body from comment-->
-                      <div class="card-body">
-                        <div
-                          class="tab-pane fade {% if request.GET.tab == 'review' %}show active{% endif %}"
-                          id="review"
-                          role="tabpanel"
-                          aria-labelledby="review-tab"
-                        >
-                          <div>
-                            <h4 class="text-center">Confirm To finalize all the process</h4>
-                            <form method="POST" action="">
-                             {%csrf_token%}
-                             {{reviewed}}
-                              <button class="btn btn-primary"  class="btn btn-tool" type="submit">Confirm</button>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
+
+              <!--Card for Comment form information-->
+              <div class="card">
+                <!--Start Card body from comment-->
+                <div class="card-body">
+                  <div class="tab-pane fade {% if request.GET.tab == 'review' %}show active{% endif %}" id="review"
+                    role="tabpanel" aria-labelledby="review-tab">
+                    <div>
+                      <h4 class="text-center">Confirm To finalize all the process</h4>
+                      <form method="POST" action="">
+                        {%csrf_token%}
+                        {{reviewed}}
+                        <button class="btn btn-primary" class="btn btn-tool" type="submit">Confirm</button>
+                      </form>
                     </div>
-                    <!--End of Subject form Card -->
+                  </div>
+                </div>
+              </div>
+              <!--End of Subject form Card -->
             </div>
           </div>
         </div>

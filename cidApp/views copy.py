@@ -374,34 +374,7 @@ class ReportWizardView(SessionWizardView):
 #         return context
 
 
-# # def insert_subject(request):
-# #     url = 'https://fakestoreapi.com/products'
-# #     response = requests.get(url)
-# #     content = response.json()
-    
-# #     all_products = content
-# #     print(all_products)
-    
-# #     create_obj = []
-# #     for product in all_products:
-# #         if not Product.objects.filter(code=product['id']).exists():
-# #             create_obj.append(Product(
-# #                 code=product['id'],
-# #                 title=product['title'],
-# #                 price=product['price'],
-# #                 description=product['description'],
-# #                 category=product['category'],
-# #                 image=product['image'],
-# #                 rating_rate=product['rating']['rate'],
-# #                 rating_count=product['rating']['count']
-# #             ))
-    
-# #     if create_obj:
-# #         Product.objects.bulk_create(create_obj)
 
-# #     product_data = Product.objects.all()
-
-# #     return render(request, 'cart/product.html', {"product_data": product_data})
 
 # class TwoStepVerification(View):
 #     def post(self, request):
