@@ -234,19 +234,20 @@ class SubjectForm(forms.ModelForm):
     class Meta:
         model = Subject 
         fields = ('__all__')
+        exclude =('ligar',)
         labels = {
             'first_name': 'First Name',
             'last_name': 'Last Name',
             'pob': 'Place of Birth',
             'dob': 'Date of Birth',
             'home_add':'Home Address',
+            'quando':'When',
             'Id_number':'Identification Number'
         }
         widgets = {
             'dob': forms.DateInput(attrs={'type': 'date'}),
             'description': forms.Textarea(attrs={'rows': 4}),
-            'conveyance_description': forms.Textarea(attrs={'rows': 4}),
-          
+                      
         }
     def __init__(self, *args, **kwargs):
         super(SubjectForm, self).__init__(*args, **kwargs)

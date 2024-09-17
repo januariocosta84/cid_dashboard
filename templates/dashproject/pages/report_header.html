@@ -26,14 +26,16 @@
                         {{call_and_webform}}
                     </button>
                     
-                    <button class="btn btn-secondary" data-toggle="modal" data-id="{{webformID.webform_id}}"
+                    {% if webformID.webform_id %}
+                    <button class="btn btn-secondary" data-toggle="modal" data-id="{{ webformID.webform_id }}"
                         id="subjectDetailBtn" data-target="#exampleModal"
-                        onclick="fetchSubjectDetails('{{webformID.webform_id}}')">
-                        {{webformID.webform_id}}
-                        <i class="fa fa-pencil-square"></i>View
+                        onclick="fetchSubjectDetails('{{ webformID.webform_id }}')">
+                        {{ webformID.webform_id }}
+                        <i class="fa fa-pencil-square"></i> View
                     </button>
-
-
+                    {% else %}
+                        <p>No webform ID available.</p>
+                    {% endif %}
                 </div>
             </div>
             <div class="page-title-right">
