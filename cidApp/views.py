@@ -100,6 +100,7 @@ class CreateReportWebCallView(LoginRequiredMixin, GroupRequiredMixin, TemplateVi
         context['text_form'] = self.text_form()
         context['file_form'] = self.file_form()
         context['comment_form']= self.comments_form()
+        
     
         if 'report_id' in self.request.session:
             report = get_object_or_404(Report, id=self.request.session['report_id'])
@@ -128,9 +129,9 @@ class CreateReportWebCallView(LoginRequiredMixin, GroupRequiredMixin, TemplateVi
         if 'initial_form' in request.POST:
             return self.handle_initial_form(request, agency, web_id)
         elif 'subject_form' in request.POST:
-            return self.handle_subject_form(request)
+            return self.handle_subject_form(request, web_id)
         elif 'text_form' in request.POST:
-            return self.handle_text_form(request)
+            return self.handle_text_form(request,web_id)
         elif 'file_form' in request.POST:
             return self.handle_file_form(request)
 
@@ -163,9 +164,9 @@ class CreateReportWebCallView(LoginRequiredMixin, GroupRequiredMixin, TemplateVi
             request.session['report_status'] = report.status
            # request.session['report_created'] = report.created_at
             messages.success(request, f'New Initial has added')
-            return redirect(f"{reverse('new-report')}?tab=subjects")
+            return redirect(f"{reverse('report-web', args=[web_id])}?tab=subjects")
 
-    def handle_subject_form(self, request):
+    def handle_subject_form(self, request, web_id):
         form = self.subject_form(request.POST)
         if form.is_valid():
             subject_instance = form.save()
@@ -177,9 +178,9 @@ class CreateReportWebCallView(LoginRequiredMixin, GroupRequiredMixin, TemplateVi
             report.subject = subject_instance
             report.save()
             messages.success(request, f'New Subject has added successfully to {request.session.get('report_id')} Report ID')
-            return redirect(f"{reverse('new-report')}?tab=text")
+            return redirect(f"{reverse('report-web', args=[web_id])}?tab=text")
 
-    def handle_text_form(self, request):
+    def handle_text_form(self, request, web_id):
         form = self.text_form(request.POST)
         if form.is_valid():
             text_instance = form.save(commit=False)
@@ -189,7 +190,7 @@ class CreateReportWebCallView(LoginRequiredMixin, GroupRequiredMixin, TemplateVi
             request.session['text_id'] = text_instance.id
             #report.save()
             messages.success(request, f'Comment has added successfully to {request.session.get('report_id')} Report ID')
-            return redirect(f"{reverse('new-report')}?tab=text")
+            return redirect(f"{reverse('report-web', args=[web_id])}?tab=attach")
         else:
             print("Errorr")
     def handle_file_form(self, request):
@@ -660,6 +661,7 @@ class EditReportComment(LoginRequiredMixin,GroupRequiredMixin,View):
     def get(self,request,*args, **kwargs):
         report_id = kwargs.get('report_id')
         report = get_object_or_404(Report, id= report_id)
+        source = CallAndWebForm.objects.filter(id=report.source_id).first()
         comments = Comments.objects.filter(report= report)
         text_list = TextAttach.objects.filter(report=report)
         for i in comments:
@@ -688,6 +690,7 @@ class EditReportComment(LoginRequiredMixin,GroupRequiredMixin,View):
             'comments_form': comments_form,
             'comments':comments,
             'text_list':text_list,
+            'webformID':source,
             'user_group':list(user_group),
         }
         
@@ -714,6 +717,7 @@ class EditReportReview(LoginRequiredMixin,GroupRequiredMixin,View):
     def get(self,request,*args, **kwargs):
         report_id = kwargs.get('report_id')
         report = get_object_or_404(Report, id= report_id)
+        source = CallAndWebForm.objects.filter(id=report.source_id).first()
         print("bug",report)
         comments = Comments.objects.filter(report= report)
         text_list = TextAttach.objects.filter(report=report)
@@ -746,6 +750,7 @@ class EditReportReview(LoginRequiredMixin,GroupRequiredMixin,View):
             'text_list':text_list,
             'user_group':list(user_group),
             'reviewed':reviewed,
+            'webformID':source,
         }
         
         return render(request, 'dashproject/pages/report_edit_review.html', context)

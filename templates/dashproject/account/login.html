@@ -1,4 +1,5 @@
-{% include 'dashproject/account/base_css.html' %} {% load i18n static %}
+{% include 'dashproject/account/base_css.html' %}
+{% load i18n static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +11,8 @@
 </head>
 
 <body class="hold-transition login-page">
-  <div class="login-box costumize-login">
+
+  <div class="login-box costumize-login container ">
     <div class="login-logo">
       <a href=""><b>CID - Customs Intelligence Database</b></a>
     </div>
@@ -19,7 +21,7 @@
         <form id="login-form" method="POST" action="{% url 'login' %}">
           {% csrf_token %}
           <div class="input-group mb-3">
-            {{ form.username }}
+            {{ form.username}}
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
@@ -27,7 +29,7 @@
             </div>
           </div>
           <div class="input-group mb-3">
-            {{ form.password }}
+            {{ form.password}}
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
@@ -35,7 +37,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-4">
+            <div class="col-md-6 offset-md-3">
               <button type="submit" class="btn btn-primary btn-block">
                 Login
               </button>
@@ -46,6 +48,7 @@
       </div>
     </div>
   </div>
+
   {% include 'dashproject/account/base_js.html' %}
 </body>
 
