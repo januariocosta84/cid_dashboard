@@ -224,8 +224,10 @@ class InitialForm(forms.ModelForm):
     class Meta:
         model = Intial 
         fields = ['source', 'information_source',]
+        
     def __init__(self, *args, **kwargs):
         super(InitialForm, self).__init__(*args, **kwargs)
+        
         for field_name, field in self.fields.items():
             field.widget.attrs.update({'class': 'form-control'})
         self.fields['information_source'].required = False
@@ -246,7 +248,7 @@ class SubjectForm(forms.ModelForm):
         }
         widgets = {
             'dob': forms.DateInput(attrs={'type': 'date'}),
-            'description': forms.Textarea(attrs={'rows': 4}),
+            'other_infor': forms.Textarea(attrs={'rows': 4}),
                       
         }
     def __init__(self, *args, **kwargs):

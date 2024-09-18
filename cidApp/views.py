@@ -586,7 +586,8 @@ class EditReport(LoginRequiredMixin,GroupRequiredMixin,View):
         id =self.request.user.id
         comments_form = CommentForm()
         text_form = TextForm()
-        #print(subject_form)
+        user_group = self.request.user.groups.values_list('name', flat=True)
+
         context={
             'initial_form':initial_form,
             'subject_form': subject_form,
@@ -600,6 +601,7 @@ class EditReport(LoginRequiredMixin,GroupRequiredMixin,View):
             'comments':comments,
             'text_list':text_list,
             'webformID':source,
+            'user_group':list(user_group)
             #'check':source.type
             
         }

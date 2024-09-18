@@ -1,5 +1,7 @@
 {% extends 'dashproject/base/layout.html' %} {% load static %} {% block content%}
+
 <div class="container-fluid">
+
   <!-- start page title -->
   <div class="row content-home mt-1 mb-1">
     <div class="col-12">
@@ -36,7 +38,7 @@
               </div>
             </div>
 
-            <div class="col-md-6">
+            {% comment %} <div class="col-md-6">
               <div class="form-inline float-md-right mb-3">
                 <div class="search-box ml-2">
                   <div class="position-relative">
@@ -49,11 +51,11 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> {% endcomment %}
           </div>
           <!-- end row -->
           <div class="table-responsive mb-4">
-            <table class="table table-centered table-nowrap table-check mb-0">
+            <table class="table table-centered table-nowrap table-check mb-0"  id="example1">
               <thead>
                 <tr>
                   <th scope="col">ID</th>
@@ -149,7 +151,7 @@
         </div>
       </div>
     </div>
-    <div class="pagination">
+    {% comment %} <div class="pagination">
       <span class="step-links">
         {% if report.has_previous %}
         <a href="?page=1">&laquo; first</a>
@@ -165,7 +167,7 @@
         <a href="?page={{ report.paginator.num_pages }}">last &raquo;</a>
         {% endif %}
       </span>
-    </div>
+    </div> {% endcomment %}
   </div>
 </div>
 <script>
@@ -176,6 +178,22 @@
       const url = this.getAttribute("data-url");
       // Redirect to the URL
       window.location.href = url;
+    });
+  });
+
+   $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
     });
   });
 </script>
