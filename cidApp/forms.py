@@ -218,7 +218,6 @@ class GroupEditForm(forms.Form):
         for field_name, field in self.fields.items():
             field.widget.attrs.update({'class': 'form-control'})
 
-
             
 class InitialForm(forms.ModelForm):
     class Meta:
@@ -236,19 +235,11 @@ class SubjectForm(forms.ModelForm):
     class Meta:
         model = Subject 
         fields = ('__all__')
-        exclude =('ligar',)
-        labels = {
-            'first_name': 'First Name',
-            'last_name': 'Last Name',
-            'pob': 'Place of Birth',
-            'dob': 'Date of Birth',
-            'home_add':'Home Address',
-            'quando':'When',
-            'Id_number':'Identification Number'
-        }
         widgets = {
             'dob': forms.DateInput(attrs={'type': 'date'}),
-            'other_infor': forms.Textarea(attrs={'rows': 4}),
+            'description_subject': forms.Textarea(attrs={'rows': 4}),
+            'cov_description':forms.Textarea(attrs={'rows': 4}),
+            'address':forms.Textarea(attrs={'rows': 4})
                       
         }
     def __init__(self, *args, **kwargs):
@@ -306,12 +297,16 @@ class CommentForm(forms.ModelForm):
 
 
 class ReviewForm(forms.ModelForm):
-    
     class Meta:
         model = ReportReviewed
         fields = ['confirm']
+        widgets = {
+            'confirm': forms.CheckboxInput(attrs={
+                'class': 'custom-control-input',
+                'id': 'customSwitch1'  # Ensure the ID matches for the label
+            }),
+        }
+
     def __init__(self, *args, **kwargs):
-        
         super(ReviewForm, self).__init__(*args, **kwargs)
-        for field_name, field in self.fields.items():
-            field.widget.attrs.update({'class': 'form-control'})
+        self.fields['confirm'].label = ''  # Optional: Remove default label

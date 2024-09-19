@@ -1,0 +1,9 @@
+ <form method="POST" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                  {{ file_form.path }}
+                </div>
+                <button type="submit" class="btn btn-primary mt-1" name="file_form">
+                  Submit
+                </button>
+</form>

@@ -77,10 +77,26 @@
                 class="tab-pane fade {% if request.GET.tab == 'initial' or not request.GET.tab %}show active{% endif %}"
                 id="initial" role="tabpanel" aria-labelledby="initial-tab">
                 <form method="POST" action="">
-                  {% csrf_token %} {{ initial_form }}
-                  <button type="submit" class="btn btn-primary mt-1 disabled" name="initial_form">
-                    Submit to Continue
-                  </button>
+                  <div class="card">
+                    <div class="card-header">Form for Initialization</div>
+                    <div class="card-body">
+                      <div class="form-group">
+                        <label for="id_source">Source</label>
+                        {{ initial_form.source }}
+                      </div>
+
+                      <div class="form-group">
+                        <label for="id_information_source">Information Source</label>
+                        {{ initial_form.information_source }}
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <button type="submit" class="btn btn-primary mt-1 disabled" name="initial_form">
+                        Submit to Continue
+                      </button>
+                    </div>
+                  </div>
+
                 </form>
               </div>
 
@@ -88,13 +104,94 @@
               <div class="tab-pane fade {% if request.GET.tab == 'subjects' %}show active{% endif %}" id="subjects"
                 role="tabpanel" aria-labelledby="subjects-tab">
                 <form method="POST" action="">
-                  {% csrf_token %} {{ subject_form }}
-                  <button type="submit" class="btn btn-transparent mt-1 disabled" name="initial_form">
-                    Back to previous
-                  </button>
-                  <button type="submit" class="btn btn-primary mt-1 disabled" name="subject_form">
-                    Submit Subject Form
-                  </button>
+                  {% csrf_token %}
+                  <div class="card">
+                    <div class="card-header">Subject Form</div>
+                    <div class="card-body">
+                      <div class="form-group">
+                        <label for="">First Name</label>
+                        {{ subject_form.first_name}}
+                      </div>
+
+                      <div class="form-group">
+                        <label for="id_information_source">Last Name</label>
+                        {{ subject_form.last_name}}
+                      </div>
+                      <div class="form-group">
+                        <label for="id_information_source">Gender</label>
+                        {{ subject_form.gender}}
+                      </div>
+
+                      <div class="form-group">
+                        <label for="id_information_source">Place of birth</label>
+                        {{ subject_form.pob}}
+                      </div>
+
+                      <div class="form-group">
+                        <label for="id_information_source">Nick Name</label>
+                        {{ subject_form.last_name}}
+                      </div>
+                      <div class="form-group">
+                        <label for="id_information_source">Date of birth</label>
+                        {{ subject_form.dob}}
+                      </div>
+                      <div class="form-group">
+                        <label for="id_information_source">Nationality</label>
+                        {{ subject_form.nationality}}
+                      </div>
+                      <div class="form-group">
+                        <label for="id_information_source">Identification</label>
+                        {{ subject_form.last_name}}
+                      </div>
+                      <div class="form-group">
+                        <label for="id_information_source">ID Number</label>
+                        {{ subject_form.idNumber}}
+                      </div>
+
+                      <div class="form-group">
+                        <label for="id_information_source">Home Address</label>
+                        {{ subject_form.address}}
+                      </div>
+                      <div class="form-group">
+                        <label for="id_information_source">Bussiness Name</label>
+                        {{ subject_form.business_name}}
+                      </div>
+                      <div class="form-group">
+                        <label for="id_information_source">Bussiness Address</label>
+                        {{ subject_form.busaddress}}
+                      </div>
+                      <div class="form-group">
+                        <label for="id_information_source">Bin or TIN</label>
+                        {{ subject_form.bin_tin}}
+                      </div>
+                      <div class="form-group">
+                        <label for="id_information_source">Telephone</label>
+                        {{ subject_form.phone_num}}
+                      </div>
+                      <div class="form-group">
+                        <label for="id_information_source">Description </label>
+                        {{ subject_form.description_subject}}
+                      </div>
+                      <div class="form-group">
+                        <label for="id_information_source">Conveyance</label>
+                        {{ subject_form.coveyance}}
+                      </div>
+                      <div class="form-group">
+                        <label for="id_information_source">Conveyance Description</label>
+                        {{ subject_form.cov_description}}
+                      </div>
+
+                    </div>
+                    <div class="card-footer">
+                      <button type="submit" class="btn btn-transparent mt-1 disabled" name="initial_form">
+                        Back to previous
+                      </button>
+                      <button type="submit" class="btn btn-primary mt-1 disabled" name="subject_form">
+                        Submit Subject Form
+                      </button>
+                    </div>
+                  </div>
+
                 </form>
 
               </div>
@@ -104,7 +201,19 @@
                 role="tabpanel" aria-labelledby="text-tab">
                 <form method="POST" action="">
                   {% csrf_token %}
-                  {{text_form}}
+                  <div class="form-group">
+                    <label for="">Text</label>
+                    {{text_form.text}}
+                  </div>
+                  <div class="form-group">
+                    <label for="">Information Source</label>
+                    {{text_form.information_source}}
+                  </div>
+                  <div class="form-group">
+                    <label for="">Source Evaluation</label>
+                    {{text_form.source_evaluation}}
+                  </div>
+
                   <button type="submit" class="btn btn-primary mt-1 disabled" name="text_form">Add New
                     text</button>
                   <a href="{%url 'report-list'%}" class="btn btn-warning mt-1 disabled">Terminate</a>
@@ -119,9 +228,13 @@
               <div class="tab-pane fade {% if request.GET.tab == 'attach' %}show active{% endif %}" id="attachment"
                 role="tabpanel" aria-labelledby="attachment-tab">
                 <form method="POST" action="" enctype="multipart/form-data">
-                  {% csrf_token %} {{ file_form }}
+                  {% csrf_token %}
+                  <div class="form-group">
+                    {{ file_form.path }}
+                  </div>
+
                   <button type="submit" class="btn btn-primary mt-1 disabled" name="file_form">
-                    Submit
+                    Upload File
                   </button>
                 </form>
               </div>

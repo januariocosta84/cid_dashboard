@@ -78,7 +78,7 @@ class ViewAllReport(LoginRequiredMixin,TemplateView):
         return context
 
 class CreateReportWebCallView(LoginRequiredMixin, GroupRequiredMixin, TemplateView):
-    template_name = 'dashproject/pages/report.html'
+    template_name = 'dashproject/pages/add_report.html'
     group_names = ['administrator']
     login_url = 'login'
     initial_form = InitialForm
@@ -349,7 +349,7 @@ class CreateReportWebCallView(LoginRequiredMixin, GroupRequiredMixin, TemplateVi
   
     
 class CreateReportWebView(LoginRequiredMixin, GroupRequiredMixin, TemplateView):
-    template_name = 'dashproject/pages/report.html'
+    template_name = 'dashproject/pages/add_report.html'
     group_names = ['administrator']
     login_url = 'login'
     initial_form = InitialForm

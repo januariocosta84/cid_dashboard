@@ -15,174 +15,10 @@
         <div class="card-body">
           <div class="container mt-4">
             <!-- Nav tabs -->
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-              <li class="nav-item">
-                <a class="nav-link {% if request.GET.tab == 'initial' or not request.GET.tab %}active {%else%}disabled{% endif %}"
-                  id="initial-tab" data-toggle="tab" href="#initial" role="tab" aria-controls="initial"
-                  aria-selected="true">
-                  <span class="d-block"><i class="fa fa-info"></i></span>
-                  <span class="d-block">Initial</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link {% if request.GET.tab == 'subjects' %}active{%else%}disabled{% endif %}"
-                  id="subjects-tab" data-toggle="tab" href="#subjects" role="tab" aria-controls="subjects"
-                  aria-selected="false">
-                  <span class="d-block"><i class="fa fa-people-carry" aria-hidden="true"></i></span>
-                  <span class="d-block">Subjects</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link {% if request.GET.tab == 'text' %}active{%else%}disabled{% endif %}" id="text-tab"
-                  data-toggle="tab" href="#text" role="tab" aria-controls="text" aria-selected="false">
-                  <span class="d-block"><i class="fa fa-address-book" aria-hidden="true"></i></span>
-                  <span class="d-block">Text</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link {% if request.GET.tab == 'attach' %}active{%else%}disabled{% endif %}"
-                  id="attachment-tab" data-toggle="tab" href="#attachment" role="tab" aria-controls="attachment"
-                  aria-selected="false">
-                  <span class="d-block"><i class="fa fa-file" aria-hidden="true"></i></span>
-                  <span class="d-block">Attachment</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link {% if request.GET.tab == 'comments' %}active{%else%}disabled{% endif %}"
-                  id="comment-tab" data-toggle="tab" href="#comment" role="tab" aria-controls="comment"
-                  aria-selected="false">
-                  <span class="d-block"><i class="fa fa-comment" aria-hidden="true"></i></span>
-                  <span class="d-block">Analyst Comment</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link {% if request.GET.tab == 'review' %}active{% endif %}" id="review-tab"
-                  data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">
-                  <span class="d-block"><i class="fa fa-ad" aria-hidden="true"></i></span>
-                  <span class="d-block">Review</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link {% if request.GET.tab == 'disseminate' %}active{%else%}disabled{% endif %}"
-                  id="dissemination-tab" data-toggle="tab" href="#dissemination" role="tab"
-                  aria-controls="dissemination" aria-selected="false">
-                  <span class="d-block"><i class="fa fa-fan" aria-hidden="true"></i></span>
-                  <span class="d-block">Dissemination</span>
-                </a>
-              </li>
-              <!-- Add other tabs here -->
-            </ul>
+            {% include './nav_tab.html' %}
 
             <!-- Tab content -->
             <div class="tab-content" id="myTabContent">
-              <!-- Initial Form -->
-              <!-- <div
-                class="tab-pane fade {% if request.GET.tab == 'initial' or not request.GET.tab %}show active{% endif %}"
-                id="initial"
-                role="tabpanel"
-                aria-labelledby="initial-tab"
-              >
-                <form method="POST" action="">
-                  {% csrf_token %} {{ initial_form }}
-                  <button
-                    type="submit"
-                    class="btn btn-primary mt-1 disabled"
-                    name="initial_form"
-                  >
-                    Submit to Continue
-                  </button>
-                </form>
-              </div> -->
-
-              <!-- Subject Form -->
-              <!-- <div
-                class="tab-pane fade {% if request.GET.tab == 'subjects' %}show active{% endif %}"
-                id="subjects"
-                role="tabpanel"
-                aria-labelledby="subjects-tab"
-              >
-                <form method="POST" action="">
-                  {% csrf_token %} {{ subject_form }}
-                  <button
-                    type="submit"
-                    class="btn btn-transparent mt-1 disabled"
-                    name="initial_form"
-                  >
-                    Back to previous
-                  </button>
-                  <button
-                    type="submit"
-                    class="btn btn-primary mt-1 disabled"
-                    name="subject_form"
-                  >
-                    Submit Subject Form
-                  </button>
-                </form>
-              </div> -->
-
-              <!-- Text Form -->
-              <!-- <div
-                class="tab-pane fade {% if request.GET.tab == 'text' %}show active{% endif %}"
-                id="text"
-                role="tabpanel"
-                aria-labelledby="text-tab"
-              >
-                <form method="POST" action="">
-                  {% csrf_token %} {{text_form}}
-                  <button
-                    type="submit"
-                    class="btn btn-primary mt-1 disabled"
-                    name="text_form"
-                  >
-                    Add New text
-                  </button>
-                  <a
-                    href="{%url 'report-list'%}"
-                    class="btn btn-warning mt-1 disabled"
-                    >Terminate</a
-                  >
-                  <button
-                    type="button"
-                    class="btn btn-warning disabled mt-1"
-                    id="goToNextStep"
-                  >
-                    <i class="fa fa-plus"></i>
-                    <span class="text-uppercase">Go to Next Step</span>
-                  </button>
-                </form>
-                {%include './text_list.html'%}
-              </div> -->
-
-              <!-- File Form -->
-              <!-- <div
-                class="tab-pane fade {% if request.GET.tab == 'attach' %}show active{% endif %}"
-                id="attachment"
-                role="tabpanel"
-                aria-labelledby="attachment-tab"
-              >
-                <form method="POST" action="" enctype="multipart/form-data">
-                  {% csrf_token %} {{ file_form }}
-                  <button
-                    type="submit"
-                    class="btn btn-primary mt-1 disabled"
-                    name="file_form"
-                  >
-                    Submit
-                  </button>
-                </form>
-              </div> -->
-
-              <!-- Comments Form -->
-              <!-- <div
-                class="tab-pane fade {% if request.GET.tab == 'comments' %}show active{% endif %}"
-                id="comment"
-                role="tabpanel"
-                aria-labelledby="comment-tab"
-              >
-                <form method="POST" action="">
-                  {% csrf_token %} {%include './comments.html'%}
-                </form>
-              </div> -->
 
               <!-- Review Tab -->
               <!--Card for Initial Information-->
@@ -192,12 +28,25 @@
                   <div class="tab-pane fade {% if request.GET.tab == 'review' %}show active{% endif %}" id="review"
                     role="tabpanel" aria-labelledby="review-tab">
                     <div>
-                      <h4 class="bg bg-success text-center">
-                        Initial Information
+                      <h4 class="text-mute">
+                        1.Initial Information
                       </h4>
                       <form method="POST" action="">
-                        {% csrf_token %} {{ initial_form }}
+                        {% csrf_token %}
+                        <div class="card">
+                          <div class="card-header">Form for Initialization</div>
+                          <div class="card-body">
+                            <div class="form-group">
+                              <label for="id_source">Source</label>
+                              {{ initial_form.source }}
+                            </div>
 
+                            <div class="form-group">
+                              <label for="id_information_source">Information Source</label>
+                              {{ initial_form.information_source }}
+                            </div>
+                          </div>
+                        </div>
                         <button type="submit" class="btn btn-primary mt-1" name="initial_form" class="btn btn-tool"
                           data-card-widget="collapse" title="Confirm Attachment">
                           Confirm
@@ -216,18 +65,110 @@
                   <div class="tab-pane fade {% if request.GET.tab == 'review' %}show active{% endif %}" id="review"
                     role="tabpanel" aria-labelledby="review-tab">
                     <div>
-                      <h4 class="bg bg-success text-center">Subject Form</h4>
+                      <h4 class="text-mute">2.Subject Form</h4>
                       <form method="POST" action="">
-                        {% csrf_token %} {{ subject_form }}
-                        <button type="submit" class="btn btn-primary mt-1" name="initial_form" class="btn btn-tool"
-                          data-card-widget="collapse" title="Confirm Attachment">
-                          Confirm
-                        </button>
-                      </form>
+                        {% csrf_token %}
+                        <div class="card">
+                          <div class="card-header">Subject Form</div>
+                          <div class="card-body">
+                            <div class="form-group">
+                              <label for="id_first_name">First Name</label>
+                              {{ subject_form.first_name }}
+                            </div>
+
+                            <div class="form-group">
+                              <label for="id_last_name">Last Name</label>
+                              {{ subject_form.last_name }}
+                            </div>
+
+                            <div class="form-group">
+                              <label for="id_gender">Gender</label>
+                              {{ subject_form.gender }}
+                            </div>
+
+                            <div class="form-group">
+                              <label for="id_pob">Place of Birth</label>
+                              {{ subject_form.pob }}
+                            </div>
+
+                            <div class="form-group">
+                              <label for="id_nick_name">Nick Name</label>
+                              {{ subject_form.nick_name }}
+                            </div>
+
+                            <div class="form-group">
+                              <label for="id_dob">Date of Birth</label>
+                              {{ subject_form.dob }}
+                            </div>
+
+                            <div class="form-group">
+                              <label for="id_nationality">Nationality</label>
+                              {{ subject_form.nationality }}
+                            </div>
+
+                            <div class="form-group">
+                              <label for="id_identification">Identification</label>
+                              {{ subject_form.identification }}
+                            </div>
+
+                            <div class="form-group">
+                              <label for="id_idNumber">ID Number</label>
+                              {{ subject_form.idNumber }}
+                            </div>
+
+                            <div class="form-group">
+                              <label for="id_address">Home Address</label>
+                              {{ subject_form.address }}
+                            </div>
+
+                            <div class="form-group">
+                              <label for="id_business_name">Business Name</label>
+                              {{ subject_form.business_name }}
+                            </div>
+
+                            <div class="form-group">
+                              <label for="id_business_address">Business Address</label>
+                              {{ subject_form.busaddress }}
+                            </div>
+
+                            <div class="form-group">
+                              <label for="id_bin_tin">BIN or TIN</label>
+                              {{ subject_form.bin_tin }}
+                            </div>
+
+                            <div class="form-group">
+                              <label for="id_phone_num">Telephone</label>
+                              {{ subject_form.phone_num }}
+                            </div>
+
+                            <div class="form-group">
+                              <label for="id_description_subject">Description</label>
+                              {{ subject_form.description_subject }}
+                            </div>
+
+                            <div class="form-group">
+                              <label for="id_coveyance">Conveyance</label>
+                              {{ subject_form.coveyance }}
+                            </div>
+
+                            <div class="form-group">
+                              <label for="id_cov_description">Conveyance Description</label>
+                              {{ subject_form.cov_description }}
+                            </div>
+                          </div>
+                        </div>
                     </div>
+                    <div class="card-footer">
+                      <button type="submit" class="btn btn-primary mt-1" name="initial_form" class="btn btn-tool"
+                        data-card-widget="collapse" title="Confirm review">
+                        Confirm
+                      </button>
+                    </div>
+                    </form>
                   </div>
                 </div>
               </div>
+
               <!--End of Subject form Card -->
               <!--Card for Text form Information-->
               <div class="card">
@@ -236,26 +177,41 @@
                   <div class="tab-pane fade {% if request.GET.tab == 'review' %}show active{% endif %}" id="review"
                     role="tabpanel" aria-labelledby="review-tab">
                     <div>
-                      <h4 class="text-center bg bg-success">Text Form</h4>
+                      <h4 class="text-mute">3. Text Form</h4>
                       <form method="POST" action="">
-                        {% csrf_token %} {{text_form}}
-                        <button type="submit" class="btn btn-transparent mt-1 disabled" name="text_form">
-                          Add New text
-                        </button>
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                          <label for="">Text</label>
+                          {{text_form.text}}
+                        </div>
+                        <div class="form-group">
+                          <label for="">Information Source</label>
+                          {{text_form.information_source}}
+                        </div>
+                        <div class="form-group">
+                          <label for="">Source Evaluation</label>
+                          {{text_form.source_evaluation}}
+                        </div>
+
+                        <button type="submit" class="btn btn-primary mt-1 disabled" name="text_form">Add New
+                          text</button>
                         <a href="{%url 'report-list'%}" class="btn btn-warning mt-1 disabled">Terminate</a>
-                        <button type="button" class="btn btn-warning mt-1 disabled" id="goToNextStep">
-                          <i class="fa fa-plus"></i>
-                          <span class="text-uppercase">Confirm</span>
+                        <button type="button" class="btn btn-warning disabled mt-1" id="goToNextStep">
+                          <i class="fa fa-plus"></i> <span class="text-uppercase">Go to Next Step</span>
                         </button>
 
+                        {%include './text_list.html'%}
+                        <button type="button" class="btn btn-primary mt-1" data-card-widget="collapse"
+                          title="Confirm Attachment">
+                          Confirm
+                        </button>
                       </form>
-                      {%include './text_list.html'%}
-                      <button class="btn btn-primary" class="btn btn-tool" data-card-widget="collapse"
-                        title="Confirm Attachment">Confirm</button>
                     </div>
                   </div>
                 </div>
               </div>
+
               <!--End of Text form Card -->
 
               <!--Card for Text form Information-->
@@ -265,9 +221,12 @@
                   <div class="tab-pane fade {% if request.GET.tab == 'review' %}show active{% endif %}" id="review"
                     role="tabpanel" aria-labelledby="review-tab">
                     <div class="card-tools">
-                      <h4 class="text-center bg bg-success">Attach Form</h4>
+                      <h4 class="text-mute">4.Attach Form</h4>
                       <form method="POST" action="" enctype="multipart/form-data">
-                        {% csrf_token %} {{ file_form }}
+                        {% csrf_token %}
+                        <div class="form-group">
+                          {{ file_form.path }}
+                        </div>
                         <button type="submit" class="btn btn-primary mt-1" name="file_form" class="btn btn-tool"
                           data-card-widget="collapse" title="Confirm Attachment">
                           Confirm
@@ -286,9 +245,10 @@
                   <div class="tab-pane fade {% if request.GET.tab == 'review' %}show active{% endif %}" id="review"
                     role="tabpanel" aria-labelledby="review-tab">
                     <div>
-                      <h4 class="text-center bg bg-success">Comment Form</h4>
+                      <h4 class="text-mute">5.Comment Form</h4>
                       <form method="POST" action="">
-                        {% csrf_token %} {%include './comments_review.html'%}
+                        {% csrf_token %}
+                        {%include './comments_review.html'%}
                         <button class="btn btn-primary" class="btn btn-tool" data-card-widget="collapse"
                           title="Confirm Attachment">Confirm</button>
                       </form>
@@ -304,13 +264,32 @@
                 <div class="card-body">
                   <div class="tab-pane fade {% if request.GET.tab == 'review' %}show active{% endif %}" id="review"
                     role="tabpanel" aria-labelledby="review-tab">
-                    <div>
-                      <h4 class="text-center">Confirm To finalize all the process</h4>
-                      <form method="POST" action="">
-                        {%csrf_token%}
-                        {{reviewed}}
-                        <button class="btn btn-primary" class="btn btn-tool" type="submit">Confirm</button>
-                      </form>
+                    <div class="card">
+                      <div class="card-header">
+                        <h6 class="text-mute">Confirm To finalize all the process</h6>
+                      </div>
+                      <div class="card-body">
+                        <form method="POST" action="">
+                          {% csrf_token %}
+
+                          <!-- {{ reviewed.confirm }}
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
+                              onclick="toggleConfirmButton()">
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Confirm All
+                            </label> -->
+                          <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                            {{ form.confirm }}
+                            <label class="custom-control-label" for="customSwitch1">Confirm</label>
+                          </div>
+
+                          <button type="submit" class="btn btn-primary" id="submitButton" disabled>Submit</button>
+
+                          <!-- <button class="btn btn-primary" id="confirmButton" type="submit" disabled>Confirm</button> -->
+                        </form>
+
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -327,6 +306,15 @@
 
 <!--This query is for hide and show text box in the intial form-->
 <script>
+  // Get the switch and button elements
+  const customSwitch = document.getElementById('customSwitch1');
+  const submitButton = document.getElementById('submitButton');
+
+  // Add an event listener to the switch
+  customSwitch.addEventListener('change', function () {
+    // Enable the submit button if the switch is checked, disable if unchecked
+    submitButton.disabled = !customSwitch.checked;
+  });
   $(document).ready(function () {
     // Hide the textarea initially
     $("#id_information_source").hide();

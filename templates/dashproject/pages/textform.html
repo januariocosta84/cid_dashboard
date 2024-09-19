@@ -1,0 +1,30 @@
+<form method="POST" action="">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="">Text</label>
+                  {{text_form.text}}
+                </div>
+                <div class="form-group">
+                  <label for="">Information Source</label>
+                  {{text_form.information_source}}
+                </div>
+                <div class="form-group">
+                  <label for="">Source Evaluation</label>
+                  {{text_form.source_evaluation}}
+                </div>
+
+                <!-- <button type="submit" class="btn btn-primary mt-1 disabled" name="text_form">Add New
+                  text</button>
+                <a href="{%url 'report-list'%}" class="btn btn-warning mt-1 disabled">Terminate</a>
+                <button type="button" class="btn btn-warning disabled mt-1" id="goToNextStep">
+                  <i class="fa fa-plus"></i> <span class="text-uppercase">Go to Next Step</span>
+                </button> -->
+                <button type="submit" class="btn btn-primary mt-1" name="text_form">
+                  Add New text
+                </button>
+                <a href="{%url 'report-list'%}" class="btn btn-warning mt-1">Save</a>
+                <button type="button" class="btn btn-warning mt-1" id="goToNextStep">
+                  <i class="fa fa-plus"></i>
+                  <span class="text-uppercase">Go to Next Step</span>
+                </button>
+              </form>

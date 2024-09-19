@@ -1,0 +1,157 @@
+{% extends 'dashproject/base/layout.html' %} {% load static %} {% block content%}
+<div class="container-fluid">
+  {%include './report_header.html'%}
+  <!-- Tab content -->
+  <div class="row content-home">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="container mt-4">
+            {%include './nav_tab.html'%}
+            <!-- Tab content -->
+            <div class="tab-content" id="myTabContent">
+              <div
+                class="tab-pane fade {% if request.GET.tab == 'initial' or not request.GET.tab %}show active{% endif %}"
+                id="initial" role="tabpanel" aria-labelledby="initial-tab">
+                <!--Initial form HTML PAGE-->
+                {%include './initial.html'%}
+              </div>
+
+              <div class="tab-pane fade {% if request.GET.tab == 'subjects' %}show active{% endif %}" id="subjects"
+                role="tabpanel" aria-labelledby="subjects-tab">
+                <!--Subjec form html page-->
+                {%include './subject.html'%}
+              </div>
+            </div>
+
+            <div class="tab-pane fade {% if request.GET.tab == 'text' %}show active{% endif %}" id="text"
+              role="tabpanel" aria-labelledby="text-tab">
+              {%include './textform.html'%}
+              {%include './text_list.html'%}
+            </div>
+
+            <div class="tab-pane fade {% if request.GET.tab == 'attach' %}show active{% endif %}" id="attachment"
+              role="tabpanel" aria-labelledby="attachment-tab">
+              {%include './file_form.html'%}
+            </div>
+
+            <div class="tab-pane fade {% if request.GET.tab == 'comments' %}show active{% endif %}" id="attachment"
+              role="tabpanel" aria-labelledby="attachment-tab">
+              {%include './comments.html'%}
+            </div>
+
+            <!-- Add other tab contents here -->
+
+            <div class="tab-pane fade {% if request.GET.tab == 'review' %}show active{% endif %}" id="review"
+              role="tabpanel" aria-labelledby="review-tab">
+              {%include './review.html'%}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{%include './subject_modal.html'%}
+<!--This query is for hide and show text box in the intial form-->
+<script>
+  $(document).ready(function () {
+    // Hide the textarea initially
+    $("#id_information_source").hide();
+
+    // Show/hide the textarea based on the selected option
+    $("#id_source").change(function () {
+      if ($(this).val() === "Information other") {
+        $("#id_information_source").show();
+      } else {
+        $("#id_information_source").hide();
+      }
+    });
+
+    // Trigger the change event on page load to handle the default selected option
+    $("#id_source").trigger("change");
+  });
+  $(document).ready(function () {
+    $("#goToNextStep").click(function () {
+      window.location.href = "{% url 'new-report' %}?tab=attach";
+    });
+  });
+
+  //For modal
+  function fetchSubjectDetails(subjectId) {
+    $.ajax({
+      url: '/subject_details/' + subjectId + '/',  // Update with the correct URL
+      method: 'GET',
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest'
+      },
+      success: function (data) {
+        // Populate the modal with data
+        $('#id_num').text(data.id);
+        $('#name-data').text(data.first_name);
+        $('#last-data').text(data.last_name);
+        $('#middle-name-data').text(data.middle_name);
+        $('#nick-name-data').text(data.nick_name);
+        $('#description-data').text(data.description_subject);
+        $('#business-name-data').text(data.business_name);
+
+        // Contact Information
+        $('#address-data').text(data.address);
+        $('#post-code-data').text(data.post_code);
+        $('#country-data').text(data.country);
+        $('#phone-data').text(data.phone_num);
+
+        // Transportation Information
+        $('#vehicle-data').text(data.vehicle);
+        $('#routing-data').text(data.routing);
+        $('#ferry-data').text(data.ferry);
+        $('#vessel-data').text(data.vessel);
+        $('#cargo-data').text(data.cargo);
+        $('#other-trans-data').text(data.other_trans);
+
+        // Personal Details
+        $('#approx-age-data').text(data.approx_age);
+        $('#dob-data').text(data.dob);
+        $('#nat-data').text(data.nationality);
+
+        // Event Details
+        $('#any-other-data').text(data.any_other);
+        $('#what-data').text(data.what);
+        $('#location-data').text(data.location);
+        $('#quando-data').text(data.quando);
+        $('#how-long-data').text(data.how_long);
+
+        // Additional Information
+        $('#other-infor-data').text(data.other_infor);
+        $('#your-connection-data').text(data.your_connection);
+        $('#still-connect-data').text(data.still_connect);
+
+        // Involvement Details
+        $('#how-did-data').text(data.how_did);
+        $('#others-know-information-data').text(data.others_know_information);
+        $('#how-many-data').text(data.how_many);
+        $('#affect-information-data').text(data.affect_information);
+
+        // Anonymous Reporter Details
+        $('#an-first-name-data').text(data.an_first_name);
+        $('#an-last-name-data').text(data.an_last_name);
+        $('#an-middle-name-data').text(data.an_middle_name);
+        $('#an-phone-number-data').text(data.an_phone_number);
+        $('#an-email-data').text(data.an_email);
+
+        // Call Preference
+        $('#ligar-data').text(data.ligar);
+
+        // Show the modal
+        $('#exampleModal').modal('show');
+      },
+      error: function (error) {
+        console.error("There was an error fetching the details.", error);
+      }
+    });
+  }
+
+</script>
+
+{% endblock %}

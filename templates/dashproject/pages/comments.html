@@ -2,14 +2,14 @@
   <div class="row">
     <div class="col">
       <form action="POST" method="post">
-        {% csrf_token %} {{comments_form}}
-        <button
-          class="btn btn-primary mb-1 mt-1 toastrDefaultSuccess"
-          type="submit"
-          name="comments_form"
-        >
-          <i class="fa fa-plus"> </i
-          ><span class="text-uppercase">Add New Comment</span>
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="">Comment</label>
+          {{comments_form.comment}}
+        </div>
+
+        <button class="btn btn-primary mb-1 mt-1 toastrDefaultSuccess" type="submit" name="comments_form">
+          <i class="fa fa-plus"> </i><span class="text-uppercase">Add New Comment</span>
         </button>
       </form>
     </div>

@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-3(u(^9o#1x0a*w+r@2wf*84*dr*kect4iolwxxux$1uy))0n=y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ciddash.tlictprojects.com', '127.0.0.1', '10.8.0.21','localhost']
+ALLOWED_HOSTS = ['ciddash.tlictprojects.com', 'cid.customs.gov.tl', '127.0.0.1', '10.8.0.21','localhost']
 
 
 #Here the two lines I added

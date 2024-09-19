@@ -11,113 +11,57 @@
           <div class="container mt-4">
 
             <!-- Nav tabs -->
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-              <li class="nav-item">
-                <a class="nav-link {% if request.GET.tab == 'initial' or not request.GET.tab %}active 
-                 {%else%}disabled{% endif %}" id="initial-tab" data-toggle="tab" href="#initial" role="tab"
-                  aria-controls="initial" aria-selected="true">
-                  <span class="d-block"><i class="fa fa-info"></i></span>
-                  <span class="d-block">Initial</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link {% if request.GET.tab == 'subjects' %}active{%else%}disabled{% endif %}"
-                  id="subjects-tab" data-toggle="tab" href="#subjects" role="tab" aria-controls="subjects"
-                  aria-selected="false">
-                  <span class="d-block"><i class="fa fa-people-carry" aria-hidden="true"></i></span>
-                  <span class="d-block">Subjects</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link {% if request.GET.tab == 'text' %}active{%else%}disabled{% endif %}" id="text-tab"
-                  data-toggle="tab" href="#text" role="tab" aria-controls="text" aria-selected="false">
-                  <span class="d-block"><i class="fa fa-address-book" aria-hidden="true"></i></span>
-                  <span class="d-block">Text</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link {% if request.GET.tab == 'attach' %}active{%else%}disabled{% endif %}"
-                  id="attachment-tab" data-toggle="tab" href="#attachment" role="tab" aria-controls="attachment"
-                  aria-selected="false">
-                  <span class="d-block"><i class="fa fa-file" aria-hidden="true"></i></span>
-                  <span class="d-block">Attachment</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link {% if request.GET.tab == 'comments' %}active{%else%}disabled{% endif %}"
-                  id="comment-tab" data-toggle="tab" href="#comment" role="tab" aria-controls="comment"
-                  aria-selected="false">
-                  <span class="d-block"><i class="fa fa-comment" aria-hidden="true"></i></span>
-                  <span class="d-block">Analyst Comment</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link {% if request.GET.tab == 'review' %}active{%else%}disabled{% endif %}"
-                  id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
-                  aria-selected="false">
-                  <span class="d-block"><i class="fa fa-ad" aria-hidden="true"></i></span>
-                  <span class="d-block">Review</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link {% if request.GET.tab == 'disseminate' %}active{%else%}disabled{% endif %}"
-                  id="dissemination-tab" data-toggle="tab" href="#dissemination" role="tab"
-                  aria-controls="dissemination" aria-selected="false">
-                  <span class="d-block"><i class="fa fa-fan" aria-hidden="true"></i></span>
-                  <span class="d-block">Dissemination</span>
-                </a>
-              </li>
-              <!-- Add other tabs here -->
-            </ul>
-
+              {%include './nav_tab.html'%}
+        
             <!-- Tab content -->
             <div class="tab-content" id="myTabContent">
               <!-- Initial Form -->
               <div
                 class="tab-pane fade {% if request.GET.tab == 'initial' or not request.GET.tab %}show active{% endif %}"
                 id="initial" role="tabpanel" aria-labelledby="initial-tab">
-                <form method="POST" action="">
-                  {% csrf_token %}
-                  {{ initial_form }}
-                  <button type="submit" class="btn btn-primary mt-1" name="initial_form">Submit to Continue</button>
-                </form>
+                <!--Initial page-->
+                 {%include './initial.html'%}
               </div>
 
               <!-- Subject Form -->
               <div class="tab-pane fade {% if request.GET.tab == 'subjects' %}show active{% endif %}" id="subjects"
                 role="tabpanel" aria-labelledby="subjects-tab">
-                <form method="POST" action="">
-                  {% csrf_token %}
-                  {{ subject_form }}
-                  <button type="submit" class="btn btn-transparent mt-1" name="initial_form">Back to previous</button>
-                  <button type="submit" class="btn btn-primary mt-1" name="subject_form">Submit Subject Form</button>
-                </form>
+                 {%include './subject.html'%}
               </div>
-
+              </div>
               <!-- Text Form -->
               <div class="tab-pane fade {% if request.GET.tab == 'text' %}show active{% endif %}" id="text"
                 role="tabpanel" aria-labelledby="text-tab">
-                <form method="POST" action="">
+                {% comment %} <form method="POST" action="">
                   {% csrf_token %}
-                  {{text_form}}
+                  <div class="form-group">
+                    <label for="">Text</label>
+                    {{text_form.text}}
+                  </div>
+                  <div class="form-group">
+                    <label for="">Information Source</label>
+                    {{text_form.information_source}}
+                  </div>
+                  <div class="form-group">
+                    <label for="">Source Evaluation</label>
+                    {{text_form.source_evaluation}}
+                  </div>
+
                   <button type="submit" class="btn btn-primary mt-1 " name="text_form">Add New
                     text</button>
                   <a href="{%url 'report-list'%}" class="btn btn-warning mt-1 ">Terminate</a>
                   <button type="button" class="btn btn-warning  mt-1" id="goToNextStep">
                     <i class="fa fa-plus"></i> <span class="text-uppercase">Go to Next Step</span>
                   </button>
-                </form>
-                {%include './text_list.html'%}
+                </form> {% endcomment %}
+                {% include './textform.html' %}
+                {% include './text_list.html' %}
               </div>
 
               <!-- File Form -->
               <div class="tab-pane fade {% if request.GET.tab == 'attach' %}show active{% endif %}" id="attachment"
                 role="tabpanel" aria-labelledby="attachment-tab">
-                <form method="POST" action="" enctype="multipart/form-data">
-                  {% csrf_token %}
-                  {{ file_form }}
-                  <button type="submit" class="btn btn-primary mt-1" name="file_form">Submit</button>
-                </form>
+                {% include './file_form.html' %}
               </div>
 
               <!-- Comments Form -->
@@ -129,7 +73,7 @@
                 </form>
               </div>
 
-              <!-- Review Tab -->
+              {% comment %} <!-- Review Tab -->
               <div class="tab-pane fade {% if request.GET.tab == 'review' %}show active{% endif %}" id="review"
                 role="tabpanel" aria-labelledby="review-tab">
                 <!-- Add Review Content Here -->
@@ -140,7 +84,7 @@
                 id="dissemination" role="tabpanel" aria-labelledby="dissemination-tab">
                 <!-- Add Dissemination Content Here -->
               </div>
-            </div>
+             {% endcomment %}
 
 
           </div>

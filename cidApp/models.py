@@ -181,63 +181,71 @@ class Subject(models.Model):
        # Personal information
     first_name = models.CharField(max_length=200, blank=True, null=True)
     last_name = models.CharField(max_length=200, blank=True, null=True)
-    middle_name = models.CharField(max_length=250, blank=True, null=True)
-    nick_name = models.CharField(max_length=250, blank=True, null=True)
-    description_subject = models.CharField(max_length=250, blank=True, null=True)
-    business_name = models.CharField(max_length=100, blank=True, null=True)
-    
-    # Contact information
+    gender = models.CharField(max_length=13,choices=gender_choice, default="Male")
+    nationality = models.CharField(max_length=250, blank=True, null=True)
+    dob = models.DateField(blank=True, null=True)
+    pob = models.CharField(max_length=250, blank=True, null=True)
+    identification = models.CharField(max_length=250, blank=True, null=True)
+    idNumber = models.CharField(max_length=250, blank=True,null=True)
     address = models.CharField(max_length=250, blank=True, null=True)
+   # middle_name = models.CharField(max_length=250, blank=True, null=True)
+   # nick_name = models.CharField(max_length=250, blank=True, null=True)
+    business_name = models.CharField(max_length=100, blank=True, null=True)
+    # Contact information
+    busaddress = models.CharField(max_length=250, null=True,blank=True)
+    bin_tin = models.CharField(max_length=250, null=True, blank=True)
+    phone_num = models.CharField(max_length=250, blank=True, null=True)
+    description_subject = models.CharField(max_length=250, blank=True, null=True)
     post_code = models.CharField(max_length=250, blank=True, null=True)
     country = models.CharField(max_length=250, blank=True, null=True)
-    phone_num = models.CharField(max_length=250, blank=True, null=True)
+    coveyance = models.CharField(max_length=250, blank=True,null=True)
+    cov_description = models.CharField(max_length=250, blank=True, null=True)
+    # # Transportation information
+    # vehicle = models.CharField(max_length=250, blank=True, null=True)
+    # routing = models.CharField(max_length=250, blank=True, null=True)
+    # ferry = models.CharField(max_length=250, blank=True, null=True)
+    # vessel = models.CharField(max_length=250, blank=True, null=True)
+    # cargo = models.CharField(max_length=250, blank=True, null=True)
+    # other_trans = models.CharField(max_length=250, blank=True, null=True)
     
-    # Transportation information
-    vehicle = models.CharField(max_length=250, blank=True, null=True)
-    routing = models.CharField(max_length=250, blank=True, null=True)
-    ferry = models.CharField(max_length=250, blank=True, null=True)
-    vessel = models.CharField(max_length=250, blank=True, null=True)
-    cargo = models.CharField(max_length=250, blank=True, null=True)
-    other_trans = models.CharField(max_length=250, blank=True, null=True)
+    # # Personal details
+    # approx_age = models.IntegerField(blank=True, null=True)
     
-    # Personal details
-    approx_age = models.IntegerField(blank=True, null=True)
-    dob = models.DateField(blank=True, null=True)
-    nationality = models.CharField(max_length=250, blank=True, null=True)
     
-    # Event details
-    any_other = models.CharField(max_length=250, blank=True, null=True)
-    what = models.CharField(max_length=250, blank=True, null=True)
-    location = models.CharField(max_length=250, blank=True, null=True)
-    quando = models.DateField(blank=True, null=True)
-    how_happen = models.CharField(max_length=250, blank=True, null=True)
-    how_long = models.IntegerField(blank=True, null=True)
     
-    # Additional information
-    other_infor = models.CharField(max_length=250, blank=True, null=True)
-    your_connection = models.CharField(max_length=250, blank=True, null=True)
-    still_connect = models.CharField(max_length=250, blank=True, null=True)
+    # # Event details
+    # any_other = models.CharField(max_length=250, blank=True, null=True)
+    # what = models.CharField(max_length=250, blank=True, null=True)
+    # location = models.CharField(max_length=250, blank=True, null=True)
+    # quando = models.DateField(blank=True, null=True)
+    # how_happen = models.CharField(max_length=250, blank=True, null=True)
+    # how_long = models.IntegerField(blank=True, null=True)
     
-    # Involvement details
-    how_did = models.CharField(max_length=250, blank=True, null=True)
-    others_know_information = models.BooleanField(default=False, blank=True, null=True)
-    how_many = models.IntegerField(blank=True, null=True)
-    affect_information = models.BooleanField(default=False, blank=True, null=True)
+    # # Additional information
+    # other_infor = models.CharField(max_length=250, blank=True, null=True)
+    # your_connection = models.CharField(max_length=250, blank=True, null=True)
+    # still_connect = models.CharField(max_length=250, blank=True, null=True)
     
-    # Anonymous details
-    if_yes = models.CharField(max_length=250, blank=True, null=True)
-    prefer_anonymous = models.BooleanField(default=False, blank=True, null=True)
-    an_first_name = models.CharField(max_length=250, blank=True, null=True)
-    an_last_name = models.CharField(max_length=250, blank=True, null=True)
-    an_middle_name = models.CharField(max_length=250, blank=True, null=True)
-    an_phone_number = models.CharField(max_length=250, blank=True, null=True)
-    an_email = models.CharField(max_length=250, blank=True, null=True)
+    # # Involvement details
+    # how_did = models.CharField(max_length=250, blank=True, null=True)
+    # others_know_information = models.BooleanField(default=False, blank=True, null=True)
+    # how_many = models.IntegerField(blank=True, null=True)
+    # affect_information = models.BooleanField(default=False, blank=True, null=True)
     
-    # Call preference
-    ligar = models.BooleanField(blank=True, null=True)
+    # # Anonymous details
+    # if_yes = models.CharField(max_length=250, blank=True, null=True)
+    # prefer_anonymous = models.BooleanField(default=False, blank=True, null=True)
+    # an_first_name = models.CharField(max_length=250, blank=True, null=True)
+    # an_last_name = models.CharField(max_length=250, blank=True, null=True)
+    # an_middle_name = models.CharField(max_length=250, blank=True, null=True)
+    # an_phone_number = models.CharField(max_length=250, blank=True, null=True)
+    # an_email = models.CharField(max_length=250, blank=True, null=True)
     
-    # Created date
-    created_at = models.DateTimeField(auto_now_add=True)
+    # # Call preference
+    # ligar = models.BooleanField(blank=True, null=True)
+    
+    # # Created date
+    # created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.first_name or "Subject"
