@@ -1,50 +1,50 @@
 {% extends 'dashproject/base/layout.html' %} {% load static %} {% block content%}
 <div class="container-fluid">
-  {%include './report_header.html'%}
+  {% include './report_header.html' %}
   <!-- Tab content -->
   <div class="row content-home">
     <div class="col-lg-12">
       <div class="card">
         <div class="card-body">
           <div class="container mt-4">
-            {%include './nav_tab.html'%}
+            {% include './nav_tab.html' %}
             <!-- Tab content -->
             <div class="tab-content" id="myTabContent">
               <div
                 class="tab-pane fade {% if request.GET.tab == 'initial' or not request.GET.tab %}show active{% endif %}"
                 id="initial" role="tabpanel" aria-labelledby="initial-tab">
                 <!--Initial form HTML PAGE-->
-                {%include './initial.html'%}
+                {% include './initial.html' %}
               </div>
 
               <div class="tab-pane fade {% if request.GET.tab == 'subjects' %}show active{% endif %}" id="subjects"
                 role="tabpanel" aria-labelledby="subjects-tab">
                 <!--Subjec form html page-->
-                {%include './subject.html'%}
+                {% include './subject.html' %}
               </div>
             </div>
 
             <div class="tab-pane fade {% if request.GET.tab == 'text' %}show active{% endif %}" id="text"
               role="tabpanel" aria-labelledby="text-tab">
-              {%include './textform.html'%}
-              {%include './text_list.html'%}
+              {% include './textform.html' %}
+              {% include './text_list.html' %}
             </div>
 
             <div class="tab-pane fade {% if request.GET.tab == 'attach' %}show active{% endif %}" id="attachment"
               role="tabpanel" aria-labelledby="attachment-tab">
-              {%include './file_form.html'%}
+              {% include './file_form.html'%}
             </div>
 
             <div class="tab-pane fade {% if request.GET.tab == 'comments' %}show active{% endif %}" id="attachment"
               role="tabpanel" aria-labelledby="attachment-tab">
-              {%include './comments.html'%}
+              {% include './comments.html' %}
             </div>
 
             <!-- Add other tab contents here -->
 
             <div class="tab-pane fade {% if request.GET.tab == 'review' %}show active{% endif %}" id="review"
               role="tabpanel" aria-labelledby="review-tab">
-              {%include './review.html'%}
+              {% include './review.html' %}
             </div>
           </div>
         </div>
@@ -53,7 +53,7 @@
   </div>
 </div>
 
-{%include './subject_modal.html'%}
+{% include './subject_modal.html' %}
 <!--This query is for hide and show text box in the intial form-->
 <script>
   $(document).ready(function () {
