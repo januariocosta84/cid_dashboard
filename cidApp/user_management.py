@@ -107,14 +107,15 @@ class EditUserView(GroupRequiredMixin, View):
         user_edit_form = UserEditForm(instance=user)
         staff_edit_form = StaffEditForm(instance=staff)
         form = SetPasswordForm(user)
-        user_groups = user.groups.all()  # Fetch the user's groups
+        #user_groups = user.groups.all()  # Fetch the user's groups
         id = request.user.id
+        user_group = self.request.user.groups.values_list('name', flat=True)
         return render(request, 'users/reset_password.html', {
             'form': form,
             'user_edit_form': user_edit_form,
             'staff_edit_form': staff_edit_form,
             'user': user,
-            'user_group': user_groups,
+            'user_group': list(user_group),
             'id': id
         })
 
