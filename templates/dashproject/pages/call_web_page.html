@@ -1,4 +1,5 @@
 {% extends 'dashproject/base/layout.html' %} {% load static %} {% block content%}
+{% load i18n %}
 <div class="container-fluid">
   <div class="row content-home">
     <div class="col">
@@ -24,17 +25,17 @@
           <p>File Name: <span id="fileName"></span></p>
           <p>Current Time: <span id="currentTime">0:00</span></p>
       </div> -->
-        Web and Records<span class="badge badge-primary m-2"> {{ records_count }} </span>
+       {% trans ' Web and Records' %}<span class="badge badge-primary m-2"> {{ records_count }} </span>
 
       </h6>
       <table class="table mt-2 table-bordered table-hover" id="example2">
         <thead>
           <tr>
-            <th>Source ID</th>
-            <th>Source Type</th>
-            <th>Date Created</th>
-            <th>Status</th>
-            <th>Actions</th>
+            <th>{% trans 'Source ID' %}</th>
+            <th>{% trans 'Source Type' %}</th>
+            <th>{% trans 'Date Created' %}</th>
+            <th>{% trans 'Status' %}</th>
+            <th>{% trans 'Actions' %}</th>
           </tr>
         </thead>
         <tbody>
@@ -49,13 +50,13 @@
             <td>
               <button type="button" class="btn btn-transparent dropdown-toggle text-uppercase" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                Actions
+                {% trans 'Actions'%}
               </button>
               <div class="dropdown-menu">
                 <button type="button" class="btn btn-transparent p-3 text-uppercase view-subject-btn fas fa-eye"
                   data-id="{{record.webform.id}}" data-toggle="modal" data-target="#modal-subject"
                   onclick="setModalCallId('{{ record.id}}')">
-                  View
+                  {% trans 'View' %}
                 </button>
 
                 <!-- <a

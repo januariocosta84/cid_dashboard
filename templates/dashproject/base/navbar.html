@@ -1,7 +1,9 @@
-{%load static%}
+{% load static %}
+
+{% load i18n %}
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand navbar-light bg-light">
-  {%include 'dashproject/base/messaging.html'%} 
+  {% include 'dashproject/base/messaging.html' %} 
   <!-- Left navbar links -->
   <ul class="navbar-nav">
     {% comment %}
@@ -9,7 +11,8 @@
       <!--data-widget ="pushmenu"-->
       <a class="nav-link" href="#" role="button"><i class="fas fa-bars"></i></a>
     </li>
-    {% endcomment %} {% comment %}
+    {% endcomment %}
+    {% comment %}
     <li class="nav-item d-none d-sm-inline-block disabled">
       <a href="index3.html" class="nav-link disabled text-bold">CID 1.1.0</a>
     </li>
@@ -40,134 +43,47 @@
     <!-- Messages Dropdown Menu -->
     <li class="nav-item dropdown">
       <a class="nav-link" data-toggle="dropdown" href="#">
-        <!-- <i class="far fa-comments"></i> -->
-        <span class="text-mute bg-transparent">Hello, {{ user.first_name|upper }} {{user.last_name|upper }}</span>
+        <span class="text-mute bg-transparent">{% trans 'Hello' %}, {{ user.first_name|upper }} {{ user.last_name|upper }}</span>
       </a>
-         <!-- Dropdown - User Information -->
-         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-         aria-labelledby="userDropdown">
-         <a class="dropdown-item" href="#">
-             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-             Profile
-         </a>
-         <a class="dropdown-item" href="{%url 'change' id%}">
-             <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-             Change password
-         </a>
-         <a class="dropdown-item" href="#">
-             <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-             Activity Log
-         </a>
-         <div class="dropdown-divider"></div>
-         <a class="dropdown-item" href="{%url 'logout'  % }" data-toggle="modal" data-target="#logoutModal">
-             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-             Logout
-         </a>
-     </div>
-      <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-        <a href="#" class="dropdown-item">
-          <!-- Message Start 
-          <div class="media">
-            <img
-              src="{% static 'dashproject/admin-lte/dist/img/user1-128x128.jpg'%}"
-              alt="User Avatar"
-              class="img-size-50 mr-3 img-circle"
-            />
-            <div class="media-body">
-              <h3 class="dropdown-item-title">
-                Brad Diesel
-                <span class="float-right text-sm text-danger"
-                  ><i class="fas fa-star"></i
-                ></span>
-              </h3>
-              <p class="text-sm">Call me whenever you can...</p>
-              <p class="text-sm text-muted">
-                <i class="far fa-clock mr-1"></i> 4 Hours Ago
-              </p>
-            </div>
-          </div>
-           Message End -->
+      <!-- Dropdown - User Information -->
+      <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+        <a class="dropdown-item" href="#">
+          <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+          Profile
+        </a>
+        <a class="dropdown-item" href="{% url 'change' id %}">
+          <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+          Change password
+        </a>
+        <a class="dropdown-item" href="#">
+          <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+          Activity Log
         </a>
         <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item">
-          <!-- Message Start 
-          <div class="media">
-            <img
-              src="{% static 'dashproject/admin-lte/dist/img/user8-128x128.jpg'%}"
-              alt="User Avatar"
-              class="img-size-50 img-circle mr-3"
-            />
-            <div class="media-body">
-              <h3 class="dropdown-item-title">
-                John Pierce
-                <span class="float-right text-sm text-muted"
-                  ><i class="fas fa-star"></i
-                ></span>
-              </h3>
-              <p class="text-sm">I got your message bro</p>
-              <p class="text-sm text-muted">
-                <i class="far fa-clock mr-1"></i> 4 Hours Ago
-              </p>
-            </div>
-          </div>
-          Message End -->
+        <a class="dropdown-item" href="{% url 'logout' %}" data-toggle="modal" data-target="#logoutModal">
+          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+          Logout
         </a>
-        <div class="dropdown-divider"></div>
-    </li>
-    <!-- Notifications Dropdown Menu -->
-    <!-- <li class="nav-item dropdown">
-      <a class="nav-link" data-toggle="dropdown" href="#">
-        <i class="fas fa-globe"></i>
-        <span class="text-primary">English</span>
-      </a>
-      <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-        <span class="dropdown-item dropdown-header">15 Notifications</span>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item">
-          <i class="fas fa-envelope mr-2"></i> 4 new messages
-          <span class="float-right text-muted text-sm">3 mins</span>
-        </a>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item">
-          <i class="fas fa-users mr-2"></i> 8 friend requests
-          <span class="float-right text-muted text-sm">12 hours</span>
-        </a>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item">
-          <i class="fas fa-file mr-2"></i> 3 new reports
-          <span class="float-right text-muted text-sm">2 days</span>
-        </a>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item dropdown-footer"
-          >See All Notifications</a
-        >
       </div>
-    </li> -->
+    </li>
+
     <!-- Language Dropdown Menu -->
-    <!-- <li class="nav-item dropdown">
+    <li class="nav-item dropdown">
       <a class="nav-link" data-toggle="dropdown" href="#">
-        <i class="flag-icon flag-icon-us"></i>
+        <i class="flag-icon flag-icon-{% if request.LANGUAGE_CODE == 'en' %}us{% else %}tl{% endif %}"></i> <!-- Shows US flag by default -->
       </a>
       <div class="dropdown-menu dropdown-menu-right p-0">
-        <a href="#" class="dropdown-item active">
+        <!-- Link for English -->
+        <a href="/en" class="dropdown-item {% if request.LANGUAGE_CODE == 'en' %}active{% endif %}">
           <i class="flag-icon flag-icon-us mr-2"></i> English
         </a>
-        <a href="#" class="dropdown-item">
-          <i class="flag-icon flag-icon-de mr-2"></i> German
-        </a>
-        <a href="#" class="dropdown-item">
-          <i class="flag-icon flag-icon-fr mr-2"></i> French
-        </a>
-        <a href="#" class="dropdown-item">
-          <i class="flag-icon flag-icon-es mr-2"></i> Spanish
+        
+        <!-- Link for Tetum (Timor-Leste) -->
+        <a href="/tl" class="dropdown-item {% if request.LANGUAGE_CODE == 'tl' %}active{% endif %}">
+          <i class="flag-icon flag-icon-tl mr-2"></i> Timor Leste
         </a>
       </div>
-    </li> -->
-    
-    <!-- <li class="nav-item">
-      <a  class="nav-link text-primary" 
-      data-slide="true" href="#" data-toggle="modal" data-target="#logoutModal"> <i class="fas fa-sign-out-alt"></i>Log out</a>
-    </li> -->
+    </li>
   </ul>
 </nav>
 <!-- /.navbar -->
