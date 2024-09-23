@@ -14,6 +14,14 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.urls import path, re_path
+from django.urls import include
+from django.conf import settings
+from django.conf.urls.static import static
+
+from django.conf.urls.i18n import i18n_patterns
+from django.utils.translation import gettext_lazy as _
+from django.views.static import serve
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.models import User
@@ -28,9 +36,13 @@ from django.contrib.auth.models import User
 # admin_site.register(User)
 # admin_site.register(TOTPDevice, TOTPDeviceAdmin)
 #from two_factor.urls import urlpatterns as tf_urls
-urlpatterns = [
-    path('admin/', admin.site.urls),
+urlpatterns = i18n_patterns(
+     path('admin/', admin.site.urls),
     #path('two_factor/', include(('admin_two_factor.urls', 'admin_two_factor'), namespace='two_factor-one')),
     path('', include('cidApp.urls')),
+    path('i18n/', include('django.conf.urls.i18n')),
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root':settings.MEDIA_ROOT}),
+    prefix_default_language=True,
     #path('mfa/', include(tf_urls)),
-]
+)+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+   

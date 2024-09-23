@@ -9,10 +9,12 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
+from django.conf import global_settings
 
 import os
 import pymysql
 from pathlib import Path
+gettext = lambda s: s
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -65,6 +67,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     #'django_otp.middleware.OTPMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -136,14 +139,43 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
+EXTRA_LANG_INFO = {
+    'tl': {
+        'bidi': True, # right-to-left
+        'code': 'tl',
+        'name': 'Tetum',
+        'name_local': u'\u0626\u06C7\u064A\u063A\u06C7\u0631 \u062A\u0649\u0644\u0649', #unicode codepoints here
+    },
+}
 
-LANGUAGE_CODE = 'en'
+# Add custom languages not provided by Django in this case TETUM has not yet included to django 
+# so we have costumize to Tetum.
+import django.conf.locale
+LANG_INFO = dict(django.conf.locale.LANG_INFO, **EXTRA_LANG_INFO)
+django.conf.locale.LANG_INFO = LANG_INFO
+
+# Languages using BiDi (right-to-left) layout
+LANGUAGES_BIDI = global_settings.LANGUAGES_BIDI + ["tl"]
+
+
+LANGUAGE_CODE = 'tl'
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
 USE_TZ = False
+
+
+LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
+LANGUAGES =[
+        ('en', 'English'),
+        ('id', 'Indonesia'),
+        ('tl', gettext('Tetum'))
+]
+LANGUAGES_BIDI	=['he', 'ar', 'ar-dz', 'fa', 'ur']
+print(
+LOCALE_PATHS)
 
 
 # Static files (CSS, JavaScript, Images)
@@ -176,3 +208,22 @@ LOGIN_REDIRECT_URL ='/'
 
 #AUTH_USER_MODEL = 'cidApp.User' #updated
 AUTHENTICATION_BACKENDS = ['cidApp.backends.EmailBackend'] #updated
+
+
+
+EXTRA_LANG_INFO = {
+    'tl': {
+        'bidi': True, # right-to-left
+        'code': 'tl',
+        'name': 'Tetum',
+        'name_local': u'\u0626\u06C7\u064A\u063A\u06C7\u0631 \u062A\u0649\u0644\u0649', #unicode codepoints here
+    },
+}
+
+# Add custom languages not provided by Django
+import django.conf.locale
+LANG_INFO = dict(django.conf.locale.LANG_INFO, **EXTRA_LANG_INFO)
+django.conf.locale.LANG_INFO = LANG_INFO
+
+# Languages using BiDi (right-to-left) layout
+LANGUAGES_BIDI = global_settings.LANGUAGES_BIDI + ["tl"]
