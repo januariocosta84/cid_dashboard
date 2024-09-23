@@ -1,4 +1,5 @@
 from django.urls import path
+from django.conf.urls.i18n import set_language
 from .crud import(
     AgencyListView,
     agency_create,
@@ -31,6 +32,7 @@ urlpatterns = [
         #Call API from Web form to insert local database
     path('call-api/', SyncSubjectsView.as_view(), name= 'call-api'),
     
+  
         #Hotline and Subjectdetail webview
     path('', HotLineAndWebView.as_view(), name='records'),
     path('subject_details/<int:pk>/', DetailSubject.as_view(), name='detail_subject'),
