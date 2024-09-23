@@ -252,11 +252,18 @@ class TextForm(forms.ModelForm):
     class Meta:
         model = TextAttach
         fields = ['text', 'information_source', 'source_evaluation']
-    
+        widgets = {
+            'information_source': forms.RadioSelect,  # Use RadioSelect widget for cards
+            'source_evaluation': forms.RadioSelect,
+        }
+
     def __init__(self, *args, **kwargs):
         super(TextForm, self).__init__(*args, **kwargs)
-        for field_name, field in self.fields.items():
-            field.widget.attrs.update({'class': 'form-control'})
+        self.fields['text'].widget.attrs.update({'class': 'form-control'})
+        # Optional: Add custom CSS class for card-style widgets
+        self.fields['information_source'].widget.attrs.update({'class': 'card-radio'})
+        self.fields['source_evaluation'].widget.attrs.update({'class': 'card-radio'})
+
              
 class FileForm(forms.ModelForm):
     class Meta:
