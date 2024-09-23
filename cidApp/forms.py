@@ -295,7 +295,6 @@ class CommentForm(forms.ModelForm):
         for field_name, field in self.fields.items():
             field.widget.attrs.update({'class': 'form-control'})
 
-
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = ReportReviewed
@@ -303,7 +302,7 @@ class ReviewForm(forms.ModelForm):
         widgets = {
             'confirm': forms.CheckboxInput(attrs={
                 'class': 'custom-control-input',
-                'id': 'customSwitch1'  # Ensure the ID matches for the label
+                'id': 'customSwitch1'  # 
             }),
         }
 
