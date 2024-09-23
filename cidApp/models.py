@@ -5,6 +5,8 @@ from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from django.db.models.signals import post_save
+from django.utils.translation import gettext_lazy as _
+
 # #User = settings.AUTH_USER_MODEL
 # class User(AbstractUser):
 #     email = models.EmailField(unique=True)
@@ -171,10 +173,10 @@ class Nationality(models.Model):
     def __str__(self) -> str:
         return self.name
 
-gender_choice =  (
-    ("Male", "Male"),
-    ("Female", "Female"),
-    ("Indeterminate", "Indeterminate"),
+gender_choice = (
+    (_("Male"), _("Male")),
+    (_("Female"), _("Female")),
+    (_("Indeterminate"), _("Indeterminate")),
 )
      
 class Subject(models.Model):
