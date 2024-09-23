@@ -1,30 +1,75 @@
-<form method="POST" action="">
-                {% csrf_token %}
-                <div class="form-group">
-                  <label for="">Text</label>
-                  {{text_form.text}}
-                </div>
-                <div class="form-group">
-                  <label for="">Information Source</label>
-                  {{text_form.information_source}}
-                </div>
-                <div class="form-group">
-                  <label for="">Source Evaluation</label>
-                  {{text_form.source_evaluation}}
-                </div>
+<style>
+/* Hide the default radio button */
+input[type="radio"] {
+    display: none;
+}
 
-                <!-- <button type="submit" class="btn btn-primary mt-1 disabled" name="text_form">Add New
+/* Style the cards */
+.card {
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    margin-bottom: 10px;
+}
+
+.card:hover {
+    border-color: #007bff;
+}
+
+/* Highlight selected card */
+input[type="radio"]:checked + .card-body {
+    border-color: #007bff;
+    background-color: #e9f5ff; /* Optional: change background color when selected */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Optional: add a shadow */
+}
+
+</style>
+<form method="POST" action="">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="">Text</label>
+    {{text_form.text}}
+  </div>
+  <div class="form-group">
+    <label>Information Source</label>
+    <div class="card-deck">
+         {% for radio in text_form.information_source %}
+            <label class="card" style="cursor: pointer;">
+                <!-- Ensure all radios in the 'information_source' group have the same 'name' -->
+                {{ radio.tag }} <!-- This will automatically render the correct name attribute -->
+                <div class="card-body">
+                    <h5 class="card-title">{{ radio.choice_label }}</h5>
+                </div>
+            </label>
+            {% endfor %}
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="">Source Evaluation</label>
+    <div class="card-deck">
+         {% for radio in text_form.source_evaluation %}
+            <label class="card" style="cursor: pointer;">
+                <!-- Ensure all radios in the 'source_evaluation' group have the same 'name' -->
+                {{ radio.tag }} <!-- This will automatically render the correct name attribute -->
+                <div class="card-body">
+                    <h5 class="card-title">{{ radio.choice_label }}</h5>
+                </div>
+            </label>
+            {% endfor %}
+    </div>
+  </div>
+
+  <!-- <button type="submit" class="btn btn-primary mt-1 disabled" name="text_form">Add New
                   text</button>
                 <a href="{%url 'report-list'%}" class="btn btn-warning mt-1 disabled">Terminate</a>
                 <button type="button" class="btn btn-warning disabled mt-1" id="goToNextStep">
                   <i class="fa fa-plus"></i> <span class="text-uppercase">Go to Next Step</span>
                 </button> -->
-                <button type="submit" class="btn btn-primary mt-1" name="text_form">
-                  Add New text
-                </button>
-                <a href="{%url 'report-list'%}" class="btn btn-warning mt-1">Save</a>
-                <button type="button" class="btn btn-warning mt-1" id="goToNextStep">
-                  <i class="fa fa-plus"></i>
-                  <span class="text-uppercase">Go to Next Step</span>
-                </button>
-              </form>
+  <button type="submit" class="btn btn-primary mt-1" name="text_form">
+    Add New text
+  </button>
+  <a href="{%url 'report-list'%}" class="btn btn-warning mt-1">Save</a>
+  <button type="button" class="btn btn-warning mt-1" id="goToNextStep">
+    <i class="fa fa-plus"></i>
+    <span class="text-uppercase">Go to Next Step</span>
+  </button>
+</form>
