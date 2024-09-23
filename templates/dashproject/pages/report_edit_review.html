@@ -271,24 +271,12 @@
                       <div class="card-body">
                         <form method="POST" action="">
                           {% csrf_token %}
-
-                          <!-- {{ reviewed.confirm }}
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
-                              onclick="toggleConfirmButton()">
-                            <label class="form-check-label" for="flexCheckDefault">
-                              Confirm All
-                            </label> -->
                           <div class="custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" id="customSwitch1">
                             {{ form.confirm }}
                             <label class="custom-control-label" for="customSwitch1">Confirm</label>
                           </div>
-
                           <button type="submit" class="btn btn-primary" id="submitButton" disabled>Submit</button>
-
-                          <!-- <button class="btn btn-primary" id="confirmButton" type="submit" disabled>Confirm</button> -->
                         </form>
-
                       </div>
                     </div>
                   </div>
@@ -303,18 +291,35 @@
   </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!--This query is for hide and show text box in the intial form-->
 <script>
-  // Get the switch and button elements
-  const customSwitch = document.getElementById('customSwitch1');
-  const submitButton = document.getElementById('submitButton');
+// this query for enable and disable review button
+ // Ensure the DOM is fully loaded before running the script
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get the switch and button elements
+    const customSwitch = document.getElementById('customSwitch1');
+    const submitButton = document.getElementById('submitButton');
 
-  // Add an event listener to the switch
-  customSwitch.addEventListener('change', function () {
-    // Enable the submit button if the switch is checked, disable if unchecked
-    submitButton.disabled = !customSwitch.checked;
+    // Log the checkbox to ensure it is found
+    console.log(customSwitch);
+
+    if (customSwitch) {
+      // Add an event listener to the switch
+      customSwitch.addEventListener('change', function () {
+        // Log checkbox state to debug
+        console.log("Checkbox checked: ", customSwitch.checked);
+        
+        // Enable the submit button if the switch is checked, disable if unchecked
+        submitButton.disabled = !customSwitch.checked;
+      });
+
+      // Initialize button state based on checkbox status
+      submitButton.disabled = !customSwitch.checked;
+    } else {
+      console.error('The checkbox with ID "customSwitch1" was not found.');
+    }
   });
+
+ //This query is for hide and show text box in the intial form 
   $(document).ready(function () {
     // Hide the textarea initially
     $("#id_information_source").hide();
