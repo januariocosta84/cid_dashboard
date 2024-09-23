@@ -1,5 +1,5 @@
 {% extends 'dashproject/base/layout.html' %} {% load static %} {% block content%}
-
+{% load i18n %}
 <div class="container-fluid">
 
   <!-- start page title -->
@@ -9,16 +9,16 @@
         class="page-title-box d-flex align-items-center justify-content-between"
       >
         <h4 class="mb-0">
-          Report List
+         {% trans 'Report List'%}
           <span class="badge badge-primary">{{ report_count }}</span>
         </h4>
 
         <div class="page-title-right">
           <ol class="breadcrumb m-0">
             <li class="breadcrumb-item">
-              <a href="javascript: void(0);">Reporting</a>
+              <a href="javascript: void(0);">{% trans 'Reporting'%}</a>
             </li>
-            <li class="breadcrumb-item active">Reporting Lists</li>
+            <li class="breadcrumb-item active">{% trans 'Reporting Lists'%}</li>
           </ol>
         </div>
       </div>
@@ -32,8 +32,7 @@
             <div class="col-md-6">
               <div class="mb-3">
                 <a href="{%url 'new-report'%}" class="btn btn-success pl-1"
-                  ><i class="fa fa-file m-1" aria-hidden="true"></i>Add New
-                  Report</a
+                  ><i class="fa fa-file m-1" aria-hidden="true"></i>{% trans 'Add New Report'%}</a
                 >
               </div>
             </div>
@@ -59,13 +58,13 @@
               <thead>
                 <tr>
                   <th scope="col">ID</th>
-                  <th scope="col">Report Name</th>
-                  <th scope="col">Report Source</th>
-                  <th scope="col">Report Created</th>
-                  <th scope="col">Status</th>
-                  <th scope="col">User</th>
+                  <th scope="col">{% trans 'Report Name'%}</th>
+                  <th scope="col">{% trans 'Report Source'%}</th>
+                  <th scope="col">{% trans 'Report Created'%}</th>
+                  <th scope="col">{% trans 'Status'%}</th>
+                  <th scope="col">{% trans 'User'%}</th>
 
-                  <th scope="col">Edit</th>
+                  <th scope="col">{% trans  'Edit'%}</th>
                 </tr>
               </thead>
               <tbody>
@@ -89,7 +88,7 @@
                         aria-haspopup="true"
                         aria-expanded="false"
                       >
-                        Actions
+                        {% trans  'Actions'%}
                       </button>
                       <div
                         class="dropdown-menu"
@@ -98,7 +97,7 @@
                         {% if report.status == "Incomplete" %}
 
                         <a href="{%url 'edit_report' report.id%}" class="btn">
-                          Edit</a
+                          {% trans  'Edit'%}</a
                         >
 
                         {% elif report.status == "Completed" %}
@@ -109,7 +108,7 @@
                           data-id="{{ report.id }}"
                           data-url="{%url 'comment_report' report.id%}?tab=comments"
                         >
-                          Comment
+                          {% trans 'Comment'%}
                         </button>
                         <button
                           type="button"
@@ -117,7 +116,7 @@
                           data-id="{{ report.id }}"
                           data-url="{%url 'review_report' report.id%}?tab=review"
                         >
-                          Review
+                          {% trans 'Review'%}
                         </button>
                         
                          {%else%}
@@ -126,14 +125,14 @@
                           class="dropdown-item text-uppercase archived-btn"
                           data-id="{{ report.id }}"
                         >
-                         Request Dissemination
+                         {% trans  'Request Dissemination'%}
                         </button>
                         <button
                           type="button"
                           class="dropdown-item text-uppercase disseminate-btn"
                           data-id="{{ report.id }}"
                         >
-                          Archived
+                          {% trans 'Archived' %}
                         </button >
                         {% endif %}
                        

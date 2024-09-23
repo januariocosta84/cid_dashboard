@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-23 07:03+0000\n"
+"POT-Creation-Date: 2024-09-23 07:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -76,15 +76,15 @@ msgstr ""
 
 #: cidApp/models.py:177
 msgid "Male"
-msgstr ""
+msgstr "Mane"
 
 #: cidApp/models.py:178
 msgid "Female"
-msgstr ""
+msgstr "Feto"
 
 #: cidApp/models.py:179
 msgid "Indeterminate"
-msgstr ""
+msgstr "La determinadu"
 
 #: templates/dashproject/base/navbar.html:49
 msgid "Hello"
@@ -99,6 +99,7 @@ msgid "Report"
 msgstr "Relatoriu"
 
 #: templates/dashproject/base/sidebar.html:107
+#: templates/dashproject/pages/report_page.html:12
 msgid "Report List"
 msgstr "Lista Relatoriu"
 
@@ -135,11 +136,13 @@ msgid "Date Created"
 msgstr "Data Kria"
 
 #: templates/dashproject/pages/call_web_page.html:37
+#: templates/dashproject/pages/report_page.html:65
 msgid "Status"
 msgstr "Estado"
 
 #: templates/dashproject/pages/call_web_page.html:38
 #: templates/dashproject/pages/call_web_page.html:53
+#: templates/dashproject/pages/report_page.html:92
 msgid "Actions"
 msgstr "Asaun"
 
@@ -159,10 +162,59 @@ msgstr ""
 msgid "submit"
 msgstr ""
 
+#: templates/dashproject/pages/report_page.html:19
+msgid "Reporting"
+msgstr "Relatoriu"
+
+#: templates/dashproject/pages/report_page.html:21
+msgid "Reporting Lists"
+msgstr "Lista Relatoriu"
+
+#: templates/dashproject/pages/report_page.html:35
+msgid "Add New Report"
+msgstr "Adisiona Relatoriu Foun"
+
+#: templates/dashproject/pages/report_page.html:62
+msgid "Report Name"
+msgstr "Naran Relatoriu"
+
+#: templates/dashproject/pages/report_page.html:63
+msgid "Report Source"
+msgstr "Fonte Relatoriu"
+
+#: templates/dashproject/pages/report_page.html:64
+msgid "Report Created"
+msgstr "Data Kriasaun relatoriu"
+
+#: templates/dashproject/pages/report_page.html:66
+msgid "User"
+msgstr "Utilizador"
+
+#: templates/dashproject/pages/report_page.html:68
+#: templates/dashproject/pages/report_page.html:101
+msgid "Edit"
+msgstr "Editar"
+
+#: templates/dashproject/pages/report_page.html:112
+msgid "Comment"
+msgstr "Komentariu"
+
+#: templates/dashproject/pages/report_page.html:120
+msgid "Review"
+msgstr "Revijaun"
+
+#: templates/dashproject/pages/report_page.html:129
+msgid "Request Dissemination"
+msgstr "Pedidu Diseminasaun"
+
+#: templates/dashproject/pages/report_page.html:136
+msgid "Archived"
+msgstr "Arkivadu"
+
 #: templates/two_factor/_wizard_actions.html:5
 #: templates/two_factor_original/_wizard_actions.html:5
 msgid "Cancel"
-msgstr ""
+msgstr "Kansela"
 
 #: templates/two_factor/_wizard_actions.html:10
 #: templates/two_factor/_wizard_actions.html:12
