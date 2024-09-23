@@ -751,7 +751,7 @@ class EditReportReview(LoginRequiredMixin,GroupRequiredMixin,View):
             'comments':comments,
             'text_list':text_list,
             'user_group':list(user_group),
-            'reviewed':reviewed,
+            'form':reviewed,
             'webformID':source,
         }
         
@@ -760,17 +760,39 @@ class EditReportReview(LoginRequiredMixin,GroupRequiredMixin,View):
     def post(self, request, *args, **kwargs):
         report_id = kwargs.get('report_id')
         report = get_object_or_404(Report, id=report_id)
-        comments_form = CommentForm(request.POST)
+        
         reviewed = ReviewForm(request.POST)
+
         if reviewed.is_valid():
-                reviewed=reviewed.save(commit=False)
-                reviewed.record_id =report_id
-                reviewed.updated_by =self.request.user
-                report.status ="Closed"
-                reviewed.save()
-                report.save()
-                messages.success(request, f'The Id number {report.id} Has reviewed successfuly')
-                return redirect('report-list')  
+            # Save the review form without committing to the database yet
+            reviewed_instance = reviewed.save(commit=False)
+            
+            # Link the report and updated_by user
+            reviewed_instance.record_id = report_id  # Set the foreign key to the report
+            reviewed_instance.updated_by = self.request.user  # Set the user who updated it
+
+            # Check if the confirm field has been ticked (checkbox checked means True)
+            if reviewed.cleaned_data['confirm']:
+                print("Checkbox checked:", reviewed.cleaned_data['confirm'])  # For debugging
+                reviewed_instance.confirm = True  # Assign the confirm field if checkbox is checked
+            else:
+                reviewed_instance.confirm = False  # If unchecked, save as False
+
+            # Update the report status to "Closed"
+            report.status = "Closed"
+            
+            # Save the reviewed instance and report
+            reviewed_instance.save()
+            report.save()
+
+            # Success message
+            messages.success(request, f'The Id number {report.id} has been reviewed successfully.')
+            return redirect('report-list')
+        else:
+            # Debugging: print form errors if it's invalid
+            print("Review form errors:", reviewed.errors)
+
         return self.get(request, *args, **kwargs)
+
 
 
