@@ -1,20 +1,21 @@
+    {% load i18n %}
     <form method="POST" action="">
                   {% csrf_token %}
                   <div class="card">
-                    <div class="card-header">Form for Initialization</div>
+                    <div class="card-header">{% trans 'Form for Initialization' %}</div>
                     <div class="card-body">
                       <div class="form-group">
-                        <label for="id_source">Source</label>
+                        <label for="id_source">{% trans 'Source' %}</label>
                         {{ initial_form.source }}
                       </div>
 
                       <div class="form-group">
-                        <label for="id_information_source">Information Source</label>
+                        <label for="id_information_source">{% trans 'Information Source' %}</label>
                         {{ initial_form.information_source }}
                       </div>
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary mt-1" name="initial_form">
-                    Submit to Next Proccess
+                    {% trans 'Submit to next proccess' %}
                   </button>
     </form>

@@ -74,9 +74,9 @@
                 <tr>
                   <td>{{report.id}}</td>
                   <td>{{report.agency}}</td>
-                  <td>{{ report.initial.source}}</td>
+                  <td>{{ report.initial.get_source_display}}</td>
                   <td>{{ report.created_at|date:"d-m-Y" }}</td>
-                  <td>{{report.status}}</td>
+                  <td>{{report.get_status_display}}</td>
                   <td>{{report.user.first_name}} {{report.user.last_name}}</td>
                   <td>
                     <div class="dropdown">

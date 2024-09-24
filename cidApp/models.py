@@ -254,9 +254,9 @@ class Subject(models.Model):
 
 
 choice_source = (
-    ("Web Form", "Web Form"),
-    ("Hotline", "Hotline"),
-    ("Information other", "Information other"),
+    ("Web Form", _("Web Form")),
+    ("Hotline", _("Hotline")),
+    ("Information other", _("Information other")),
 )
 
 class Intial(models.Model):
@@ -267,11 +267,11 @@ class Intial(models.Model):
     def __str__(self) -> str:
         return f'{self.source}'
 STATUS_CHOICES = (
-        ("Incomplete", "Incomplete"),
-        ("Completed", "Completed"),
-        ("Closed", "Closed"),
-        ("Disseminate", "Disseminate"),
-        ("Archived", "Archived")
+        ("Incomplete", _("Incomplete")),
+        ("Completed", _("Completed")),
+        ("Closed", _("Closed")),
+        ("Disseminate", _("Disseminate")),
+        ("Archived", _("Archived"))
        # ("Disse")
 )
        
@@ -301,21 +301,21 @@ class Report(models.Model):
         super().save(*args, **kwargs)    
  
 evaluation = (
-    ("A", "Always Reliable"),
-    ("B", "Most Reliable"),
-    ("C", "Fairly Reliable"),
-    ("D", "Not Usual Reliable"),
-    ("E", "Unreliable"),
-    ("F", "Reliable Cannot be Judge"),
+    ("A", _("Always Reliable")),
+    ("B", _("Most Reliable")),
+    ("C", _("Fairly Reliable")),
+    ("D", _("Not Usual Reliable")),
+    ("E", _("Unreliable")),
+    ("F", _("Reliable Cannot be Judge")),
 )
 
 information = (
-    ("1", "Confirmed by other Source"),
-    ("2", "Probably True"),
-    ("3", "Possible True"),
-    ("4", "Doubtful"),
-    ("5", "Improbable Not Confirmed"),
-    ("6", "Truth Cannot be Judge"),
+    ("1", _("Confirmed by other Source")),
+    ("2", _("Probably True")),
+    ("3", _("Possible True")),
+    ("4", _("Doubtful")),
+    ("5", _("Improbable Not Confirmed")),
+    ("6", _("Truth Cannot be Judge")),
 )
 
 class TextAttach(models.Model):

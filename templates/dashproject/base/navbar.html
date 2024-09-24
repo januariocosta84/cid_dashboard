@@ -49,39 +49,49 @@
       <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
         <a class="dropdown-item" href="#">
           <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-          Profile
+         {% trans 'Profile'%}
         </a>
         <a class="dropdown-item" href="{% url 'change' id %}">
           <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-          Change password
+          {% trans 'Change password' %}
         </a>
         <a class="dropdown-item" href="#">
           <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-          Activity Log
+          {% trans 'Activity Log'%}
         </a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="{% url 'logout' %}" data-toggle="modal" data-target="#logoutModal">
           <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-          Logout
+          {% trans 'Logout'%}
         </a>
       </div>
     </li>
 
    <li class="nav-item dropdown">
     <a class="nav-link" data-toggle="dropdown" href="#">
-        <i class="flag-icon flag-icon-{% if request.LANGUAGE_CODE == 'en' %}us{% else %}tl{% endif %}"></i>
+        <i class="flag-icon flag-icon-{% if request.LANGUAGE_CODE == 'tl' %}tl{% elif request.LANGUAGE_CODE == 'pt' %}pt{% elif request.LANGUAGE_CODE == 'id' %}id{%else%}us{% endif %}"></i>
     </a>
     <div class="dropdown-menu dropdown-menu-right p-0">
         <form action="{% url 'set_language' %}" method="post">
             {% csrf_token %}
+            <!-- Link for Tetum (Timor-Leste) -->
+            <button class="dropdown-item {% if request.LANGUAGE_CODE == 'tl' %}active{% endif %}" type="submit" name="language" value="tl">
+                <i class="flag-icon flag-icon-tl mr-2"></i> Tetum
+            </button>
+
+            <!-- Link for Portugues (Portugal) -->
+            <button class="dropdown-item {% if request.LANGUAGE_CODE == 'pt' %}active{% endif %}" type="submit" name="language" value="pt">
+                <i class="flag-icon flag-icon-pt mr-2"></i> Portugues
+            </button>
+
             <!-- Link for English -->
             <button class="dropdown-item {% if request.LANGUAGE_CODE == 'en' %}active{% endif %}" type="submit" name="language" value="en">
                 <i class="flag-icon flag-icon-us mr-2"></i> English
             </button>
 
-            <!-- Link for Tetum (Timor-Leste) -->
-            <button class="dropdown-item {% if request.LANGUAGE_CODE == 'tl' %}active{% endif %}" type="submit" name="language" value="tl">
-                <i class="flag-icon flag-icon-tl mr-2"></i> Tetum
+             <!-- Link for Indonesia -->
+            <button class="dropdown-item {% if request.LANGUAGE_CODE == 'id' %}active{% endif %}" type="submit" name="language" value="id">
+                <i class="flag-icon flag-icon-id mr-2"></i> Indonesia
             </button>
 
             <!-- Pass the current URL path as a hidden input -->

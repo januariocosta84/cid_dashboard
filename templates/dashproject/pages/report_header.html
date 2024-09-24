@@ -4,7 +4,8 @@
      window.onunload=function(){null};
  </script> -->
 <!--Start CSS header-->
-{%include './header_css.html'%}
+{% include './header_css.html' %}
+{% load i18n %}
 <!-- Start page title -->
 <div class="row content-home mt-1 mb-1">
     <div class="col-12">
@@ -31,7 +32,7 @@
                         id="subjectDetailBtn" data-target="#exampleModal"
                         onclick="fetchSubjectDetails('{{ webformID.webform_id }}')">
                         {{ webformID.webform_id }}
-                        <i class="fa fa-pencil-square"></i> View
+                        <i class="fa fa-pencil-square"></i> {% trans 'View' %}
                     </button>
                     {% endif %}
                 </div>
@@ -39,9 +40,9 @@
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item">
-                        <a href="javascript: void(0);">Reporting</a>
+                        <a href="javascript: void(0);">{% trans 'Reporting' %}</a>
                     </li>
-                    <li class="breadcrumb-item active">Report</li>
+                    <li class="breadcrumb-item active">{% trans 'Report' %}</li>
                 </ol>
             </div>
         </div>
@@ -64,7 +65,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-header">
-                            <h4>Subject you are giving information about</h4>
+                            <h4>{% trans 'Subject you are giving information about' %}</h4>
                         </div>
                         <p class="text-mute">First Name</p>
                         <p><strong><span id="name-data"></span></strong></p>

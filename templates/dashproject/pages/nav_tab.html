@@ -1,11 +1,12 @@
  <!-- Nav tabs -->
+{% load i18n %}
             <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item">
                 <a class="nav-link {% if request.GET.tab == 'initial' or not request.GET.tab %}active {%else%}disabled{% endif %}"
                   id="initial-tab" data-toggle="tab" href="#initial" role="tab" aria-controls="initial"
                   aria-selected="true">
                   <span class="d-block"><i class="fa fa-info"></i></span>
-                  <span class="d-block">Initial</span>
+                  <span class="d-block">{% trans 'Initial' %}</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -13,14 +14,14 @@
                   id="subjects-tab" data-toggle="tab" href="#subjects" role="tab" aria-controls="subjects"
                   aria-selected="false">
                   <span class="d-block"><i class="fa fa-people-carry" aria-hidden="true"></i></span>
-                  <span class="d-block">Subjects</span>
+                  <span class="d-block">{% trans 'Subjects' %}</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link {% if request.GET.tab == 'text' %}active{%else%}disabled{% endif %}" id="text-tab"
                   data-toggle="tab" href="#text" role="tab" aria-controls="text" aria-selected="false">
                   <span class="d-block"><i class="fa fa-address-book" aria-hidden="true"></i></span>
-                  <span class="d-block">Text</span>
+                  <span class="d-block">{% trans 'Text' %}</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -28,7 +29,7 @@
                   id="attachment-tab" data-toggle="tab" href="#attachment" role="tab" aria-controls="attachment"
                   aria-selected="false">
                   <span class="d-block"><i class="fa fa-file" aria-hidden="true"></i></span>
-                  <span class="d-block">Attachment</span>
+                  <span class="d-block">{% trans 'Attachment' %}</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -36,14 +37,14 @@
                   id="comment-tab" data-toggle="tab" href="#comment" role="tab" aria-controls="comment"
                   aria-selected="false">
                   <span class="d-block"><i class="fa fa-comment" aria-hidden="true"></i></span>
-                  <span class="d-block">Analyst Comment</span>
+                  <span class="d-block">{% trans 'Analyst Comment' %}</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link disabled" id="status-tab" data-toggle="tab" href="#status" role="tab" aria-controls="status"
                   aria-selected="false">
                   <span class="d-block"><i class="fa fa-clock" aria-hidden="true"></i></span>
-                  <span class="d-block">Status Timeline</span>
+                  <span class="d-block">{% trans 'Status Timeline' %}</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -51,7 +52,7 @@
                   id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
                   aria-selected="false">
                   <span class="d-block"><i class="fa fa-ad" aria-hidden="true"></i></span>
-                  <span class="d-block">Review</span>
+                  <span class="d-block">{% trans 'Review' %}</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -59,7 +60,7 @@
                   id="dissemination-tab" data-toggle="tab" href="#dissemination" role="tab"
                   aria-controls="dissemination" aria-selected="false">
                   <span class="d-block"><i class="fa fa-fan" aria-hidden="true"></i></span>
-                  <span class="d-block">Dissemination</span>
+                  <span class="d-block">{% trans 'Dissemination'%}</span>
                 </a>
               </li>
               <!-- Add other tabs here -->

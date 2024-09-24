@@ -1,4 +1,8 @@
-{% extends 'dashproject/base/layout.html' %} {% load static %} {% block content%}
+
+{% extends 'dashproject/base/layout.html' %} 
+{% load static %}
+{% load i18n %}
+{% block content%}
 
 <div class="container-fluid">
   <!-- start page title -->
@@ -12,9 +16,9 @@
         <div class="page-title-right">
           <ol class="breadcrumb m-0">
             <li class="breadcrumb-item">
-              <a href="javascript: void(0);">Contacts</a>
+              <a href="javascript: void(0);">{% trans 'Contacts' %}</a>
             </li>
-            <li class="breadcrumb-item active">User List</li>
+            <li class="breadcrumb-item active">{% trans 'User List'%}</li>
           </ol>
         </div>
       </div>
@@ -30,7 +34,7 @@
                 <a
                   href="{%url 'user-register'%}"
                   class="btn btn-success pl-1"
-                  ><i class="fa fa-user-plus " aria-hidden="true"></i>Add New Account</a
+                  ><i class="fa fa-user-plus " aria-hidden="true"></i>{% trans 'Add New Account' %}</a
                 >
               </div>
             </div>
@@ -58,12 +62,12 @@
                   <th scope="col">
                     ID
                   </th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Last Login</th>
+                  <th scope="col">{% trans 'Name'%}</th>
+                  <th scope="col">{% trans 'Email'%}</th>
+                  <th scope="col">{% trans 'Last Login'%}</th>
                   <th></th>
         
-                  <th scope="col">Edit</th>
+                  <th scope="col">{% trans 'Edit'%}</th>
                 </tr>
               </thead>
               <tbody>
@@ -77,14 +81,14 @@
                   </td>
                   <td>{{user.email}}</td>
                   <td> {% if user.last_login == None %}
-                    Haven't tried logging in yet
+                  <p> {% trans "Haven't tried logging in yet"%}</p>
                 {% else %}
                     {{ user.last_login }}
                 {% endif %}</td>
                   <td>
                     <td>
-                        <a href="{%url 'change' user.id%}" class="btn btn-info">Edit</a>
-                        <a href="#" class="btn btn-primary">MFA Activation</a>
+                        <a href="{%url 'change' user.id%}" class="btn btn-info">{% trans 'Edit' %}</a>
+                        <a href="#" class="btn btn-primary">{% trans 'MFA Activation'%}</a>
                     </td>
                   </td>
                 </tr>

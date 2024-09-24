@@ -1,63 +1,140 @@
+{% load i18n %}
 <style>
-/* Hide the default radio button */
-input[type="radio"] {
+  /* Hide the default radio button */
+  input[type="radio"] {
     display: none;
-}
+  }
 
-/* Style the cards */
-.card {
+  /* Style the cards */
+  .card {
     border: 2px solid transparent;
     transition: border-color 0.3s ease, background-color 0.3s ease;
     margin-bottom: 10px;
-}
+  }
 
-.card:hover {
+  .card:hover {
     border-color: #007bff;
-}
+  }
 
-/* Highlight selected card */
-input[type="radio"]:checked + .card-body {
+  /* Highlight selected card */
+  input[type="radio"]:checked+.card-body {
     border-color: #007bff;
-    background-color: #e9f5ff; /* Optional: change background color when selected */
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Optional: add a shadow */
-}
+    background-color: #e9f5ff;
+    /* Optional: change background color when selected */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+    /* Optional: add a shadow */
+  }
 
+  .card-body .card-title {
+    text-align: center;
+    text-transform: capitalize;
+    text-shadow: #007bff;
+  }
 </style>
 <form method="POST" action="">
   {% csrf_token %}
+
+
   <div class="form-group">
-    <label for="">Text</label>
-    {{text_form.text}}
+    <label for="">{% trans 'Text'%}</label>
+    {{ text_form.text }}
   </div>
+
   <div class="form-group">
-    <label>Information Source</label>
+    <label>{% trans 'Information Source'%}</label>
     <div class="card-deck">
-         {% for radio in text_form.information_source %}
-            <label class="card" style="cursor: pointer;">
-                <!-- Ensure all radios in the 'information_source' group have the same 'name' -->
-                {{ radio.tag }} <!-- This will automatically render the correct name attribute -->
-                <div class="card-body">
-                    <h5 class="card-title">{{ radio.choice_label }}</h5>
-                </div>
-            </label>
-            {% endfor %}
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="">Source Evaluation</label>
-    <div class="card-deck">
-         {% for radio in text_form.source_evaluation %}
-            <label class="card" style="cursor: pointer;">
-                <!-- Ensure all radios in the 'source_evaluation' group have the same 'name' -->
-                {{ radio.tag }} <!-- This will automatically render the correct name attribute -->
-                <div class="card-body">
-                    <h5 class="card-title">{{ radio.choice_label }}</h5>
-                </div>
-            </label>
-            {% endfor %}
+      <!-- Manually define the options for information source -->
+      <label class="card" style="cursor: pointer;">
+        <input type="radio" name="information_source" value="1" style="display: none;" />
+        <div class="card-body">
+          <h5 class="card-title">{% trans '1 - Confirmed by other Source' %}</h5>
+        </div>
+      </label>
+
+      <label class="card" style="cursor: pointer;">
+        <input type="radio" name="information_source" value="2" style="display: none;" />
+        <div class="card-body">
+          <h5 class="card-title">{% trans '2 - Probably True' %}</h5>
+        </div>
+      </label>
+
+      <label class="card" style="cursor: pointer;">
+        <input type="radio" name="information_source" value="3" style="display: none;" />
+        <div class="card-body">
+          <h5 class="card-title">{% trans '3 - Possible True' %}</h5>
+        </div>
+      </label>
+
+      <label class="card" style="cursor: pointer;">
+        <input type="radio" name="information_source" value="4" style="display: none;" />
+        <div class="card-body">
+          <h5 class="card-title">{% trans '4 - Doubtful' %}</h5>
+        </div>
+      </label>
+
+      <label class="card" style="cursor: pointer;">
+        <input type="radio" name="information_source" value="5" style="display: none;" />
+        <div class="card-body">
+          <h5 class="card-title">{% trans '5 - Improbable Not Confirmed'%}</h5>
+        </div>
+      </label>
+
+      <label class="card" style="cursor: pointer;">
+        <input type="radio" name="information_source" value="6" style="display: none;" />
+        <div class="card-body">
+          <h5 class="card-title">{% trans '6 - Truth Cannot be Judge'%}</h5>
+        </div>
+      </label>
     </div>
   </div>
 
+  <div class="form-group">
+    <label for="">{% trans 'Source Evaluation' %}</label>
+    <div class="card-deck">
+      <!-- Manually define the options for source evaluation -->
+      <label class="card" style="cursor: pointer;">
+        <input type="radio" name="source_evaluation" value="A" style="display: none;" />
+        <div class="card-body">
+          <h5 class="card-title">{% trans 'A - Always Reliable' %}</h5>
+        </div>
+      </label>
+
+      <label class="card" style="cursor: pointer;">
+        <input type="radio" name="source_evaluation" value="B" style="display: none;" />
+        <div class="card-body">
+          <h5 class="card-title">{% trans 'B - Most Reliable' %}</h5>
+        </div>
+      </label>
+
+      <label class="card" style="cursor: pointer;">
+        <input type="radio" name="source_evaluation" value="C" style="display: none;" />
+        <div class="card-body">
+          <h5 class="card-title">{% trans 'C - Fairly Reliable' %}</h5>
+        </div>
+      </label>
+
+      <label class="card" style="cursor: pointer;">
+        <input type="radio" name="source_evaluation" value="D" style="display: none;" />
+        <div class="card-body">
+          <h5 class="card-title">{% trans 'D - Not Usual Reliable'%}</h5>
+        </div>
+      </label>
+
+      <label class="card" style="cursor: pointer;">
+        <input type="radio" name="source_evaluation" value="E" style="display: none;" />
+        <div class="card-body">
+          <h5 class="card-title">{% trans 'E - Unreliabl'%}e</h5>
+        </div>
+      </label>
+
+      <label class="card" style="cursor: pointer;">
+        <input type="radio" name="source_evaluation" value="F" style="display: none;" />
+        <div class="card-body">
+          <h5 class="card-title">{% trans 'F - Reliable Cannot be Judge' %}</h5>
+        </div>
+      </label>
+    </div>
+  </div>
   <!-- <button type="submit" class="btn btn-primary mt-1 disabled" name="text_form">Add New
                   text</button>
                 <a href="{%url 'report-list'%}" class="btn btn-warning mt-1 disabled">Terminate</a>
@@ -65,11 +142,11 @@ input[type="radio"]:checked + .card-body {
                   <i class="fa fa-plus"></i> <span class="text-uppercase">Go to Next Step</span>
                 </button> -->
   <button type="submit" class="btn btn-primary mt-1" name="text_form">
-    Add New text
+    {% trans 'Add New text'%}
   </button>
-  <a href="{%url 'report-list'%}" class="btn btn-warning mt-1">Save</a>
+  <a href="{%url 'report-list'%}" class="btn btn-warning mt-1">{% trans 'Save' %}</a>
   <button type="button" class="btn btn-warning mt-1" id="goToNextStep">
     <i class="fa fa-plus"></i>
-    <span class="text-uppercase">Go to Next Step</span>
+    <span class="text-uppercase">{% trans 'Go to Next Step'%}</span>
   </button>
 </form>

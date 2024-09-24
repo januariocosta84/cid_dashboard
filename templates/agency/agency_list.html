@@ -1,5 +1,9 @@
 
-{% extends 'dashproject/base/layout.html' %} {% load static %} {% block content%}
+{% extends 'dashproject/base/layout.html' %}
+ {% load static %} 
+ {% load i18n%}
+ 
+ {% block content%}
 
 <div class="container-fluid">
   <!-- start page title -->
@@ -8,14 +12,14 @@
       <div
         class="page-title-box d-flex align-items-center justify-content-between"
       >
-        <h4 class="mb-0">Agency List</h4>
+        <h4 class="mb-0">{% trans 'Agency List'%}</h4>
 
         <div class="page-title-right">
           <ol class="breadcrumb m-0">
             <li class="breadcrumb-item">
-              <a href="javascript: void(0);">Agency</a>
+              <a href="javascript: void(0);">{% trans 'Agency'%}</a>
             </li>
-            <li class="breadcrumb-item active">Agency List</li>
+            <li class="breadcrumb-item active">{% trans 'Agency List'%}</li>
           </ol>
         </div>
       </div>
@@ -31,7 +35,7 @@
                 <a
                   href="{%url 'create-agency'%}"
                   class="btn btn-success pl-1"
-                  ><i class="fa fa-builiding-o " aria-hidden="true"></i>Add New Agency</a
+                  ><i class="fa fa-builiding-o " aria-hidden="true"></i>{% trans 'Add New Agency'%}</a
                 >
               </div>
             </div>
@@ -59,9 +63,9 @@
                   <th scope="col">
                     ID
                   </th>
-                  <th scope="col">Agency Name</th>
-                  <th scope="col">Date Created</th>
-                  <th scope="col">Created By</th>
+                  <th scope="col">{% trans 'Agency Name'%}</th>
+                  <th scope="col">{% trans 'Date Created' %}</th>
+                  {% comment %} <th scope="col">Created By</th> {% endcomment %}
                <th scope="col">Edit</th>
                 </tr>
               </thead>
@@ -75,10 +79,9 @@
                     <a href="#" class="text-body">{{agency.name}}</a>
                   </td>
                   <td>{{agency.created_at}}</td>
-                  <td>{{agency.created_by.first_name}} </td>
                     <td>
-                        <a href="{% url 'agency-update' agency.pk %}" class="btn btn-info">Edit</a>
-                        <a href="{% url 'agency-delete' agency.pk %}" class="btn btn-danger ">Delete</a>
+                        <a href="{% url 'agency-update' agency.pk %}" class="btn btn-info">{% trans 'Edit'%}</a>
+                        <a href="{% url 'agency-delete' agency.pk %}" class="btn btn-danger ">{% trans 'Delete'%}</a>
                     </td>
                   </td>
                 </tr>

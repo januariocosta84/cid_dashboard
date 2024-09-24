@@ -172,6 +172,7 @@ LANGUAGES =[
         ('en', 'English'),
         ('id', 'Indonesia'),
         ('tl', 'Tetum'),
+        ('pt', 'Portugues'),
         ('tl', gettext('Tetum'))
 ]
 LANGUAGES_BIDI	=['he', 'ar', 'ar-dz', 'fa', 'ur']

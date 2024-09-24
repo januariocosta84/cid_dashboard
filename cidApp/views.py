@@ -164,7 +164,7 @@ class CreateReportWebCallView(LoginRequiredMixin, GroupRequiredMixin, TemplateVi
             request.session['report_id'] = report.id
             request.session['report_status'] = report.status
            # request.session['report_created'] = report.created_at
-            messages.success(request, f'New Initial has added')
+            messages.success(request,  _('New Initial form has been added'))
             return redirect(f"{reverse('report-web', args=[web_id])}?tab=subjects")
 
     def handle_subject_form(self, request, web_id):
@@ -178,7 +178,8 @@ class CreateReportWebCallView(LoginRequiredMixin, GroupRequiredMixin, TemplateVi
             report = self.get_report(request.session.get('report_id'))
             report.subject = subject_instance
             report.save()
-            messages.success(request, f'New Subject has added successfully to {request.session.get('report_id')} Report ID')
+            messages.messages.success(request, _('New Subject has been added successfully to Report ID {report_id}').format(report_id=request.session.get('report_id'))
+            )
             return redirect(f"{reverse('report-web', args=[web_id])}?tab=text")
 
     def handle_text_form(self, request, web_id):
@@ -211,143 +212,6 @@ class CreateReportWebCallView(LoginRequiredMixin, GroupRequiredMixin, TemplateVi
             request.session.pop('text_id', None)
             request.session.pop('report_id', None)
             return redirect('report-list')
-
-# class CreateReportWebCallView(LoginRequiredMixin, GroupRequiredMixin, TemplateView):
-#     template_name = 'dashproject/pages/report.html'
-#     group_names = ['administrator']
-#     login_url = 'login'
-#     initial_form = InitialForm
-#     subject_form = SubjectForm
-#     text_form = TextForm
-#     file_form = FileForm
-#     comments_form = CommentForm
-#     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
-#         web_id =self.kwargs.get('web_id')
-#         context = super().get_context_data(**kwargs)
-#         context['call_web'] = CallAndWebForm.objects.all()
-#         context['id'] = self.request.user.id
-#         user_group = self.request.user.groups.values_list('name', flat=True)
-#         context['user_group'] = list(user_group)
-#         context['subject_form'] = self.subject_form()
-#         context['initial_form'] = self.initial_form()
-#         context['text_form'] = self.text_form()
-#         context['file_form'] = self.file_form()
-#         context['comment_form']= self.comments_form()
-#         context['webformID']= 4
-#         ##ida ne ba status
-#         if 'report_id' in self.request.session:
-#             report = get_object_or_404(Report, id=self.request.session['report_id'])
-#             print("BUG",report)
-#             context['text_list'] = TextAttach.objects.filter(report=report)
-#             context['report_status'] = self.request.session.get('report_status', 'On Creating')
-#             context['report_id'] = self.request.session.get('report_id', 'Unique ID will be created')
-#             context['webformID']= 4
-           
-#         else:
-#             context['report_status'] = 'No report found'
-#             context['report_id'] = 'Unique ID will be created'
-#             context['webformID']= 4
-            
-#         return context
-
-#     def get_report(self, report_id):
-#         """ Helper method to retrieve the report """
-#         return Report.objects.get(id=report_id)
-    
-#     def get_web_call(self,call_id):
-#         return CallAndWebForm.objects.get(id=call_id)
-    
-#     def post(self, request, *args, **kwargs):
-#         web_id = self.kwargs.get('web_id')
-#         user_id = request.user.id
-#         staff = get_object_or_404(Staff, user_id=user_id)
-#         agency = staff.agency
-#         print(web_id)
-#        # print("Bug info",call_web)
-#         if 'initial_form' in request.POST:
-#             return self.handle_initial_form(request, agency, web_id)
-#         elif 'subject_form' in request.POST:
-#             return self.handle_subject_form(request)
-#         elif 'text_form' in request.POST:
-#             return self.handle_text_form(request)
-#         elif 'file_form' in request.POST:
-#             return self.handle_file_form(request)
-
-#         context = self.get_context_data(**kwargs)
-#         return render(request, self.template_name, context)
-
-#     def handle_initial_form(self, request, agency, web_id):
-#         form = self.initial_form(request.POST)
-        
-#         if form.is_valid():
-#             initial_instance = form.save(commit=False)
-#             initial_instance.agency = agency
-#             initial_instance.save()
-#             request.session['initial_id'] = initial_instance.id
-
-#             report = Report.objects.create(
-#                 source =self.get_web_call(web_id),
-#                 user=request.user,
-#                 initial=initial_instance,
-#                 agency=agency,
-#                 status="Incomplete",
-#                 information_other=initial_instance.information_source
-#             )
-#             call_web = self.get_web_call(web_id)
-#             reported_status = Status.objects.get(name="Reported")  # Use 'name' instead of 'status'
-#             call_web.status = reported_status
-#             call_web.save()
-            
-#             request.session['report_id'] = report.id
-#             request.session['report_status'] = report.status
-#            # request.session['report_created'] = report.created_at
-#             messages.success(request, f'New Initial has added')
-#             return redirect(f"{reverse('new-report')}?tab=subjects")
-
-#     def handle_subject_form(self, request):
-#         form = self.subject_form(request.POST)
-#         if form.is_valid():
-#             subject_instance = form.save()
-#             initial_id = request.session.get('initial_id')
-#             request.session['subject_id'] = subject_instance.id
-            
-#             report = self.get_report(request.session.get('report_id'))
-#             report.subject = subject_instance
-#             report.save()
-#             messages.success(request, f'New Subject has added successfully to {request.session.get('report_id')} Report ID')
-#             return redirect(f"{reverse('new-report')}?tab=text")
-
-#     def handle_text_form(self, request):
-#         form = self.text_form(request.POST)
-#         if form.is_valid():
-#             text_instance = form.save(commit=False)
-#             text_instance.user = request.user
-#             text_instance.report= self.get_report(request.session.get('report_id'))
-#             text_instance.save()
-#             request.session['text_id'] = text_instance.id
-#             #report.save()
-#             messages.success(request, f'Comment has added to {request.session.get('report_id')} Report ID')
-#             return redirect(f"{reverse('new-report')}?tab=text")
-#         else:
-#             print("Errorr")
-#     def handle_file_form(self, request):
-#         form = self.file_form(request.POST, request.FILES)
-#         if form.is_valid():
-#             file_instance = form.save(commit=False)
-#             file_instance.user = request.user
-#             file_instance.metadata = 'Default'
-#             file_instance.name = 'default'
-#             file_instance.save()
-#             report = self.get_report(request.session.get('report_id'))
-#             report.file_attached = file_instance
-#             report.status = "Completed"
-#             report.save()
-#             request.session.pop('initial_id', None)
-#             request.session.pop('subject_id', None)
-#             request.session.pop('text_id', None)
-#             request.session.pop('report_id', None)
-#             return redirect('report-list')
-  
     
 class CreateReportWebView(LoginRequiredMixin, GroupRequiredMixin, TemplateView):
     template_name = 'dashproject/pages/add_report.html'
@@ -374,12 +238,12 @@ class CreateReportWebView(LoginRequiredMixin, GroupRequiredMixin, TemplateView):
             report = get_object_or_404(Report, id=self.request.session['report_id'])
             print(report)
             context['text_list'] = TextAttach.objects.filter(report=report)
-            context['report_status'] = self.request.session.get('report_status', 'On Creating')
+            context['report_status'] = self.request.session.get('report_status', _('On Creating'))
             
-            context['report_id'] = self.request.session.get('report_id', 'Unique ID will be created')
+            context['report_id'] = self.request.session.get('report_id', _('Unique ID will be created'))
         else:
-            context['report_status'] = 'No report found'
-            context['report_id'] = 'Unique ID will be created'
+            context['report_status'] = _('No report found')
+            context['report_id'] = _('Unique ID will be created')
 
             
         return context
@@ -423,7 +287,7 @@ class CreateReportWebView(LoginRequiredMixin, GroupRequiredMixin, TemplateView):
             request.session['report_id'] = report.id
             request.session['report_status'] = report.status
            # request.session['report_created'] = report.created_at
-            messages.success(request, f'New Initial has added')
+            messages.success(request, _('New Initial form has been added'))
             return redirect(f"{reverse('new-report')}?tab=subjects")
 
     def handle_subject_form(self, request):

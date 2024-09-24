@@ -10,6 +10,7 @@ from django.core.paginator import Paginator
 # #from .forms import RegisterForm, LoginForm, UserEditForm, ResetPasswordForm
 # from django.contrib.auth.views import LoginView, PasswordResetView, PasswordChangeView
 from django.shortcuts import render, redirect
+from django.utils.translation import gettext_lazy as _
 
 from cidApp.decorator_costum import GroupRequiredMixin
 from cidApp.forms import(
@@ -88,7 +89,7 @@ class RegisterUsers(LoginRequiredMixin, View):
              )
 
             username = form.cleaned_data.get('username')
-            messages.success(request, f'Account created for {username}')
+            messages.success(request, _('Account created for {username}'))
             return redirect('user-list')
 
         context = self.get_context_data(**kwargs)
@@ -133,7 +134,7 @@ class EditUserView(GroupRequiredMixin, View):
             if password_change_requested:
                 form.save()
             
-            messages.success(request, "User information has been updated")
+            messages.success(request, _("User information has been updated"))
             return redirect('user-list')
         
         user_groups = user.groups.all()  # Fetch the user's groups
@@ -156,17 +157,17 @@ class Login_View(LoginView):
         return super().dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
-        messages.success(self.request, f"Hei: {self.request.user.first_name} You are successfully logged in")
+        messages.success(self.request, _("Hei: {self.request.user.first_name} You are successfully logged in"))
         return resolve_url('/')
 
     def form_invalid(self, form):
-        messages.error(self.request, "Warning: UNAUTHORIZED ACCESS TO THIS SYSTEM MAY CONSTITUTE A CRIMINAL OFFENCE.")
+        messages.error(self.request, _("Warning: UNAUTHORIZED ACCESS TO THIS SYSTEM MAY CONSTITUTE A CRIMINAL OFFENCE."))
         return super().form_invalid(form)
 
 class Logout_View(View):
     def get(self,request):
         logout(self.request)
-        messages.info(request, "Logged out successfully! bye bye")
+        messages.info(request, _("Logged out successfully! bye bye"))
         return redirect ('login',permanent=True)
 
 class UserListsView(LoginRequiredMixin,GroupRequiredMixin,View):

@@ -5,7 +5,7 @@ from django import forms
 from django.contrib.auth.models import User,Group
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth import get_user_model
-
+from django.utils.translation import gettext_lazy as _
 
 from .models import Agency, Comments, FileAttch, Intial, Report, Staff, Subject, TextAttach, ReportReviewed
 User = get_user_model()
@@ -47,12 +47,12 @@ User = get_user_model()
 class RegisterForm(UserCreationForm):
     first_name = forms.CharField(max_length=100,
                                  required=True,
-                                 widget=forms.TextInput(attrs={'placeholder': 'First Name',
+                                 widget=forms.TextInput(attrs={'placeholder': _('First Name'),
                                                                'class': 'form-control',
                                                                }))
     last_name = forms.CharField(max_length=100,
                                 required=True,
-                                widget=forms.TextInput(attrs={'placeholder': 'Last Name',
+                                widget=forms.TextInput(attrs={'placeholder': _('Last Name'),
                                                               'class': 'form-control',
                                                               }))
     # username = forms.CharField(max_length=100,
@@ -88,7 +88,7 @@ class RegisterForm(UserCreationForm):
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if User.objects.filter(email=email).exists():
-            raise forms.ValidationError(f"This email is already taken. Please add another valid Email")
+            raise forms.ValidationError(_("This email is already taken. Please add another valid Email"))
         return email
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -122,9 +122,9 @@ class LoginForm(AuthenticationForm):
             try:
                 user = User.objects.get(email=email)
                 if not user.check_password(password):
-                    raise forms.ValidationError('Invalid email or password')
+                    raise forms.ValidationError(_('Invalid email or password'))
             except User.DoesNotExist:
-                raise forms.ValidationError('Invalid email or password')
+                raise forms.ValidationError(_('Invalid email or password'))
 
         return super().clean()
     
@@ -171,7 +171,7 @@ class UserEditForm(forms.ModelForm):
 class AgencyForm(forms.Form):
    agency = forms.ModelChoiceField(
         queryset=Agency.objects.all(),
-         empty_label="Select Agency",
+         empty_label=_("Select Agency"),
         required=True,
         widget=forms.Select(attrs={'class': 'form-control'}, )
     )
@@ -184,7 +184,7 @@ class AgencyForm(forms.Form):
 class GroupForm(forms.Form):
     groups = forms.ModelChoiceField(
         queryset=Group.objects.all(),
-        empty_label="Select Permision",
+        empty_label=_("Select Permision"),
         required=True,
         widget=forms.Select(attrs={'class': 'form-control'})
     )
@@ -239,7 +239,8 @@ class SubjectForm(forms.ModelForm):
             'dob': forms.DateInput(attrs={'type': 'date'}),
             'description_subject': forms.Textarea(attrs={'rows': 4}),
             'cov_description':forms.Textarea(attrs={'rows': 4}),
-            'address':forms.Textarea(attrs={'rows': 4})
+            'address':forms.Textarea(attrs={'rows': 4}),
+            'busaddress':forms.Textarea(attrs={'rows': 4})
                       
         }
     def __init__(self, *args, **kwargs):
