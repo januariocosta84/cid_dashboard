@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-23 07:55+0000\n"
+"POT-Creation-Date: 2024-09-23 08:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -85,6 +85,14 @@ msgstr "Feto"
 #: cidApp/models.py:179
 msgid "Indeterminate"
 msgstr "La determinadu"
+
+#: cidApp/views.py:110
+msgid "On Creating"
+msgstr "Iha hela kriasaun"
+
+#: cidApp/views.py:111
+msgid "Unique ID will be created"
+msgstr "ID uniku sei kria"
 
 #: templates/dashproject/base/navbar.html:49
 msgid "Hello"

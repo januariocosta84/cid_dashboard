@@ -67,23 +67,29 @@
       </div>
     </li>
 
-    <!-- Language Dropdown Menu -->
-    <li class="nav-item dropdown">
-      <a class="nav-link" data-toggle="dropdown" href="#">
-        <i class="flag-icon flag-icon-{% if request.LANGUAGE_CODE == 'en' %}us{% else %}tl{% endif %}"></i> <!-- Shows US flag by default -->
-      </a>
-      <div class="dropdown-menu dropdown-menu-right p-0">
-        <!-- Link for English -->
-        <a href="/en" class="dropdown-item {% if request.LANGUAGE_CODE == 'en' %}active{% endif %}">
-          <i class="flag-icon flag-icon-us mr-2"></i> English
-        </a>
-        
-        <!-- Link for Tetum (Timor-Leste) -->
-        <a href="/tl" class="dropdown-item {% if request.LANGUAGE_CODE == 'tl' %}active{% endif %}">
-          <i class="flag-icon flag-icon-tl mr-2"></i> Timor Leste
-        </a>
-      </div>
-    </li>
+   <li class="nav-item dropdown">
+    <a class="nav-link" data-toggle="dropdown" href="#">
+        <i class="flag-icon flag-icon-{% if request.LANGUAGE_CODE == 'en' %}us{% else %}tl{% endif %}"></i>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right p-0">
+        <form action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+            <!-- Link for English -->
+            <button class="dropdown-item {% if request.LANGUAGE_CODE == 'en' %}active{% endif %}" type="submit" name="language" value="en">
+                <i class="flag-icon flag-icon-us mr-2"></i> English
+            </button>
+
+            <!-- Link for Tetum (Timor-Leste) -->
+            <button class="dropdown-item {% if request.LANGUAGE_CODE == 'tl' %}active{% endif %}" type="submit" name="language" value="tl">
+                <i class="flag-icon flag-icon-tl mr-2"></i> Tetum
+            </button>
+
+            <!-- Pass the current URL path as a hidden input -->
+            <input type="hidden" name="next" value="{{ request.get_full_path }}">
+        </form>
+    </div>
+</li>
+
   </ul>
 </nav>
 <!-- /.navbar -->

@@ -17,6 +17,7 @@ from django.http import JsonResponse
 from django.core.paginator import Paginator,PageNotAnInteger, EmptyPage
 import requests
 from .api_consuming import insert_subject
+from django.utils.translation import gettext_lazy as _
 
 class SyncSubjectsView(View):
     def get(self, request, *args, **kwargs):
@@ -106,8 +107,8 @@ class CreateReportWebCallView(LoginRequiredMixin, GroupRequiredMixin, TemplateVi
             report = get_object_or_404(Report, id=self.request.session['report_id'])
             print(report)
             context['text_list'] = TextAttach.objects.filter(report=report)
-            context['report_status'] = self.request.session.get('report_status', 'On Creating')
-            context['report_id'] = self.request.session.get('report_id', 'Unique ID will be created')
+            context['report_status'] = self.request.session.get('report_status', _('On Creating'))
+            context['report_id'] = self.request.session.get('report_id', _('Unique ID will be created'))
             #context['webformID']=  report.source
         else:
             context['report_status'] = 'No report found'
