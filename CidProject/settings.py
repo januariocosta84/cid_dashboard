@@ -171,6 +171,7 @@ LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
 LANGUAGES =[
         ('en', 'English'),
         ('id', 'Indonesia'),
+        ('tl', 'Tetum'),
         ('tl', gettext('Tetum'))
 ]
 LANGUAGES_BIDI	=['he', 'ar', 'ar-dz', 'fa', 'ur']
