@@ -73,7 +73,7 @@
           </button>
         </div>
         <div class="modal-body">
-        {%  trans "Select 'Logout' below if you are ready to end your current session."%}
+          {% trans "Select 'Logout' below if you are ready to end your current session."%}
         </div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">
@@ -141,11 +141,12 @@
         var subjectId = $(this).data("id");
         console.log("Bug", subjectId);
         $.ajax({
-          url: "/record_details/" + subjectId,
+          url: "/call-details/" + subjectId,
           method: "GET",
           success: function (data) {
             console.log(data);
-            $(".subject-first-name").text(data.name);
+            $("#id_path").text(data.file_path);
+            $("#path").text(data.file);
           },
         });
       });

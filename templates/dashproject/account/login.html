@@ -10,41 +10,80 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.css" />
 </head>
 
-<body class="hold-transition login-page">
-
-  <div class="login-box costumize-login container ">
-    <div class="login-logo">
-      <a href=""><b>CID - Customs Intelligence Database</b></a>
-    </div>
-    <div class="card">
-      <div class="card-body login-card-body">
-        <form id="login-form" method="POST" action="{% url 'login' %}">
-          {% csrf_token %}
-          <div class="input-group mb-3">
-            {{ form.username}}
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-envelope"></span>
-              </div>
-            </div>
-          </div>
-          <div class="input-group mb-3">
-            {{ form.password}}
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-lock"></span>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6 offset-md-3">
-              <button type="submit" class="btn btn-primary btn-block">
-                Login
+<body class="hold-transition">
+  <nav class="navbar navbar-expand navbar-light bg-light">
+    <div class="container-fluid">
+      <ul class="navbar-nav ml-auto"> <!-- Language switcher aligned to the right -->
+        <li class="nav-item dropdown">
+          <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <i
+              class="flag-icon flag-icon-{% if request.LANGUAGE_CODE == 'tl' %}tl{% elif request.LANGUAGE_CODE == 'pt' %}pt{% elif request.LANGUAGE_CODE == 'id' %}id{% else %}us{% endif %}"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right p-0">
+            <form action="{% url 'set_language' %}" method="post">
+              {% csrf_token %}
+              <button class="dropdown-item {% if request.LANGUAGE_CODE == 'tl' %}active{% endif %}" type="submit"
+                name="language" value="tl">
+                <i class="flag-icon flag-icon-tl mr-2"></i> Tetum
               </button>
-            </div>
+              <button class="dropdown-item {% if request.LANGUAGE_CODE == 'pt' %}active{% endif %}" type="submit"
+                name="language" value="pt">
+                <i class="flag-icon flag-icon-pt mr-2"></i> Portugues
+              </button>
+              <button class="dropdown-item {% if request.LANGUAGE_CODE == 'en' %}active{% endif %}" type="submit"
+                name="language" value="en">
+                <i class="flag-icon flag-icon-us mr-2"></i> English
+              </button>
+              <button class="dropdown-item {% if request.LANGUAGE_CODE == 'id' %}active{% endif %}" type="submit"
+                name="language" value="id">
+                <i class="flag-icon flag-icon-id mr-2"></i> Indonesia
+              </button>
+              <input type="hidden" name="next" value="{{ request.get_full_path }}">
+            </form>
           </div>
-        </form>
-        {% include 'dashproject/base/messaging.html' %}
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container"> <!-- Changed from container-fluid to container to center the login box -->
+    <div class=" login-box mx-auto mt-5"> <!-- mx-auto for centering horizontally -->
+      <div class="card costumize-login ">
+        <div class="card-header">
+
+          <h3 class="text-center text-muted">CID - Customs Intelligence Database</h3>
+
+        </div>
+        <div class="card-body login-card-body ">
+          <form id="login-form" method="POST" action="{% url 'login' %}" class="form-group">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+              {{ form.username }}
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-envelope"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              {{ form.password }}
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-lock"></span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <button type="submit" class="btn btn-primary btn-block">
+
+                  LOGIN
+                </button>
+              </div>
+            </div>
+          </form>
+          {% include 'dashproject/base/messaging.html' %}
+        </div>
       </div>
     </div>
   </div>

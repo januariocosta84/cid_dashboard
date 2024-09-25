@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.views import View
 from django.views.generic import TemplateView
 from cidApp.forms import CommentForm, FileForm, InitialForm, ReportForm, SubjectForm, TextForm, ReviewForm
-from .models import CallAndWebForm, Comments, Intial, Report, Staff, Status, Subject,WebForm, TextAttach
+from .models import CallAndWebForm, Comments, Hotline, Intial, Report, Staff, Status, Subject,WebForm, TextAttach
 from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
@@ -37,7 +37,9 @@ class HotLineAndWebView(LoginRequiredMixin,GroupRequiredMixin,TemplateView):
         context['id']= self.request.user.id
         context['records_count']= CallAndWebForm.objects.filter(status__name="Report Waiting").count()
         context['call_web'] = CallAndWebForm.objects.all()
-        print(context['call_web'])
+        for i in context['call_web']:
+            print("ID",i.id)
+            print("type",i.type)
         user_group = self.request.user.groups.values_list('name', flat=True)
         print(user_group)
         context['user_group'] = list(user_group)
@@ -89,6 +91,7 @@ class CreateReportWebCallView(LoginRequiredMixin, GroupRequiredMixin, TemplateVi
     comments_form = CommentForm
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         web_id =self.kwargs.get('web_id')
+        print("ID web view",web_id)
         context = super().get_context_data(**kwargs)
         context['webformID']= CallAndWebForm.objects.get(id=web_id)
         print( context['webformID'])  # Debug to see if this exists
@@ -178,7 +181,7 @@ class CreateReportWebCallView(LoginRequiredMixin, GroupRequiredMixin, TemplateVi
             report = self.get_report(request.session.get('report_id'))
             report.subject = subject_instance
             report.save()
-            messages.messages.success(request, _('New Subject has been added successfully to Report ID {report_id}').format(report_id=request.session.get('report_id'))
+            messages.success(request, _('New Subject has been added successfully to Report ID {report_id}').format(report_id=request.session.get('report_id'))
             )
             return redirect(f"{reverse('report-web', args=[web_id])}?tab=text")
 
@@ -352,7 +355,24 @@ class ReportDetail(DetailView):
 
     def get(self, request, *args, **kwargs):
         return self.render_to_response(self.get_context_data())
-    
+
+
+class DetailCall(DetailView):
+    model = Hotline
+    template_name = 'dashproject/pages/detail_call.html'
+
+    def render_to_response(self, context, **response_kwargs):
+        # Create a JSON-compatible data structure
+        data = {
+            'id': self.object.id,  # Add this if you want to include the ID
+            'type': self.object.type,
+            'file_path': self.object.file_path,
+            'file': self.object.file,
+            'created_at': self.object.created_at.isoformat(),  # Convert datetime to string
+            'modify_at': self.object.modify_at.isoformat(),  # Convert datetime to string
+        }
+        return JsonResponse(data, **response_kwargs)
+      
 class DetailSubject(DetailView,):
     login_url ='login'
     model = WebForm
@@ -424,7 +444,7 @@ class DetailSubject(DetailView,):
                 
                 # Call preference
                 'ligar': detail_webform.ligar,
-}
+        }
             print(data)
             return JsonResponse(data)
         else:

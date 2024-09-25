@@ -4,10 +4,10 @@
   <div class="row content-home">
     <div class="col">
       <h6>
-        <audio id="music">
-          <source src="{%static 'dashproject/record/uri1.wav'%}" type="audio/mp3">
+        <audio id="music" controls>
+          <source id="audioSource" src="" type="audio/mp3">
+          Your browser does not support the audio element.
         </audio>
-
         <!-- button to play/pause 
       <button onclick="togglePlayPause()" type="button" id="playPauseBtn">
           Play
@@ -25,7 +25,7 @@
           <p>File Name: <span id="fileName"></span></p>
           <p>Current Time: <span id="currentTime">0:00</span></p>
       </div> -->
-       {% trans ' Web and Records' %}<span class="badge badge-primary m-2"> {{ records_count }} </span>
+        {% trans ' Web and Records' %}<span class="badge badge-primary m-2"> {{ records_count }} </span>
 
       </h6>
       <table class="table mt-2 table-bordered table-hover" id="example2">
@@ -54,16 +54,10 @@
               </button>
               <div class="dropdown-menu">
                 <button type="button" class="btn btn-transparent p-3 text-uppercase view-subject-btn fas fa-eye"
-                  data-id="{{record.webform.id}}" data-toggle="modal" data-target="#modal-subject"
+                  data-id="{{record.webform_id}}" data-toggle="modal" data-target="#modal-subject"
                   onclick="setModalCallId('{{ record.id}}')">
                   {% trans 'View' %}
                 </button>
-
-                <!-- <a
-                    class="dropdown-item view-subject-btn"
-                    href="subject_details/{{record.subject.id}}"
-                    ><i class="fas fa-eye"></i> View</a>
-                   -->
 
               </div>
             </td>
@@ -76,16 +70,10 @@
               </button>
               <div class="dropdown-menu">
                 <button type="button" class="btn btn-transparent p-3 text-uppercase view-subject-btn fas fa-eye"
-                  data-id="{{record.records_source.id}}" data-toggle="modal" data-target="#modal-default"
+                  data-id="{{record.hotline_id}}" data-toggle="modal" data-target="#modal-default"
                   onclick="setModalWebId('{{ record.id }}')">
                   View
                 </button>
-
-                {% comment %}
-                <a class="dropdown-item view-subject-btn" href="record_details/{{ record.records_source.id }}"><i
-                    class="fas fa-eye"></i> View</a>
-                >
-                {% endcomment %}
               </div>
             </td>
 
@@ -113,7 +101,7 @@
         </div>
         <div class="modal-body">
           <div class="card">
-            <p><strong>Record Name</strong></p>
+            <p>Record Name <span id="id_path"></span></p>
             <span class="subject-first-name"></span>
 
             <!-- <p><strong>Last Name</strong></p>
@@ -132,7 +120,7 @@
             <i class="fas fa-solid fas fa-volume-xmark"></i>
           </button>
           <div id="info">
-            <p>File Name: <span id="fileName"></span></p>
+            <p>File Name: <span id="id_path"></span></p>
             <p>Current Time: <span id="currentTime">0:00</span></p>
           </div>
         </div>
@@ -322,14 +310,20 @@
 
 <script>
   //get element from HTML
-  var audioT = document.getElementById("music");
+  var audioT = document.getElementById("audioSource");
+  audioT.src = <span id="id_path"></span>
   var playPauseBtn = document.getElementById("playPauseBtn");
   var playPauseIcon = document.getElementById("playPauseIcon");
   var fileName = document.getElementById("fileName");
   var currentTime = document.getElementById("currentTime");
 
+
+  //var audioSource = document.getElementById("audioSource");
+  /// audioT.src = data.file_path; // Set the source to the retrieved path
+  //var audioElement = document.getElementById("music");
+  // audioElement.load(); // Load the new audio file
   // set the file name 
-  fileName.innerText = "uri1.wav";
+  //fileName.innerText = "uri1.wav";
 
   // function to toggle play/pause
   function togglePlayPause() {

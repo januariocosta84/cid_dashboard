@@ -26,6 +26,7 @@ from .views import(
       EditReportComment,
       EditReportReview,
       SyncSubjectsView,
+      DetailCall,
     )
 
 urlpatterns = [
@@ -35,6 +36,8 @@ urlpatterns = [
   
         #Hotline and Subjectdetail webview
     path('', HotLineAndWebView.as_view(), name='records'),
+    
+    path('call-details/<int:pk>/', DetailCall.as_view(), name='detail_call'),
     path('subject_details/<int:pk>/', DetailSubject.as_view(), name='detail_subject'),
     
         #User Managament
