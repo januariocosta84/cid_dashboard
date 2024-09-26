@@ -449,50 +449,70 @@ class DetailSubject(DetailView,):
             return JsonResponse(data)
         else:
             return super().get(request, *args, **kwargs)
-
-class EditReport(LoginRequiredMixin,GroupRequiredMixin,View):
+class EditReport(LoginRequiredMixin, GroupRequiredMixin, View):
     group_names = ['administrator']
     login_url = 'login'
-    def get(self,request,*args, **kwargs):
+
+    def get(self, request, *args, **kwargs):
         report_id = kwargs.get('report_id')
-        print("Report id",report_id)
-        report = get_object_or_404(Report, id= report_id)
-        print("Report is", report)
-        source = CallAndWebForm.objects.filter(id=report.source_id).first()
-        print("source is a ",source)
-        comments = Comments.objects.filter(report= report)
+        print("Report id", report_id)
+        report = get_object_or_404(Report, id=report_id)
+    
+        webform = None
+        is_hotline = False
+        is_webform = False
+        hotline_content = None
+        subject_content = None
+        
+        if report.source_id:
+            webform = get_object_or_404(CallAndWebForm, id=report.source_id)
+            print("source is a", webform)
+            
+            
+            is_hotline = webform.type == 'hotline'
+            is_webform = webform.type == 'webform'
+            
+            if is_hotline:
+                hotline_content = webform.hotline  
+                print("Hotline content:", hotline_content)
+            elif is_webform:
+                subject_content = report.subject 
+                print("Webform/subject content:", subject_content)
+
+       
+        comments = Comments.objects.filter(report=report)
         text_list = TextAttach.objects.filter(report=report)
-        initial_form = InitialForm(instance = report.initial)
-        #try:
+        
+       
+        initial_form = InitialForm(instance=report.initial)
         subject_form = SubjectForm(instance=report.subject)
-        #except AttributeError:
-            #subject_form = SubjectForm()
-        file_form = FileForm(instance= report.file_attached)
-        id =self.request.user.id
+        file_form = FileForm(instance=report.file_attached)
         comments_form = CommentForm()
         text_form = TextForm()
         user_group = self.request.user.groups.values_list('name', flat=True)
 
-        context={
-            'initial_form':initial_form,
+        context = {
+            'initial_form': initial_form,
             'subject_form': subject_form,
-            'text_form':text_form,
-            'file_form':file_form,
-            'id':self.request.user.id,
-            'report_id':report_id,
-            'report_status':report.status,
-            'report_created':report.created_at,
+            'text_form': text_form,
+            'file_form': file_form,
+            'id': self.request.user.id,
+            'report_id': report_id,
+            'report_status': report.status,
+            'report_created': report.created_at,
             'comments_form': comments_form,
-            'comments':comments,
-            'text_list':text_list,
-            'webformID':source,
-            'user_group':list(user_group)
-            #'check':source.type
-            
+            'comments': comments,
+            'text_list': text_list,
+            'webformID': webform,  
+            'is_hotline': is_hotline,
+            'is_webform': is_webform,
+            'hotline_content': hotline_content,
+            'subject_content': subject_content,
+            'user_group': list(user_group)
         }
-        
+
         return render(request, 'dashproject/pages/report_edit.html', context)
-     
+
     def post(self, request, *args, **kwargs):
         report_id = kwargs.get('report_id')
         report = get_object_or_404(Report, id=report_id)
@@ -501,7 +521,7 @@ class EditReport(LoginRequiredMixin,GroupRequiredMixin,View):
             initial_form = InitialForm(request.POST, instance=report.initial)
             if initial_form.is_valid():
                 initial_form.save()
-                return redirect(f'/report/{report_id}/?tab=subjects')  # Include report_id in the URL
+                return redirect(f'/report/{report_id}/?tab=subjects') 
 
         elif 'subject_form' in request.POST and request.method=='POST':
             if report.subject_id is None:
@@ -511,25 +531,25 @@ class EditReport(LoginRequiredMixin,GroupRequiredMixin,View):
                     report.Subject = subjects
                     report.status="Incomplete"
                     report.save()
-                    return redirect(f'/report/{report_id}/?tab=text')  # Include report_id in the URL
+                    return redirect(f'/report/{report_id}/?tab=text') 
             else:
                 subject_form = SubjectForm(request.POST, instance=report.subject)
                 if subject_form.is_valid():
                     subject_form.save()
                     report.status = "Incomplete"
                     report.save()
-                    return redirect(f'/report/{report_id}/?tab=text')   # Include report_id in the URL
+                    return redirect(f'/report/{report_id}/?tab=text')   
                 
         elif 'text_form' in request.POST:
             text_form = TextForm(request.POST)
             if text_form.is_valid():
                 text = text_form.save(commit=False)
                 text.user = request.user
-                text.report = report  # Link the text to the report
+                text.report = report  
                 text.save()
                 report.status = "Incomplete"
                 report.save()
-                return redirect(f'/report/{report_id}/?tab=text')  # Redirect to text tab
+                return redirect(f'/report/{report_id}/?tab=text')  
 
         elif 'file_form' in request.POST:
             file_form = FileForm(request.POST, request.FILES, instance=report.file_attached)
@@ -540,7 +560,7 @@ class EditReport(LoginRequiredMixin,GroupRequiredMixin,View):
                 file.save()
                 report.status ="Completed"
                 report.save()
-                return redirect('report-list')  # Include report_id in the URL
+                return redirect('report-list')  
             
 class EditReportComment(LoginRequiredMixin,GroupRequiredMixin,View):
     group_names = ['administrator']
@@ -593,9 +613,9 @@ class EditReportComment(LoginRequiredMixin,GroupRequiredMixin,View):
                 coments.user_id =self.request.user.id
                 coments.save()
                 messages.success(request, f'New Comment added to ID {report.id} ')
-                return redirect(f'/report-comment/{report_id}/?tab=comments')  # Include report_id in the URL
+                return redirect(f'/report-comment/{report_id}/?tab=comments')  
 
-        # Fallback to reload the page with forms and errors if any form was invalid
+        
         return self.get(request, *args, **kwargs)
 
 class EditReportReview(LoginRequiredMixin,GroupRequiredMixin,View):

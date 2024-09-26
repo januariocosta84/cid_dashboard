@@ -145,8 +145,10 @@
           method: "GET",
           success: function (data) {
             console.log(data);
-            $("#id_path").text(data.file_path);
+            $("#audioSource").attr("src", data.file);
+            $("#audioSource").attr("type", "audio/mpeg"); // Adjust as needed
             $("#path").text(data.file);
+            $("#music")[0].load();
           },
         });
       });

@@ -269,6 +269,30 @@
 
 <!--This query is for hide and show text box in the intial form-->
 <script>
+
+  //funsaun atu retrieve media file husi database link.
+
+  function fetchHotlineDetails(subjectId) {
+    $.ajax({
+      url: "/call-details/" + subjectId,
+      method: "GET",
+      success: function (data) {
+        console.log("data Log", data);
+        console.log("data path", data.file);
+        const mediaPath = "/" + data.file;
+        $("#idHotline").text(data.id)
+        $("#audioSource").attr("src", mediaPath);
+        $("#audioSource").attr("type", "audio/mpeg");
+        $("#path").text(data.file);
+        $("#music")[0].load();
+      },
+      error: function (error) {
+        console.error("There was an error fetching the details.", error);
+      }
+    });
+  }
+
+
   $(document).ready(function () {
     // Hide the textarea initially
     $("#id_information_source").hide();
@@ -290,5 +314,7 @@
   $('.toastrDefaultSuccess').click(function () {
     toastr.success('Comment has added.')
   });
+
+
 </script>
 {% endblock %}

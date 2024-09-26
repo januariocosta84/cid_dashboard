@@ -292,8 +292,31 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-// this query for enable and disable review button
- // Ensure the DOM is fully loaded before running the script
+
+  //funsaun atu retrieve media file husi database link.
+
+  function fetchHotlineDetails(subjectId) {
+    $.ajax({
+      url: "/call-details/" + subjectId,
+      method: "GET",
+      success: function (data) {
+        console.log("data Log", data);
+        console.log("data path", data.file);
+        const mediaPath = "/" + data.file;
+        $("#idHotline").text(data.id)
+        $("#audioSource").attr("src", mediaPath);
+        $("#audioSource").attr("type", "audio/mpeg");
+        $("#path").text(data.file);
+        $("#music")[0].load();
+      },
+      error: function (error) {
+        console.error("There was an error fetching the details.", error);
+      }
+    });
+  }
+
+  // this query for enable and disable review button
+  // Ensure the DOM is fully loaded before running the script
   document.addEventListener("DOMContentLoaded", function () {
     // Get the switch and button elements
     const customSwitch = document.getElementById('customSwitch1');
@@ -307,7 +330,7 @@
       customSwitch.addEventListener('change', function () {
         // Log checkbox state to debug
         console.log("Checkbox checked: ", customSwitch.checked);
-        
+
         // Enable the submit button if the switch is checked, disable if unchecked
         submitButton.disabled = !customSwitch.checked;
       });
@@ -319,7 +342,7 @@
     }
   });
 
- //This query is for hide and show text box in the intial form 
+  //This query is for hide and show text box in the intial form 
   $(document).ready(function () {
     // Hide the textarea initially
     $("#id_information_source").hide();

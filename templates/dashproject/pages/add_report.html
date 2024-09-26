@@ -1,5 +1,5 @@
 {% extends 'dashproject/base/layout.html' %}
-{% load static %} 
+{% load static %}
 {% load i18n %}
 {% block content%}
 <div class="container-fluid">
@@ -81,10 +81,32 @@
     });
   });
 
-  //For modal
+  //funsaun atu retrieve media file husi database link.
+
+  function fetchHotlineDetails(subjectId) {
+    $.ajax({
+      url: "/call-details/" + subjectId,
+      method: "GET",
+      success: function (data) {
+        console.log("data Log", data);
+        console.log("data path", data.file);
+        const mediaPath = "/" + data.file;
+        $("#idHotline").text(data.id)
+        $("#audioSource").attr("src", mediaPath);
+        $("#audioSource").attr("type", "audio/mpeg");
+        $("#path").text(data.file);
+        $("#music")[0].load();
+      },
+      error: function (error) {
+        console.error("There was an error fetching the details.", error);
+      }
+    });
+  }
+
+
   function fetchSubjectDetails(subjectId) {
     $.ajax({
-      url: '/subject_details/' + subjectId + '/',  // Update with the correct URL
+      url: '/subject_details/' + subjectId + '/',
       method: 'GET',
       headers: {
         'X-Requested-With': 'XMLHttpRequest'

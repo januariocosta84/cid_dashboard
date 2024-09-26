@@ -11,8 +11,8 @@
           <div class="container mt-4">
 
             <!-- Nav tabs -->
-              {%include './nav_tab.html'%}
-        
+            {%include './nav_tab.html'%}
+
             <!-- Tab content -->
             <div class="tab-content" id="myTabContent">
               <!-- Initial Form -->
@@ -20,71 +20,71 @@
                 class="tab-pane fade {% if request.GET.tab == 'initial' or not request.GET.tab %}show active{% endif %}"
                 id="initial" role="tabpanel" aria-labelledby="initial-tab">
                 <!--Initial page-->
-                 {%include './initial.html'%}
+                {%include './initial.html'%}
               </div>
 
               <!-- Subject Form -->
               <div class="tab-pane fade {% if request.GET.tab == 'subjects' %}show active{% endif %}" id="subjects"
                 role="tabpanel" aria-labelledby="subjects-tab">
-                 {%include './subject.html'%}
+                {%include './subject.html'%}
               </div>
-              </div>
-              <!-- Text Form -->
-              <div class="tab-pane fade {% if request.GET.tab == 'text' %}show active{% endif %}" id="text"
-                role="tabpanel" aria-labelledby="text-tab">
-                {% comment %} <form method="POST" action="">
-                  {% csrf_token %}
-                  <div class="form-group">
-                    <label for="">Text</label>
-                    {{text_form.text}}
-                  </div>
-                  <div class="form-group">
-                    <label for="">Information Source</label>
-                    {{text_form.information_source}}
-                  </div>
-                  <div class="form-group">
-                    <label for="">Source Evaluation</label>
-                    {{text_form.source_evaluation}}
-                  </div>
+            </div>
+            <!-- Text Form -->
+            <div class="tab-pane fade {% if request.GET.tab == 'text' %}show active{% endif %}" id="text"
+              role="tabpanel" aria-labelledby="text-tab">
+              {% comment %} <form method="POST" action="">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="">Text</label>
+                  {{text_form.text}}
+                </div>
+                <div class="form-group">
+                  <label for="">Information Source</label>
+                  {{text_form.information_source}}
+                </div>
+                <div class="form-group">
+                  <label for="">Source Evaluation</label>
+                  {{text_form.source_evaluation}}
+                </div>
 
-                  <button type="submit" class="btn btn-primary mt-1 " name="text_form">Add New
-                    text</button>
-                  <a href="{%url 'report-list'%}" class="btn btn-warning mt-1 ">Terminate</a>
-                  <button type="button" class="btn btn-warning  mt-1" id="goToNextStep">
-                    <i class="fa fa-plus"></i> <span class="text-uppercase">Go to Next Step</span>
-                  </button>
-                </form> {% endcomment %}
-                {% include './textform.html' %}
-                {% include './text_list.html' %}
-              </div>
+                <button type="submit" class="btn btn-primary mt-1 " name="text_form">Add New
+                  text</button>
+                <a href="{%url 'report-list'%}" class="btn btn-warning mt-1 ">Terminate</a>
+                <button type="button" class="btn btn-warning  mt-1" id="goToNextStep">
+                  <i class="fa fa-plus"></i> <span class="text-uppercase">Go to Next Step</span>
+                </button>
+              </form> {% endcomment %}
+              {% include './textform.html' %}
+              {% include './text_list.html' %}
+            </div>
 
-              <!-- File Form -->
-              <div class="tab-pane fade {% if request.GET.tab == 'attach' %}show active{% endif %}" id="attachment"
-                role="tabpanel" aria-labelledby="attachment-tab">
-                {% include './file_form.html' %}
-              </div>
+            <!-- File Form -->
+            <div class="tab-pane fade {% if request.GET.tab == 'attach' %}show active{% endif %}" id="attachment"
+              role="tabpanel" aria-labelledby="attachment-tab">
+              {% include './file_form.html' %}
+            </div>
 
-              <!-- Comments Form -->
-              <div class="tab-pane fade {% if request.GET.tab == 'comments' %}show active{% endif %}" id="comment"
-                role="tabpanel" aria-labelledby="comment-tab">
-                <form method="POST" action="">
-                  {% csrf_token %}
-                  {%include './comments.html'%}
-                </form>
-              </div>
+            <!-- Comments Form -->
+            <div class="tab-pane fade {% if request.GET.tab == 'comments' %}show active{% endif %}" id="comment"
+              role="tabpanel" aria-labelledby="comment-tab">
+              <form method="POST" action="">
+                {% csrf_token %}
+                {%include './comments.html'%}
+              </form>
+            </div>
 
-              {% comment %} <!-- Review Tab -->
-              <div class="tab-pane fade {% if request.GET.tab == 'review' %}show active{% endif %}" id="review"
-                role="tabpanel" aria-labelledby="review-tab">
-                <!-- Add Review Content Here -->
-              </div>
+            {% comment %} <!-- Review Tab -->
+            <div class="tab-pane fade {% if request.GET.tab == 'review' %}show active{% endif %}" id="review"
+              role="tabpanel" aria-labelledby="review-tab">
+              <!-- Add Review Content Here -->
+            </div>
 
-              <!-- Dissemination Tab -->
-              <div class="tab-pane fade {% if request.GET.tab == 'disseminate' %}show active{% endif %}"
-                id="dissemination" role="tabpanel" aria-labelledby="dissemination-tab">
-                <!-- Add Dissemination Content Here -->
-              </div>
-             {% endcomment %}
+            <!-- Dissemination Tab -->
+            <div class="tab-pane fade {% if request.GET.tab == 'disseminate' %}show active{% endif %}"
+              id="dissemination" role="tabpanel" aria-labelledby="dissemination-tab">
+              <!-- Add Dissemination Content Here -->
+            </div>
+            {% endcomment %}
 
 
           </div>
@@ -128,7 +128,29 @@
       });
     });
 
-    //For modal
+    //funsaun atu retrieve media file husi database link.
+
+    function fetchHotlineDetails(subjectId) {
+      $.ajax({
+        url: "/call-details/" + subjectId,
+        method: "GET",
+        success: function (data) {
+          console.log("data Log", data);
+          console.log("data path", data.file);
+          const mediaPath = "/" + data.file;
+          $("#idHotline").text(data.id)
+          $("#audioSource").attr("src", mediaPath);
+          $("#audioSource").attr("type", "audio/mpeg");
+          $("#path").text(data.file);
+          $("#music")[0].load();
+        },
+        error: function (error) {
+          console.error("There was an error fetching the details.", error);
+        }
+      });
+    }
+
+
     function fetchSubjectDetails(subjectId) {
       $.ajax({
         url: '/subject_details/' + subjectId + '/',  // Update with the correct URL
