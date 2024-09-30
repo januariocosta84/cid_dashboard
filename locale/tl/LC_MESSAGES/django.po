@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-24 06:50+0000\n"
+"POT-Creation-Date: 2024-09-30 07:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: CidProject/settings.py:175
+#: CidProject/settings.py:176
 msgid "Tetum"
 msgstr ""
 
@@ -74,13 +74,15 @@ msgstr ""
 msgid "Default"
 msgstr ""
 
-#: cidApp/forms.py:50 templates/dashproject/pages/subject.html:8
-#: templates/users/register.html:42 templates/users/reset_password.html:35
+#: cidApp/forms.py:50 templates/dashproject/pages/report_edit_comment.html:114
+#: templates/dashproject/pages/subject.html:8 templates/users/register.html:42
+#: templates/users/reset_password.html:35
 msgid "First Name"
 msgstr "Naran Dahuluk"
 
-#: cidApp/forms.py:55 templates/dashproject/pages/subject.html:13
-#: templates/users/register.html:48 templates/users/reset_password.html:39
+#: cidApp/forms.py:55 templates/dashproject/pages/report_edit_comment.html:119
+#: templates/dashproject/pages/subject.html:13 templates/users/register.html:48
+#: templates/users/reset_password.html:39
 msgid "Last Name"
 msgstr "Naran Ikus"
 
@@ -100,95 +102,95 @@ msgstr "Seleciona Ajensia"
 msgid "Select Permision"
 msgstr "Seleciona Permisaun"
 
-#: cidApp/models.py:177
+#: cidApp/models.py:181
 msgid "Male"
 msgstr "Mane"
 
-#: cidApp/models.py:178
+#: cidApp/models.py:182
 msgid "Female"
 msgstr "Feto"
 
-#: cidApp/models.py:179
+#: cidApp/models.py:183
 msgid "Indeterminate"
 msgstr "La determinadu"
 
-#: cidApp/models.py:257
+#: cidApp/models.py:261
 msgid "Web Form"
 msgstr "Web Form"
 
-#: cidApp/models.py:258
+#: cidApp/models.py:262
 msgid "Hotline"
 msgstr "Hotline"
 
-#: cidApp/models.py:259
+#: cidApp/models.py:263
 msgid "Information other"
 msgstr "Informasaun seluk"
 
-#: cidApp/models.py:270
+#: cidApp/models.py:274
 msgid "Incomplete"
 msgstr "Seidauk Kompletu"
 
-#: cidApp/models.py:271
+#: cidApp/models.py:275
 msgid "Completed"
 msgstr "Hotu ona"
 
-#: cidApp/models.py:272
+#: cidApp/models.py:276
 msgid "Closed"
 msgstr "Taka"
 
-#: cidApp/models.py:273
+#: cidApp/models.py:277
 msgid "Disseminate"
 msgstr "Diseminasaun"
 
-#: cidApp/models.py:274 templates/dashproject/pages/report_page.html:136
+#: cidApp/models.py:278 templates/dashproject/pages/report_page.html:136
 msgid "Archived"
 msgstr "Arkivadu"
 
-#: cidApp/models.py:304
+#: cidApp/models.py:308
 msgid "Always Reliable"
 msgstr "Sempre Viavel"
 
-#: cidApp/models.py:305
+#: cidApp/models.py:309
 msgid "Most Reliable"
 msgstr "Mais Viavel"
 
-#: cidApp/models.py:306
+#: cidApp/models.py:310
 msgid "Fairly Reliable"
 msgstr "Razoavelment "
 
-#: cidApp/models.py:307
+#: cidApp/models.py:311
 msgid "Not Usual Reliable"
 msgstr "La razoavel"
 
-#: cidApp/models.py:308
+#: cidApp/models.py:312
 msgid "Unreliable"
 msgstr "La viavel"
 
-#: cidApp/models.py:309
+#: cidApp/models.py:313
 msgid "Reliable Cannot be Judge"
 msgstr "Viavel label halo julgamentu"
 
-#: cidApp/models.py:313
+#: cidApp/models.py:317
 msgid "Confirmed by other Source"
 msgstr "Konfirma ho fonte sira seluk"
 
-#: cidApp/models.py:314
+#: cidApp/models.py:318
 msgid "Probably True"
 msgstr "Provavelmente Loos"
 
-#: cidApp/models.py:315
+#: cidApp/models.py:319
 msgid "Possible True"
 msgstr "Posibilidade Loss"
 
-#: cidApp/models.py:316
+#: cidApp/models.py:320
 msgid "Doubtful"
 msgstr "Duvida"
 
-#: cidApp/models.py:317
+#: cidApp/models.py:321
 msgid "Improbable Not Confirmed"
 msgstr "Improbabel seidauk konfirma"
 
-#: cidApp/models.py:318
+#: cidApp/models.py:322
 msgid "Truth Cannot be Judge"
 msgstr "Los duni katak labele halo julgamentu"
 
@@ -216,24 +218,24 @@ msgstr "ASESU LA AUTORIZADU BA SISTEMA NE'E E SEI SUBMETE BA OFENSA KRIMINAL."
 msgid "Logged out successfully! bye bye"
 msgstr "Termina sesaun ho susesu! bye bye"
 
-#: cidApp/views.py:110 cidApp/views.py:241
+#: cidApp/views.py:116 cidApp/views.py:247
 msgid "On Creating"
 msgstr "Iha hela kriasaun"
 
-#: cidApp/views.py:111 cidApp/views.py:243 cidApp/views.py:246
+#: cidApp/views.py:117 cidApp/views.py:249 cidApp/views.py:252
 msgid "Unique ID will be created"
 msgstr "ID uniku sei kria"
 
-#: cidApp/views.py:167 cidApp/views.py:290
+#: cidApp/views.py:173 cidApp/views.py:296
 msgid "New Initial form has been added"
 msgstr "Formulariu hahu foun submete ona "
 
-#: cidApp/views.py:181
+#: cidApp/views.py:187
 #, python-brace-format
 msgid "New Subject has been added successfully to Report ID {report_id}"
 msgstr "Formulariu sujetu submete ho susesu ba relatorio ID {report_id} "
 
-#: cidApp/views.py:245
+#: cidApp/views.py:251
 msgid "No report found"
 msgstr "Laiha Relatoriu"
 
@@ -255,7 +257,7 @@ msgid "Agency Name"
 msgstr "Naran Ajensia"
 
 #: templates/agency/agency_list.html:67
-#: templates/dashproject/pages/call_web_page.html:36
+#: templates/dashproject/pages/call_web_page.html:16
 msgid "Date Created"
 msgstr "Data Kriasaun"
 
@@ -263,8 +265,8 @@ msgstr "Data Kriasaun"
 #: templates/dashproject/pages/report_page.html:68
 #: templates/dashproject/pages/report_page.html:101
 #: templates/position/position_list.html:66
-#: templates/position/position_list.html:87 templates/users/user-list.html:70
-#: templates/users/user-list.html:90
+#: templates/position/position_list.html:87 templates/users/user-list.html:62
+#: templates/users/user-list.html:83
 msgid "Edit"
 msgstr "Editar"
 
@@ -287,23 +289,23 @@ msgstr ""
 msgid "Cancel"
 msgstr "Kansela"
 
-#: templates/dashproject/base/navbar.html:49
+#: templates/dashproject/base/navbar.html:50
 msgid "Hello"
 msgstr "Olá"
 
-#: templates/dashproject/base/navbar.html:55
+#: templates/dashproject/base/navbar.html:56
 msgid "Profile"
 msgstr ""
 
-#: templates/dashproject/base/navbar.html:59
+#: templates/dashproject/base/navbar.html:60
 msgid "Change password"
 msgstr "Muda ita nia Password"
 
-#: templates/dashproject/base/navbar.html:63
+#: templates/dashproject/base/navbar.html:64
 msgid "Activity Log"
 msgstr "Atividade Log"
 
-#: templates/dashproject/base/navbar.html:68
+#: templates/dashproject/base/navbar.html:69
 msgid "Logout"
 msgstr "Sai"
 
@@ -312,7 +314,7 @@ msgid "Call & Forms"
 msgstr "Chamadas & Formulariu"
 
 #: templates/dashproject/base/sidebar.html:92
-#: templates/dashproject/pages/report_header.html:45
+#: templates/dashproject/pages/report_header.html:67
 msgid "Report"
 msgstr "Relatoriu"
 
@@ -333,43 +335,47 @@ msgstr "Jestaun Utilizadores"
 msgid "Users List"
 msgstr "Lista Utilizadores"
 
-#: templates/dashproject/pages/call_web_page.html:28
+#: templates/dashproject/pages/call_web_page.html:8
 msgid " Web and Records"
 msgstr "Web no Rejistu"
 
-#: templates/dashproject/pages/call_web_page.html:34
+#: templates/dashproject/pages/call_web_page.html:14
 msgid "Source ID"
 msgstr "Fonte ID"
 
-#: templates/dashproject/pages/call_web_page.html:35
+#: templates/dashproject/pages/call_web_page.html:15
 msgid "Source Type"
 msgstr "Tipu da Fonte"
 
-#: templates/dashproject/pages/call_web_page.html:37
+#: templates/dashproject/pages/call_web_page.html:17
 #: templates/dashproject/pages/report_page.html:65
 msgid "Status"
 msgstr "Estado"
 
-#: templates/dashproject/pages/call_web_page.html:38
-#: templates/dashproject/pages/call_web_page.html:53
+#: templates/dashproject/pages/call_web_page.html:18
+#: templates/dashproject/pages/call_web_page.html:33
 #: templates/dashproject/pages/report_page.html:92
 msgid "Actions"
 msgstr "Asaun"
 
-#: templates/dashproject/pages/call_web_page.html:59
-#: templates/dashproject/pages/report_header.html:35
+#: templates/dashproject/pages/call_web_page.html:39
+#: templates/dashproject/pages/report_header.html:34
+#: templates/dashproject/pages/report_header.html:41
 msgid "View"
 msgstr "Hare"
 
 #: templates/dashproject/pages/initial.html:5
+#: templates/dashproject/pages/report_edit_comment.html:83
 msgid "Form for Initialization"
 msgstr "Formulariu inisiu"
 
 #: templates/dashproject/pages/initial.html:8
+#: templates/dashproject/pages/report_edit_comment.html:86
 msgid "Source"
 msgstr "Fontes"
 
 #: templates/dashproject/pages/initial.html:13
+#: templates/dashproject/pages/report_edit_comment.html:91
 #: templates/dashproject/pages/textform.html:44
 msgid "Information Source"
 msgstr "Fonte Relatoriu"
@@ -391,23 +397,28 @@ msgid "submit"
 msgstr ""
 
 #: templates/dashproject/pages/nav_tab.html:9
+#: templates/dashproject/pages/report_edit_comment.html:25
 msgid "Initial"
 msgstr "Hahu"
 
 #: templates/dashproject/pages/nav_tab.html:17
+#: templates/dashproject/pages/report_edit_comment.html:32
 msgid "Subjects"
 msgstr "Sujeitu"
 
 #: templates/dashproject/pages/nav_tab.html:24
+#: templates/dashproject/pages/report_edit_comment.html:39
 #: templates/dashproject/pages/textform.html:39
 msgid "Text"
 msgstr "Testu"
 
 #: templates/dashproject/pages/nav_tab.html:32
+#: templates/dashproject/pages/report_edit_comment.html:46
 msgid "Attachment"
 msgstr "Aneksu"
 
 #: templates/dashproject/pages/nav_tab.html:40
+#: templates/dashproject/pages/report_edit_comment.html:53
 msgid "Analyst Comment"
 msgstr "Analistas Nia Komentariu"
 
@@ -416,20 +427,136 @@ msgid "Status Timeline"
 msgstr "Calendario da Situaçao"
 
 #: templates/dashproject/pages/nav_tab.html:55
+#: templates/dashproject/pages/report_edit_comment.html:61
 #: templates/dashproject/pages/report_page.html:120
 msgid "Review"
 msgstr "Revijaun"
 
 #: templates/dashproject/pages/nav_tab.html:63
+#: templates/dashproject/pages/report_edit_comment.html:69
 msgid "Dissemination"
 msgstr "Diseminasaun"
 
-#: templates/dashproject/pages/report_header.html:43
+#: templates/dashproject/pages/report_edit_comment.html:97
+#, fuzzy
+#| msgid "Submit to next proccess"
+msgid "Submit to Continue"
+msgstr "Submete ba prosesu tuir mai"
+
+#: templates/dashproject/pages/report_edit_comment.html:111
+#: templates/dashproject/pages/subject.html:5
+msgid "Subject Form"
+msgstr "Formulariu ba Sujeitu"
+
+#: templates/dashproject/pages/report_edit_comment.html:123
+#: templates/dashproject/pages/subject.html:18
+msgid "Gender"
+msgstr "Sexu"
+
+#: templates/dashproject/pages/report_edit_comment.html:128
+#, fuzzy
+#| msgid "Place of Birth"
+msgid "Place of birth"
+msgstr "Fatin Moris"
+
+#: templates/dashproject/pages/report_edit_comment.html:133
+msgid "Nick Name"
+msgstr "Naran bolu"
+
+#: templates/dashproject/pages/report_edit_comment.html:137
+#, fuzzy
+#| msgid "Date of Birth"
+msgid "Date of birth"
+msgstr "Loron no tinan moris"
+
+#: templates/dashproject/pages/report_edit_comment.html:141
+#: templates/dashproject/pages/subject.html:39
+msgid "Nationality"
+msgstr "Nasionalidade"
+
+#: templates/dashproject/pages/report_edit_comment.html:145
+#: templates/dashproject/pages/subject.html:44
+msgid "Identification"
+msgstr "Indentifikasaun"
+
+#: templates/dashproject/pages/report_edit_comment.html:149
+#: templates/dashproject/pages/subject.html:49
+msgid "ID Number"
+msgstr "Numeru Identifikasaun"
+
+#: templates/dashproject/pages/report_edit_comment.html:154
+#: templates/dashproject/pages/subject.html:54
+msgid "Home Address"
+msgstr "Hela Fatin"
+
+#: templates/dashproject/pages/report_edit_comment.html:158
+#, fuzzy
+#| msgid "Business Name"
+msgid "Bussiness Name"
+msgstr "Naran Negosiu"
+
+#: templates/dashproject/pages/report_edit_comment.html:162
+#, fuzzy
+#| msgid "Business Address"
+msgid "Bussiness Address"
+msgstr "Morada Negosiu"
+
+#: templates/dashproject/pages/report_edit_comment.html:166
+#, fuzzy
+#| msgid "BIN or TIN"
+msgid "Bin or TIN"
+msgstr "BIN ka TIN"
+
+#: templates/dashproject/pages/report_edit_comment.html:170
+#: templates/dashproject/pages/subject.html:74
+msgid "Telephone"
+msgstr "Telefone"
+
+#: templates/dashproject/pages/report_edit_comment.html:174
+#: templates/dashproject/pages/subject.html:79
+msgid "Description"
+msgstr "Deskrisaun"
+
+#: templates/dashproject/pages/report_edit_comment.html:178
+#: templates/dashproject/pages/subject.html:84
+msgid "Conveyance"
+msgstr "Transporte"
+
+#: templates/dashproject/pages/report_edit_comment.html:182
+#: templates/dashproject/pages/subject.html:89
+msgid "Conveyance Description"
+msgstr "Deskrisaun transporte"
+
+#: templates/dashproject/pages/report_edit_comment.html:189
+msgid "Back to previous"
+msgstr ""
+
+#: templates/dashproject/pages/report_edit_comment.html:192
+#, fuzzy
+#| msgid "Submit Subject"
+msgid "Submit Subject Form"
+msgstr "Submete formulariu Sujeitu"
+
+#: templates/dashproject/pages/report_edit_comment.html:207
+#, fuzzy
+#| msgid "Text"
+msgid "Tex"
+msgstr "Testu"
+
+#: templates/dashproject/pages/report_header.html:49
+msgid "View The Webform"
+msgstr ""
+
+#: templates/dashproject/pages/report_header.html:56
+msgid "Hear the Recording"
+msgstr ""
+
+#: templates/dashproject/pages/report_header.html:65
 #: templates/dashproject/pages/report_page.html:19
 msgid "Reporting"
 msgstr "Relatoriu"
 
-#: templates/dashproject/pages/report_header.html:68
+#: templates/dashproject/pages/report_header.html:115
 msgid "Subject you are giving information about"
 msgstr "Ita submete informasaun kona-ba ema ne'e"
 
@@ -465,14 +592,6 @@ msgstr "Komentariu"
 msgid "Request Dissemination"
 msgstr "Pedidu Diseminasaun"
 
-#: templates/dashproject/pages/subject.html:5
-msgid "Subject Form"
-msgstr "Formulariu ba Sujeitu"
-
-#: templates/dashproject/pages/subject.html:18
-msgid "Gender"
-msgstr "Sexu"
-
 #: templates/dashproject/pages/subject.html:23
 msgid "Place of Birth"
 msgstr "Fatin Moris"
@@ -480,22 +599,6 @@ msgstr "Fatin Moris"
 #: templates/dashproject/pages/subject.html:34
 msgid "Date of Birth"
 msgstr "Loron no tinan moris"
-
-#: templates/dashproject/pages/subject.html:39
-msgid "Nationality"
-msgstr "Nasionalidade"
-
-#: templates/dashproject/pages/subject.html:44
-msgid "Identification"
-msgstr "Indentifikasaun"
-
-#: templates/dashproject/pages/subject.html:49
-msgid "ID Number"
-msgstr "Numeru Identifikasaun"
-
-#: templates/dashproject/pages/subject.html:54
-msgid "Home Address"
-msgstr "Hela Fatin"
 
 #: templates/dashproject/pages/subject.html:59
 msgid "Business Name"
@@ -508,22 +611,6 @@ msgstr "Morada Negosiu"
 #: templates/dashproject/pages/subject.html:69
 msgid "BIN or TIN"
 msgstr "BIN ka TIN"
-
-#: templates/dashproject/pages/subject.html:74
-msgid "Telephone"
-msgstr "Telefone"
-
-#: templates/dashproject/pages/subject.html:79
-msgid "Description"
-msgstr "Deskrisaun"
-
-#: templates/dashproject/pages/subject.html:84
-msgid "Conveyance"
-msgstr "Transporte"
-
-#: templates/dashproject/pages/subject.html:89
-msgid "Conveyance Description"
-msgstr "Deskrisaun transporte"
 
 #: templates/dashproject/pages/subject.html:96
 msgid "Submit Subject"
@@ -607,7 +694,7 @@ msgstr "Pojisaun"
 msgid "Add New Position"
 msgstr "Adisiona Pojisaun Foun"
 
-#: templates/position/position_list.html:62 templates/users/user-list.html:65
+#: templates/position/position_list.html:62 templates/users/user-list.html:57
 msgid "Name"
 msgstr "Naran"
 
@@ -978,6 +1065,22 @@ msgstr "Password Konfirmasaun"
 msgid " Update Password"
 msgstr "Atualiza Password"
 
+#: templates/users/enable_mfa.html:10
+msgid "Enable Multi-Factor Authentication"
+msgstr "Ativa multifaktor autentikasaun"
+
+#: templates/users/enable_mfa.html:16
+msgid "Scan the QR code below with your Google Authenticator app or :"
+msgstr "Scan QR Code tuir mai ho ita nia Google authenticator"
+
+#: templates/users/enable_mfa.html:22
+msgid "Enter the 6-digit code from your app:"
+msgstr "Insere Dijitus 6 husi nebe mosu iha ita nia APP"
+
+#: templates/users/enable_mfa.html:26
+msgid "Enable MFA"
+msgstr "Ativa MFA"
+
 #: templates/users/register.html:14
 msgid "Create New Account"
 msgstr "Adisiona Utilizador Foun"
@@ -1022,36 +1125,33 @@ msgstr "Password Konfirmasaun"
 msgid "Update"
 msgstr "Atualiza"
 
-#: templates/users/user-list.html:19
+#: templates/users/user-list.html:16
 msgid "Contacts"
 msgstr "Kontaktu"
 
-#: templates/users/user-list.html:21
+#: templates/users/user-list.html:18
 msgid "User List"
 msgstr "Lista Utilizadores"
 
-#: templates/users/user-list.html:37
+#: templates/users/user-list.html:32
 msgid "Add New Account"
 msgstr "Adisiona Utilizador Foun"
 
-#: templates/users/user-list.html:66
+#: templates/users/user-list.html:58
 msgid "Email"
 msgstr ""
 
-#: templates/users/user-list.html:67
+#: templates/users/user-list.html:59
 msgid "Last Login"
 msgstr "Login Ikus"
 
-#: templates/users/user-list.html:84
+#: templates/users/user-list.html:76
 msgid "Haven't tried logging in yet"
 msgstr "Seidauk Login dala ida"
 
-#: templates/users/user-list.html:91
+#: templates/users/user-list.html:85
 msgid "MFA Activation"
 msgstr "Ativasaun MFA"
-
-#~ msgid "Nick Name"
-#~ msgstr "Naran bolu"
 
 #, fuzzy
 #~| msgid "New Initial form has been added"

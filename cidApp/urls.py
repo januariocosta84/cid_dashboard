@@ -27,12 +27,13 @@ from .views import(
       EditReportReview,
       SyncSubjectsView,
       DetailCall,
+      EnableMFAView,
     )
 
 urlpatterns = [
         #Call API from Web form to insert local database
     path('call-api/', SyncSubjectsView.as_view(), name= 'call-api'),
-    
+    path('<int:user_id>/enable-mfa/', EnableMFAView.as_view(), name='enable-mfa'),
   
         #Hotline and Subjectdetail webview
     path('', HotLineAndWebView.as_view(), name='records'),

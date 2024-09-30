@@ -1,4 +1,6 @@
-{% extends 'dashproject/base/layout.html' %} {% load static %} {% block content%}
+{% extends 'dashproject/base/layout.html' %}
+{% load i18n %}
+ {% load static %} {% block content%}
 <!-- <script type = "text/javascript" >
     function preventBack(){window.history.forward();}
      setTimeout("preventBack()", 0);
@@ -20,35 +22,35 @@
                   id="initial-tab" data-toggle="tab" href="#initial" role="tab" aria-controls="initial"
                   aria-selected="true">
                   <span class="d-block"><i class="fa fa-info"></i></span>
-                  <span class="d-block">Initial</span>
+                  <span class="d-block">{% trans 'Initial'%}</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link {% if request.GET.tab == 'subjects' %}active{% endif %}" id="subjects-tab"
                   data-toggle="tab" href="#subjects" role="tab" aria-controls="subjects" aria-selected="false">
                   <span class="d-block"><i class="fa fa-people-carry" aria-hidden="true"></i></span>
-                  <span class="d-block">Subjects</span>
+                  <span class="d-block">{% trans 'Subjects' %}</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link {% if request.GET.tab == 'text' %}active{% endif %}" id="text-tab" data-toggle="tab"
                   href="#text" role="tab" aria-controls="text" aria-selected="false">
                   <span class="d-block"><i class="fa fa-address-book" aria-hidden="true"></i></span>
-                  <span class="d-block">Text</span>
+                  <span class="d-block">{% trans 'Text'%}</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link {% if request.GET.tab == 'attach' %}active{% endif %}" id="attachment-tab"
                   data-toggle="tab" href="#attachment" role="tab" aria-controls="attachment" aria-selected="false">
                   <span class="d-block"><i class="fa fa-file" aria-hidden="true"></i></span>
-                  <span class="d-block">Attachment</span>
+                  <span class="d-block">{% trans 'Attachment' %}</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link {% if request.GET.tab == 'comments' %}active{% endif %}" id="comment-tab"
                   data-toggle="tab" href="#comment" role="tab" aria-controls="comment" aria-selected="false">
                   <span class="d-block"><i class="fa fa-comment" aria-hidden="true"></i></span>
-                  <span class="d-block">Analyst Comment</span>
+                  <span class="d-block">{% trans 'Analyst Comment'%}</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -56,7 +58,7 @@
                   id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
                   aria-selected="false">
                   <span class="d-block"><i class="fa fa-ad" aria-hidden="true"></i></span>
-                  <span class="d-block">Review</span>
+                  <span class="d-block">{% trans 'Review'%}</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -64,7 +66,7 @@
                   id="dissemination-tab" data-toggle="tab" href="#dissemination" role="tab"
                   aria-controls="dissemination" aria-selected="false">
                   <span class="d-block"><i class="fa fa-fan" aria-hidden="true"></i></span>
-                  <span class="d-block">Dissemination</span>
+                  <span class="d-block">{% trans 'Dissemination'%}</span>
                 </a>
               </li>
               <!-- Add other tabs here -->
@@ -78,21 +80,21 @@
                 id="initial" role="tabpanel" aria-labelledby="initial-tab">
                 <form method="POST" action="">
                   <div class="card">
-                    <div class="card-header">Form for Initialization</div>
+                    <div class="card-header">{% trans 'Form for Initialization'%}</div>
                     <div class="card-body">
                       <div class="form-group">
-                        <label for="id_source">Source</label>
+                        <label for="id_source">{% trans 'Source'%}</label>
                         {{ initial_form.source }}
                       </div>
 
                       <div class="form-group">
-                        <label for="id_information_source">Information Source</label>
+                        <label for="id_information_source">{% trans 'Information Source' %}</label>
                         {{ initial_form.information_source }}
                       </div>
                     </div>
                     <div class="card-footer">
                       <button type="submit" class="btn btn-primary mt-1 disabled" name="initial_form">
-                        Submit to Continue
+                        {% trans 'Submit to Continue'%}
                       </button>
                     </div>
                   </div>
@@ -106,88 +108,88 @@
                 <form method="POST" action="">
                   {% csrf_token %}
                   <div class="card">
-                    <div class="card-header">Subject Form</div>
+                    <div class="card-header">{% trans 'Subject Form'%}</div>
                     <div class="card-body">
                       <div class="form-group">
-                        <label for="">First Name</label>
+                        <label for="">{% trans 'First Name'%}</label>
                         {{ subject_form.first_name}}
                       </div>
 
                       <div class="form-group">
-                        <label for="id_information_source">Last Name</label>
+                        <label for="id_information_source">{% trans 'Last Name'%}</label>
                         {{ subject_form.last_name}}
                       </div>
                       <div class="form-group">
-                        <label for="id_information_source">Gender</label>
+                        <label for="id_information_source">{% trans 'Gender'%}</label>
                         {{ subject_form.gender}}
                       </div>
 
                       <div class="form-group">
-                        <label for="id_information_source">Place of birth</label>
+                        <label for="id_information_source">{% trans 'Place of birth'%}</label>
                         {{ subject_form.pob}}
                       </div>
 
                       <div class="form-group">
-                        <label for="id_information_source">Nick Name</label>
+                        <label for="id_information_source">{% trans 'Nick Name'%}</label>
                         {{ subject_form.last_name}}
                       </div>
                       <div class="form-group">
-                        <label for="id_information_source">Date of birth</label>
+                        <label for="id_information_source">{% trans 'Date of birth'%}</label>
                         {{ subject_form.dob}}
                       </div>
                       <div class="form-group">
-                        <label for="id_information_source">Nationality</label>
+                        <label for="id_information_source">{% trans 'Nationality'%}</label>
                         {{ subject_form.nationality}}
                       </div>
                       <div class="form-group">
-                        <label for="id_information_source">Identification</label>
+                        <label for="id_information_source">{% trans 'Identification'%}</label>
                         {{ subject_form.last_name}}
                       </div>
                       <div class="form-group">
-                        <label for="id_information_source">ID Number</label>
+                        <label for="id_information_source">{% trans 'ID Number'%}</label>
                         {{ subject_form.idNumber}}
                       </div>
 
                       <div class="form-group">
-                        <label for="id_information_source">Home Address</label>
+                        <label for="id_information_source">{% trans 'Home Address'%}</label>
                         {{ subject_form.address}}
                       </div>
                       <div class="form-group">
-                        <label for="id_information_source">Bussiness Name</label>
+                        <label for="id_information_source">{% trans 'Bussiness Name'%}</label>
                         {{ subject_form.business_name}}
                       </div>
                       <div class="form-group">
-                        <label for="id_information_source">Bussiness Address</label>
+                        <label for="id_information_source">{% trans 'Bussiness Address'%}</label>
                         {{ subject_form.busaddress}}
                       </div>
                       <div class="form-group">
-                        <label for="id_information_source">Bin or TIN</label>
+                        <label for="id_information_source">{% trans 'Bin or TIN'%}</label>
                         {{ subject_form.bin_tin}}
                       </div>
                       <div class="form-group">
-                        <label for="id_information_source">Telephone</label>
+                        <label for="id_information_source">{% trans 'Telephone'%}</label>
                         {{ subject_form.phone_num}}
                       </div>
                       <div class="form-group">
-                        <label for="id_information_source">Description </label>
+                        <label for="id_information_source">{% trans 'Description'%} </label>
                         {{ subject_form.description_subject}}
                       </div>
                       <div class="form-group">
-                        <label for="id_information_source">Conveyance</label>
+                        <label for="id_information_source">{% trans 'Conveyance'%}</label>
                         {{ subject_form.coveyance}}
                       </div>
                       <div class="form-group">
-                        <label for="id_information_source">Conveyance Description</label>
+                        <label for="id_information_source">{% trans 'Conveyance Description'%}</label>
                         {{ subject_form.cov_description}}
                       </div>
 
                     </div>
                     <div class="card-footer">
                       <button type="submit" class="btn btn-transparent mt-1 disabled" name="initial_form">
-                        Back to previous
+                       {% trans 'Back to previous'%}
                       </button>
                       <button type="submit" class="btn btn-primary mt-1 disabled" name="subject_form">
-                        Submit Subject Form
+                        {% trans 'Submit Subject Form'%}
                       </button>
                     </div>
                   </div>
@@ -202,7 +204,7 @@
                 <form method="POST" action="">
                   {% csrf_token %}
                   <div class="form-group">
-                    <label for="">Text</label>
+                    <label for="">{% trans 'Tex'%}t</label>
                     {{text_form.text}}
                   </div>
                   <div class="form-group">

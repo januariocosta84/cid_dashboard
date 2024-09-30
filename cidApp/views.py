@@ -1,8 +1,11 @@
+import base64
+import io
 from typing import Any
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views import View
 from django.views.generic import TemplateView
+import qrcode
 from cidApp.forms import CommentForm, FileForm, InitialForm, ReportForm, SubjectForm, TextForm, ReviewForm
 from .models import CallAndWebForm, Comments, Hotline, Intial, Report, Staff, Status, Subject,WebForm, TextAttach
 from django.views.generic.detail import DetailView
@@ -698,6 +701,61 @@ class EditReportReview(LoginRequiredMixin,GroupRequiredMixin,View):
             print("Review form errors:", reviewed.errors)
 
         return self.get(request, *args, **kwargs)
+    
+# def enable_mfa(request):
+#     user_mfa = request.user.mfa
+#     if request.method == 'POST':
+#         token = request.POST.get('token')
+#         if user_mfa.verify_token(token):
+#             user_mfa.is_mfa_enabled = True
+#             user_mfa.save()
+#             return redirect('records')  # Redirect to a success page
+#         else:
+#             error = "Invalid token. Please try again."
+#             return render(request, 'dashproject/pages/enable_mfa.html', {'qr_code': generate_qr_code(user_mfa), 'error': error})
+#     else:
+#         return render(request, 'dashproject/pages/enable_mfa.html', {'qr_code': generate_qr_code(user_mfa)})
 
+# def generate_qr_code(user_mfa):
+#     uri = user_mfa.get_totp_uri()
+#     qr = qrcode.QRCode(version=1, box_size=10, border=5)
+#     qr.add_data(uri)
+#     qr.make(fit=True)
+#     img = qr.make_image(fill='black', back_color='white')
+#     buffer = io.BytesIO()
+#     img.save(buffer, format='PNG')
+#     img_str = base64.b64encode(buffer.getvalue()).decode('utf-8')
+#     return img_str
 
+class EnableMFAView(LoginRequiredMixin,View):
+    template_name = 'users/enable_mfa.html'
+    group_names = ['administrator']
+    def get(self, request, *args, **kwargs):
+        user_group = self.request.user.groups.values_list('name', flat=True)
+        user_mfa = request.user.mfa
+        
+        qr_code = self.generate_qr_code(user_mfa)
+        return render(request, self.template_name, {'qr_code': qr_code, 'user_group':list(user_group),'id':self.request.user.id,})
 
+    def post(self, request, *args, **kwargs):
+        user_mfa = request.user.mfa
+        token = request.POST.get('token')
+        if user_mfa.verify_token(token):
+            user_mfa.is_mfa_enabled = True
+            user_mfa.save()
+            return redirect('records')  # Redirect to a success page
+        else:
+            error = "Invalid token. Please try again."
+            qr_code = self.generate_qr_code(user_mfa)
+            return render(request, self.template_name, {'qr_code': qr_code, 'error': error})
+
+    def generate_qr_code(self, user_mfa):
+        uri = user_mfa.get_totp_uri()
+        qr = qrcode.QRCode(version=1, box_size=10, border=5)
+        qr.add_data(uri)
+        qr.make(fit=True)
+        img = qr.make_image(fill='black', back_color='white')
+        buffer = io.BytesIO()
+        img.save(buffer, format='PNG')
+        img_str = base64.b64encode(buffer.getvalue()).decode('utf-8')
+        return img_str

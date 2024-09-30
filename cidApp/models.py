@@ -1,3 +1,5 @@
+import base64
+import os
 from django.db import models
 from django.contrib.auth.models import User, Group
 from django.dispatch import receiver
@@ -6,6 +8,7 @@ from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from django.db.models.signals import post_save
 from django.utils.translation import gettext_lazy as _
+import pyotp
 
 # #User = settings.AUTH_USER_MODEL
 # class User(AbstractUser):
@@ -20,20 +23,21 @@ class Audit(models.Model):
     entity_id = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
+    
 class Hotline(models.Model):
     type = models.CharField(max_length=250)
     file_path = models.CharField(max_length=250)
     file = models.CharField(max_length=250)
     created_at = models.DateTimeField(default=timezone.now)
     modify_at = models.DateTimeField(default=timezone.now)
+    origin_date = models.DateTimeField(blank=True, null=True)
+
     
     def __str__(self) -> str:
         return self.type
     
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        # Automatically create a CallAndWebForm instance
         CallAndWebForm.objects.create(
             hotline=self,
             webform=None,
@@ -351,7 +355,31 @@ class ReportReviewed(models.Model):
     confirm = models.BooleanField(default=False)
   
 
+####MFA user model
+
+class UserMFA(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='mfa', blank=True, null=True)
+    is_mfa_enabled = models.BooleanField(default=False)
+    secret_key = models.CharField(max_length=16, blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        if not self.secret_key:
+            self.secret_key = base64.b32encode(os.urandom(10)).decode('utf-8')
+        super().save(*args, **kwargs)
+
+    def get_totp_uri(self):
+        return f'otpauth://totp/cid:{self.user.username}?secret={self.secret_key}&issuer=cidApp'
+
+    def verify_token(self, token):
+        totp = pyotp.TOTP(self.secret_key)
+        return totp.verify(token)   
     
     
-    
-    
+@receiver(post_save, sender=User)
+def create_user_mfa(sender, instance, created, **kwargs):
+    if created:
+        UserMFA.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_mfa(sender, instance, **kwargs):
+    instance.mfa.save()
