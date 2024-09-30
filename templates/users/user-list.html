@@ -80,10 +80,18 @@
                                     </td>
                                     <td>
                                     <td>
-                                        <a href="{%url 'change' user.id%}" class="btn btn-info">{% trans 'Edit' %}</a>
+                                        <!-- Check MFA status and display the corresponding button -->
+                                        {% if user.mfa.is_mfa_enabled %}
+                                        <a href="{% url 'enable-mfa' user.id %}" class="btn btn-danger">
+                                            {% trans 'Disable MFA' %}</a>
+                                        {% else %}
+                                        <a href="{% url 'enable-mfa' user.id %}" class="btn btn-primary">
+                                            {% trans 'Enable MFA' %}</a>
+                                        {% endif %}
+                                        <!-- <a href="{%url 'change' user.id%}" class="btn btn-info">{% trans 'Edit' %}</a>
                                         <a href="{%url 'enable-mfa' user.id%}" class="btn btn-primary">
                                             {% trans 'MFA Activation'%}
-                                        </a>
+                                        </a> -->
                                     </td>
                                     </td>
                                 </tr>
