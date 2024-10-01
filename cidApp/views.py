@@ -187,7 +187,7 @@ class CreateReportWebCallView(LoginRequiredMixin, GroupRequiredMixin, TemplateVi
             report = self.get_report(request.session.get('report_id'))
             report.subject = subject_instance
             report.save()
-            messages.success(request, _('New Subject has been added successfully to Report ID {report_id}').format(report_id=request.session.get('report_id'))
+            messages.success(request, _('New Subject has been added successfully to report list').format(report_id=request.session.get('report_id'))
             )
             return redirect(f"{reverse('report-web', args=[web_id])}?tab=text")
 
@@ -309,6 +309,7 @@ class CreateReportWebView(LoginRequiredMixin, GroupRequiredMixin, TemplateView):
             report = self.get_report(request.session.get('report_id'))
             report.subject = subject_instance
             report.save()
+            #messages.success(request, _('New Subject has been added successfully to Report ID %(report_id)s') % {'report_id': request.session.get('report_id')})
             messages.success(request, f'New Subject has added successfully to {request.session.get('report_id')} Report ID')
             return redirect(f"{reverse('new-report')}?tab=text")
 
@@ -803,7 +804,8 @@ class MFAVerificationView(View):
 
         if user_mfa.verify_token(token):
             login(request, user) 
-            del request.session['mfa_user_id'] 
+            del request.session['mfa_user_id']
+            messages.success(request,_("You have logged in successfully.")) 
             return redirect('records')  # Redirect to success page after MFA
         else:
             # Invalid MFA token

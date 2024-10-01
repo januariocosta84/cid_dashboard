@@ -85,6 +85,7 @@ class EditUserView(GroupRequiredMixin, View):
     group_names = ['administrator']  
     def get(self, request, pk, *args, **kwargs):
         user = get_object_or_404(User, pk=pk)
+        print("user id",user.id)
         staff = get_object_or_404(Staff, user=user)
         user_edit_form = UserEditForm(instance=user)
         staff_edit_form = StaffEditForm(instance=staff)
@@ -98,7 +99,7 @@ class EditUserView(GroupRequiredMixin, View):
             'staff_edit_form': staff_edit_form,
             'user': user,
             'user_group': list(user_group),
-            'id': id
+            'id': user.id
         })
 
     def post(self, request, pk, *args, **kwargs):
@@ -125,7 +126,7 @@ class EditUserView(GroupRequiredMixin, View):
             'staff_edit_form': staff_edit_form,
             'user': user,
             'user_group': user_groups,
-            'id': id
+            'id': user.id
         })
         
 class Login_View(LoginView):
