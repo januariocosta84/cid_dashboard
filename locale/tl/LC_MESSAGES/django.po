@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-30 07:14+0000\n"
+"POT-Creation-Date: 2024-10-01 04:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -194,50 +194,58 @@ msgstr "Improbabel seidauk konfirma"
 msgid "Truth Cannot be Judge"
 msgstr "Los duni katak labele halo julgamentu"
 
-#: cidApp/user_management.py:92
+#: cidApp/user_management.py:73
 #, python-brace-format
 msgid "Account created for {username}"
 msgstr ""
 
-#: cidApp/user_management.py:137
+#: cidApp/user_management.py:118
 msgid "User information has been updated"
 msgstr "Informasaun utilizador atualiza tena "
 
-#: cidApp/user_management.py:160
+#: cidApp/user_management.py:156
 #, python-brace-format
 msgid "Hei: {self.request.user.first_name} You are successfully logged in"
 msgstr ""
 
-#: cidApp/user_management.py:164
+#: cidApp/user_management.py:160
 msgid ""
 "Warning: UNAUTHORIZED ACCESS TO THIS SYSTEM MAY CONSTITUTE A CRIMINAL "
 "OFFENCE."
 msgstr "ASESU LA AUTORIZADU BA SISTEMA NE'E E SEI SUBMETE BA OFENSA KRIMINAL."
 
-#: cidApp/user_management.py:170
+#: cidApp/user_management.py:183
 msgid "Logged out successfully! bye bye"
 msgstr "Termina sesaun ho susesu! bye bye"
 
-#: cidApp/views.py:116 cidApp/views.py:247
+#: cidApp/views.py:119 cidApp/views.py:250
 msgid "On Creating"
 msgstr "Iha hela kriasaun"
 
-#: cidApp/views.py:117 cidApp/views.py:249 cidApp/views.py:252
+#: cidApp/views.py:120 cidApp/views.py:252 cidApp/views.py:255
 msgid "Unique ID will be created"
 msgstr "ID uniku sei kria"
 
-#: cidApp/views.py:173 cidApp/views.py:296
+#: cidApp/views.py:176 cidApp/views.py:299
 msgid "New Initial form has been added"
 msgstr "Formulariu hahu foun submete ona "
 
-#: cidApp/views.py:187
+#: cidApp/views.py:190
 #, python-brace-format
 msgid "New Subject has been added successfully to Report ID {report_id}"
 msgstr "Formulariu sujetu submete ho susesu ba relatorio ID {report_id} "
 
-#: cidApp/views.py:251
+#: cidApp/views.py:254
 msgid "No report found"
 msgstr "Laiha Relatoriu"
+
+#: cidApp/views.py:738
+msgid "Invalid token. Please try again."
+msgstr "Token invalido, halo favor koko fali"
+
+#: cidApp/views.py:810
+msgid "Invalid MFA token, please try again."
+msgstr "MFA token Invalido, halo favor koko fali"
 
 #: templates/agency/agency_list.html:15 templates/agency/agency_list.html:22
 #: templates/dashproject/base/sidebar.html:158
@@ -266,7 +274,7 @@ msgstr "Data Kriasaun"
 #: templates/dashproject/pages/report_page.html:101
 #: templates/position/position_list.html:66
 #: templates/position/position_list.html:87 templates/users/user-list.html:62
-#: templates/users/user-list.html:83
+#: templates/users/user-list.html:93
 msgid "Edit"
 msgstr "Editar"
 
@@ -1065,21 +1073,49 @@ msgstr "Password Konfirmasaun"
 msgid " Update Password"
 msgstr "Atualiza Password"
 
+#: templates/users/disable_mfa.html:9
+msgid "Disable Multi-Factor Authentication"
+msgstr "Desativa multifaktor autentikasaun"
+
+#: templates/users/disable_mfa.html:13
+msgid "MFA is currently enabled. Are you sure you want to disable it?"
+msgstr "MFA ida ne'e ativa tiha ona. Ita hakarak atu desativa ka?"
+
+#: templates/users/disable_mfa.html:16 templates/users/user-list.html:88
+msgid "Disable MFA"
+msgstr "Desativa MFA"
+
+#: templates/users/disable_mfa.html:19
+msgid "MFA is already disabled for this user."
+msgstr ""
+
 #: templates/users/enable_mfa.html:10
-msgid "Enable Multi-Factor Authentication"
+msgid "Multi-Factor Authentication"
 msgstr "Ativa multifaktor autentikasaun"
 
 #: templates/users/enable_mfa.html:16
-msgid "Scan the QR code below with your Google Authenticator app or :"
-msgstr "Scan QR Code tuir mai ho ita nia Google authenticator"
+msgid "Scan the QR code below with your Google Authenticator app to enable MFA:"
+msgstr "Scan QR Code ne'ebá ho aplikasaun Google Authenticator hodi ativa MFA"
 
 #: templates/users/enable_mfa.html:22
 msgid "Enter the 6-digit code from your app:"
-msgstr "Insere Dijitus 6 husi nebe mosu iha ita nia APP"
+msgstr "Insere Dijitus 6 nebe mosu iha ita nia APP"
 
-#: templates/users/enable_mfa.html:26
+#: templates/users/enable_mfa.html:26 templates/users/user-list.html:91
 msgid "Enable MFA"
 msgstr "Ativa MFA"
+
+#: templates/users/mfa_verify.html:9
+msgid "MFA Verification"
+msgstr "Verifikisaun MFA"
+
+#: templates/users/mfa_verify.html:12
+msgid "Please enter the 6-digit MFA code from your authenticator app:"
+msgstr "Insere Dijitus 6 nebe mosu iha ita nia APP"
+
+#: templates/users/mfa_verify.html:19
+msgid "Verify MFA"
+msgstr "Verifika MFA"
 
 #: templates/users/register.html:14
 msgid "Create New Account"
@@ -1149,7 +1185,7 @@ msgstr "Login Ikus"
 msgid "Haven't tried logging in yet"
 msgstr "Seidauk Login dala ida"
 
-#: templates/users/user-list.html:85
+#: templates/users/user-list.html:95
 msgid "MFA Activation"
 msgstr "Ativasaun MFA"
 

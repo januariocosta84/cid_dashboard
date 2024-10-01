@@ -735,7 +735,7 @@ class EnableMFAView(LoginRequiredMixin, View):
             user_mfa.save()
             return redirect('user-list')  # Redirect after enabling MFA
         else:
-            error = "Invalid token. Please try again."
+            error = _("Invalid token. Please try again.")
             qr_code = self.generate_qr_code(user_mfa)  # Regenerate QR code for retry
             return render(request, self.template_name, {
                 'qr_code': qr_code,
@@ -807,5 +807,5 @@ class MFAVerificationView(View):
             return redirect('records')  # Redirect to success page after MFA
         else:
             # Invalid MFA token
-            messages.error(request, "Invalid MFA token, please try again.")
+            messages.error(request,_( "Invalid MFA token, please try again."))
             return render(request, self.template_name)
