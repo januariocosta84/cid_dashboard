@@ -79,10 +79,12 @@
                                         {% endif %}
                                     </td>
                                     <td>
+                                        <a href="{% url 'change' user.id %}" class="btn btn-info">Edit</a>
+                                    </td>
                                     <td>
                                         <!-- Check MFA status and display the corresponding button -->
                                         {% if user.mfa.is_mfa_enabled %}
-                                        <a href="{% url 'enable-mfa' user.id %}" class="btn btn-danger">
+                                        <a href="{% url 'disable-mfa' user.id %}" class="btn btn-danger">
                                             {% trans 'Disable MFA' %}</a>
                                         {% else %}
                                         <a href="{% url 'enable-mfa' user.id %}" class="btn btn-primary">

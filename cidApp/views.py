@@ -7,7 +7,7 @@ from django.views import View
 from django.views.generic import TemplateView
 import qrcode
 from cidApp.forms import CommentForm, FileForm, InitialForm, ReportForm, SubjectForm, TextForm, ReviewForm
-from .models import CallAndWebForm, Comments, Hotline, Intial, Report, Staff, Status, Subject,WebForm, TextAttach
+from .models import CallAndWebForm, Comments, Hotline, Intial, Report, Staff, Status, Subject, UserMFA,WebForm, TextAttach
 from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
@@ -19,8 +19,11 @@ from .decorator_costum import GroupRequiredMixin
 from django.http import JsonResponse
 from django.core.paginator import Paginator,PageNotAnInteger, EmptyPage
 import requests
+from django.contrib.auth import login
 from .api_consuming import insert_subject
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 
 class SyncSubjectsView(View):
     def get(self, request, *args, **kwargs):
@@ -702,87 +705,48 @@ class EditReportReview(LoginRequiredMixin,GroupRequiredMixin,View):
 
         return self.get(request, *args, **kwargs)
     
-# class EnableMFAView(LoginRequiredMixin,View):
-#     template_name = 'users/enable_mfa.html'
-#     group_names = ['administrator']
-#     def get(self, request, *args, **kwargs):
-#         user_group = self.request.user.groups.values_list('name', flat=True)
-#         user_mfa = request.user.mfa
-        
-#         qr_code = self.generate_qr_code(user_mfa)
-#         return render(request, self.template_name, {'qr_code': qr_code, 'user_group':list(user_group),'id':self.request.user.id,})
-
-#     def post(self, request, *args, **kwargs):
-#         user_mfa = request.user.mfa
-#         token = request.POST.get('token')
-#         if user_mfa.verify_token(token):
-#             user_mfa.is_mfa_enabled = True
-#             user_mfa.save()
-#             return redirect('records')  # Redirect to a success page
-#         else:
-#             error = "Invalid token. Please try again."
-#             qr_code = self.generate_qr_code(user_mfa)
-#             return render(request, self.template_name, {'qr_code': qr_code, 'error': error})
-
-#     def generate_qr_code(self, user_mfa):
-#         uri = user_mfa.get_totp_uri()
-#         qr = qrcode.QRCode(version=1, box_size=10, border=5)
-#         qr.add_data(uri)
-#         qr.make(fit=True)
-#         img = qr.make_image(fill='black', back_color='white')
-#         buffer = io.BytesIO()
-#         img.save(buffer, format='PNG')
-#         img_str = base64.b64encode(buffer.getvalue()).decode('utf-8')
-#         return img_str
-
 class EnableMFAView(LoginRequiredMixin, View):
     template_name = 'users/enable_mfa.html'
     group_names = ['administrator']
-
     def get(self, request, *args, **kwargs):
-        # Get the user MFA details
+        print("ID", self.kwargs['user_id'])
+        user_mfa = get_object_or_404(UserMFA,id =self.kwargs['user_id'] )
+        print("Koko atu hare bug",user_mfa.id)
+        # Generate QR code only if MFA is not enabled
         user_group = self.request.user.groups.values_list('name', flat=True)
-        user_mfa = request.user.mfa
-
-        # If MFA is already enabled, no need to generate a QR code
         qr_code = None
         if not user_mfa.is_mfa_enabled:
             qr_code = self.generate_qr_code(user_mfa)
 
         return render(request, self.template_name, {
+           # 'is_mfa_enabled': user_mfa.is_mfa_enabled,
             'qr_code': qr_code,
-            'user_group': list(user_group),
-            'id': self.request.user.id,
-            'is_mfa_enabled': user_mfa.is_mfa_enabled
+            'id': request.user.id,
+            'user_group':list(user_group),
         })
 
     def post(self, request, *args, **kwargs):
-        user_mfa = request.user.mfa
-
-        # Handle disabling MFA if it's already enabled
-        if user_mfa.is_mfa_enabled:
-            user_mfa.is_mfa_enabled = False
-            user_mfa.secret_key = None  # Optionally clear the secret key when disabling MFA
+        user_mfa = get_object_or_404(UserMFA,id =self.kwargs['user_id'] )
+        #user_mfa = request.user.mfa
+        token = request.POST.get('token')
+        user_group = self.request.user.groups.values_list('name', flat=True)
+        if user_mfa.verify_token(token):
+            user_mfa.is_mfa_enabled = True
             user_mfa.save()
-            return redirect('records')  # Redirect to a success page after disabling MFA
+            return redirect('user-list')  # Redirect after enabling MFA
         else:
-            # Handle MFA enabling by verifying the token
-            token = request.POST.get('token')
-            if user_mfa.verify_token(token):
-                user_mfa.is_mfa_enabled = True
-                user_mfa.save()
-                return redirect('user-list')  # Redirect to a user list page after enabling MFA
-            else:
-                error = "Invalid token. Please try again."
-                qr_code = self.generate_qr_code(user_mfa)
-                return render(request, self.template_name, {
-                    'qr_code': qr_code,
-                    'error': error,
-                    'is_mfa_enabled': False
-                })
+            error = "Invalid token. Please try again."
+            qr_code = self.generate_qr_code(user_mfa)  # Regenerate QR code for retry
+            return render(request, self.template_name, {
+                'qr_code': qr_code,
+                'error': error,
+                'is_mfa_enabled': False,
+                'id': request.user.id,
+                'user_group':list(user_group),
+            })
 
     def generate_qr_code(self, user_mfa):
-        uri = user_mfa.get_totp_uri()
+        uri = user_mfa.get_totp_uri()  # Get the URI for the user's MFA
         qr = qrcode.QRCode(version=1, box_size=10, border=5)
         qr.add_data(uri)
         qr.make(fit=True)
@@ -791,3 +755,57 @@ class EnableMFAView(LoginRequiredMixin, View):
         img.save(buffer, format='PNG')
         img_str = base64.b64encode(buffer.getvalue()).decode('utf-8')
         return img_str
+     
+class DisableMFAView(LoginRequiredMixin, View):
+    template_name = 'users/disable_mfa.html'
+    group_names = ['administrator']
+    def get(self, request, user_id, *args, **kwargs):
+        user_group = self.request.user.groups.values_list('name', flat=True)
+        user = get_object_or_404(User, id=user_id)  
+        user_mfa = user.mfa  
+        return render(request, self.template_name, {
+            'is_mfa_enabled': user_mfa.is_mfa_enabled,
+            'id': user.id,
+            'user_group':list(user_group),
+        })
+
+    def post(self, request, user_id, *args, **kwargs):
+        user = get_object_or_404(User, id=user_id)  
+        user_mfa = user.mfa  
+        if user_mfa.is_mfa_enabled:
+            # Disable MFA
+            user_mfa.is_mfa_enabled = False
+            user_mfa.save()
+            message = "MFA has been successfully disabled."
+        else:
+           
+            message = "MFA is already disabled for this user."
+
+        return redirect('user-list') 
+
+class MFAVerificationView(View):
+    template_name = 'users/mfa_verify.html'
+
+    def get(self, request, *args, **kwargs):
+        user_id = request.session.get('mfa_user_id')
+        if not user_id:
+            return redirect('login') 
+        return render(request, self.template_name)
+
+    def post(self, request, *args, **kwargs):
+        user_id = request.session.get('mfa_user_id')
+        if not user_id:
+            return redirect('login')
+
+        user = User.objects.get(id=user_id)
+        user_mfa = user.mfa
+        token = request.POST.get('token')
+
+        if user_mfa.verify_token(token):
+            login(request, user) 
+            del request.session['mfa_user_id'] 
+            return redirect('records')  # Redirect to success page after MFA
+        else:
+            # Invalid MFA token
+            messages.error(request, "Invalid MFA token, please try again.")
+            return render(request, self.template_name)

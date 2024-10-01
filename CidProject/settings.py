@@ -229,3 +229,13 @@ django.conf.locale.LANG_INFO = LANG_INFO
 
 # Languages using BiDi (right-to-left) layout
 LANGUAGES_BIDI = global_settings.LANGUAGES_BIDI + ["tl"]
+
+
+# Ensure the session engine is correct
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+
+# Session expires when the browser is closed
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+# Session timeout (optional)
+SESSION_COOKIE_AGE = 3600  # Session will expire in 1 hour (3600 seconds)

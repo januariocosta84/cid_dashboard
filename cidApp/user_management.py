@@ -6,9 +6,6 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth import logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
-# from django.views.generic import CreateView
-# #from .forms import RegisterForm, LoginForm, UserEditForm, ResetPasswordForm
-# from django.contrib.auth.views import LoginView, PasswordResetView, PasswordChangeView
 from django.shortcuts import render, redirect
 from django.utils.translation import gettext_lazy as _
 
@@ -16,22 +13,6 @@ from cidApp.decorator_costum import GroupRequiredMixin
 from cidApp.forms import(
     AgencyForm, GroupEditForm, GroupForm, LoginForm, RegisterForm, StaffEditForm, User, UserEditForm,
 ) 
-# from django.urls import reverse_lazy
-# from django.contrib.auth.views import LoginView, PasswordResetView, PasswordChangeView
-# from django.contrib import messages
-# from django.contrib.messages.views import SuccessMessageMixin
-# from django.views import View
-# from django.contrib.auth.decorators import login_required
-# #from .models import AuthUser
-
-# from django.views.generic import TemplateView
-# from django.urls import reverse
-# from .decorator_costum import GroupRequiredMixin
-# from django.utils.decorators import method_decorator
-# from django.contrib.auth.decorators import user_passes_test
-# from admin_two_factor.models import TwoFactorVerification
-# from django.core.paginator import Paginator
-# from django.contrib.auth.forms import PasswordResetForm,SetPasswordForm
 from django.contrib.auth.forms import PasswordResetForm,SetPasswordForm
 from cidApp.models import Agency, Staff
 
@@ -156,13 +137,45 @@ class Login_View(LoginView):
             return redirect(resolve_url('/'))
         return super().dispatch(request, *args, **kwargs)
 
+    def form_valid(self, form):
+        # Check if the user has MFA enabled after successful password authentication
+        user = form.get_user()
+        print("KOKO atu hare saida mak mosu iha ne",user)
+        
+        if user.mfa.is_mfa_enabled:
+            # Store the user ID in the session temporarily until MFA is verified
+            self.request.session['mfa_user_id'] = user.id
+            
+            # Redirect to the MFA verification page
+            return redirect('verify-mfa')  # This should point to your MFA verification view URL
+
+        # No MFA, proceed to normal success URL
+        return super().form_valid(form)
+
     def get_success_url(self):
         messages.success(self.request, _("Hei: {self.request.user.first_name} You are successfully logged in"))
         return resolve_url('/')
-
+    
     def form_invalid(self, form):
         messages.error(self.request, _("Warning: UNAUTHORIZED ACCESS TO THIS SYSTEM MAY CONSTITUTE A CRIMINAL OFFENCE."))
         return super().form_invalid(form)
+          
+# class Login_View(LoginView):
+#     form_class = LoginForm
+#     template_name = 'dashproject/account/login.html'
+
+#     def dispatch(self, request, *args, **kwargs):
+#         if request.user.is_authenticated:
+#             return redirect(resolve_url('/'))
+#         return super().dispatch(request, *args, **kwargs)
+
+#     def get_success_url(self):
+#         messages.success(self.request, _("Hei: {self.request.user.first_name} You are successfully logged in"))
+#         return resolve_url('/')
+
+#     def form_invalid(self, form):
+#         messages.error(self.request, _("Warning: UNAUTHORIZED ACCESS TO THIS SYSTEM MAY CONSTITUTE A CRIMINAL OFFENCE."))
+#         return super().form_invalid(form)
 
 class Logout_View(View):
     def get(self,request):
@@ -199,59 +212,3 @@ class UserListsView(LoginRequiredMixin,GroupRequiredMixin,View):
         else:
             return context
         
-# # @login_required
-# # def manage_two_factor(request):
-# #     try:
-# #         two_factor = request.user.two_step
-# #     except TwoFactorVerification.DoesNotExist:
-# #         two_factor = TwoFactorVerification(user=request.user)
-
-# #     qr_code = None
-# #     if request.method == 'POST':
-# #         form = CreateTwoFactorForms(request.POST, instance=two_factor)
-# #         if form.is_valid():
-# #             two_factor = form.save(commit=False)
-# #             two_factor.user = request.user
-
-# #             # Step 1: Generate QR code if activating two-factor and no secret yet
-# #             if two_factor.is_active and not two_factor.secret:
-# #                 secret_key, qr_code = two_factor.get_qrcode
-# #                 two_factor.secret = secret_key
-# #                 two_factor.save()
-# #                 messages.info(request, 'Scan the QR code with your authenticator app and enter the code to complete setup.')
-# #                 return render(request, 'two_factor/manage.html', {
-# #                     'form': form,
-# #                     'qr_code': qr_code,
-# #                     'user_email': request.user.email,
-# #                 })
-
-# #             # Step 2: Validate the entered code
-# #             if two_factor.is_active and two_factor.secret:
-# #                 if not two_factor.is_verify(two_factor.code):
-# #                     messages.error(request, 'The code is incorrect. Please try again.')
-# #                 else:
-# #                     two_factor.code = None  # Clear the code after validation
-# #                     two_factor.save()
-# #                     messages.success(request, 'Two-factor authentication is now enabled.')
-
-# #             # Step 3: Deactivation
-# #             if not two_factor.is_active:
-# #                 two_factor.secret = None
-# #                 two_factor.save()
-# #                 messages.success(request, 'Two-factor authentication is now disabled.')
-
-# #             return redirect('manage_two_factor')
-# #         else:
-# #             messages.error(request, 'There was an error updating your two-factor authentication settings. Please try again.')
-# #     else:
-# #         form = CreateTwoFactorForms(instance=two_factor)
-# #         if two_factor.is_active and not two_factor.secret:
-# #             secret_key, qr_code = two_factor.get_qrcode
-# #         elif two_factor.secret:
-# #             _, qr_code = two_factor.get_qrcode
-
-# #     return render(request, 'two_factor/manage.html', {
-# #         'form': form,
-# #         'qr_code': qr_code,
-# #         'user_email': request.user.email,
-# #     })
