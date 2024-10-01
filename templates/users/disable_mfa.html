@@ -1,0 +1,26 @@
+{%include './base_css.html' %}
+{% load i18n %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card text-center mt-3">
+                <div class="card-header">
+                    <h2>{% trans 'Disable Multi-Factor Authentication' %}</h2>
+                </div>
+                <div class="card-body">
+                    {% if is_mfa_enabled %}
+                    <p>{% trans 'MFA is currently enabled. Are you sure you want to disable it?' %}</p>
+                    <form method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">{% trans 'Disable MFA' %}</button>
+                    </form>
+                    {% else %}
+                    <p>{% trans 'MFA is already disabled for this user.' %}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

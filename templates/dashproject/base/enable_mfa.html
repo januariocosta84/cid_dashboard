@@ -1,0 +1,25 @@
+<!-- templates/enable_mfa.html -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Enable MFA</title>
+</head>
+
+<body>
+    <h2>Enable Multi-Factor Authentication</h2>
+    {% if error %}
+    <p style="color:red;">{{ error }}</p>
+    {% endif %}
+    <p>Scan the QR code below with your Google Authenticator app:</p>
+    <img src="data:image/png;base64,{{ qr_code }}" alt="QR Code">
+    <form method="post">
+        {% csrf_token %}
+        <label for="token">Enter the 6-digit code from your app:</label>
+        <input type="text" name="token" id="token" required>
+        <button type="submit">Enable MFA</button>
+    </form>
+</body>
+
+</html>
