@@ -1,0 +1,31 @@
+{% extends 'dashproject/base/layout.html' %}
+{% load static %}
+{% load i18n %}
+{% block content%}
+<div class="container-fluid">
+    <div class="row justify-content-center mt-3">
+        <div class="card text-center mt-3">
+            <div class="card-header">
+                {% trans 'Disable and Enable user'%}
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="user_id" value="{{user_id}}">
+                    {% if user.is_active %}
+                    <button type="submit" name="action" value="disable" class="btn btn-danger">
+                       {% trans ' Disable User'%}
+                    </button>
+                    {% else %}
+                    <button type="submit" name="action" value="enable" class="btn btn-success">
+                        {% trans 'Enable User'%}
+                    </button>
+                    {% endif %}
+                </form>
+            </div>
+            {% include 'dashproject/base/messaging.html' %}
+        </div>
+    </div>
+</div>
+
+{%endblock%}
