@@ -1097,7 +1097,7 @@ msgstr "Ativa MFA"
 
 #: templates/users/mfa_verify.html:9
 msgid "MFA Verification"
-msgstr "Verifikisaun MFA"
+msgstr "Verifikasaun MFA"
 
 #: templates/users/mfa_verify.html:12
 msgid "Please enter the 6-digit MFA code from your authenticator app:"
