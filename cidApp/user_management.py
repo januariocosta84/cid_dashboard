@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404, redirect, render, resolve_url
+from django.urls import reverse_lazy
 from django.views import View
 from django.contrib import messages
 from django.contrib.auth.views import LoginView
@@ -154,30 +155,13 @@ class Login_View(LoginView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        messages.success(self.request, _("Hei: {self.request.user.first_name} You are successfully logged in"))
+        messages.success(self.request, _("You are successfully logged in"))
         return resolve_url('/')
     
     def form_invalid(self, form):
         messages.error(self.request, _("Warning: UNAUTHORIZED ACCESS TO THIS SYSTEM MAY CONSTITUTE A CRIMINAL OFFENCE."))
         return super().form_invalid(form)
           
-# class Login_View(LoginView):
-#     form_class = LoginForm
-#     template_name = 'dashproject/account/login.html'
-
-#     def dispatch(self, request, *args, **kwargs):
-#         if request.user.is_authenticated:
-#             return redirect(resolve_url('/'))
-#         return super().dispatch(request, *args, **kwargs)
-
-#     def get_success_url(self):
-#         messages.success(self.request, _("Hei: {self.request.user.first_name} You are successfully logged in"))
-#         return resolve_url('/')
-
-#     def form_invalid(self, form):
-#         messages.error(self.request, _("Warning: UNAUTHORIZED ACCESS TO THIS SYSTEM MAY CONSTITUTE A CRIMINAL OFFENCE."))
-#         return super().form_invalid(form)
-
 class Logout_View(View):
     def get(self,request):
         logout(self.request)
@@ -213,3 +197,46 @@ class UserListsView(LoginRequiredMixin,GroupRequiredMixin,View):
         else:
             return context
         
+class DeleteUserView(LoginRequiredMixin, View):
+    paginate_by = 6
+    group_names = ['administrator']
+    template_name = 'users/delete-user.html'
+    login_url = '/login/'
+
+    def get_context_data(self, **kwargs):
+        context = {}
+        context['users'] = User.objects.all()
+        user_group = self.request.user.groups.values_list('name', flat=True)
+        user_list = User.objects.all()
+
+        paginator = Paginator(user_list, self.paginate_by)
+        page_number = self.request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+        context['page_obj'] = page_obj
+        context['user_group'] = list(user_group)
+        return context
+
+    def get(self, request, *args, pk, **kwargs):
+        context = self.get_context_data(**kwargs)
+        context['id'] = self.request.user.id
+        user = get_object_or_404(User, pk=pk)
+        context['user_id']=user.id
+        context['user']= user
+        return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        user_id = request.POST.get('user_id')
+        action = request.POST.get('action') 
+        user = get_object_or_404(User, id=user_id)
+        if action == 'disable':
+            user.is_active = False  # Disable user
+            messages.success(request,_("user has been disabled"))
+        elif action == 'enable':
+            user.is_active = True  # Enable user
+            messages.success(request,_("user has been enabled"))
+        user.save()
+        
+        return redirect(reverse_lazy('user-list'))
+    
+ 

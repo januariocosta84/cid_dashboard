@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 06:05+0000\n"
+"POT-Creation-Date: 2024-10-02 05:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,7 +38,10 @@ msgstr "Pelanggan"
 msgid "Full Name"
 msgstr "Nama Lengkap"
 
-#: account/models.py:81
+#: account/models.py:81 templates/dashproject/pages/call_web_page.html:148
+#: templates/dashproject/pages/detail_subject.html:37
+#: templates/dashproject/pages/report_header.html:147
+#: templates/dashproject/pages/subject_modal.html:49
 msgid "Phone Number"
 msgstr "Nomor Telepon"
 
@@ -74,15 +77,31 @@ msgstr "Di Perbarui pada"
 msgid "Default"
 msgstr "Standar"
 
-#: cidApp/forms.py:50 templates/dashproject/pages/report_edit_comment.html:114
-#: templates/dashproject/pages/subject.html:8 templates/users/register.html:42
-#: templates/users/reset_password.html:35
+#: cidApp/forms.py:50 templates/dashproject/pages/call_web_page.html:119
+#: templates/dashproject/pages/call_web_page.html:228
+#: templates/dashproject/pages/detail_subject.html:8
+#: templates/dashproject/pages/detail_subject.html:117
+#: templates/dashproject/pages/report_edit_comment.html:114
+#: templates/dashproject/pages/report_header.html:118
+#: templates/dashproject/pages/report_header.html:227
+#: templates/dashproject/pages/subject.html:8
+#: templates/dashproject/pages/subject_modal.html:20
+#: templates/dashproject/pages/subject_modal.html:129
+#: templates/users/register.html:42 templates/users/reset_password.html:35
 msgid "First Name"
 msgstr "Nama Depan"
 
-#: cidApp/forms.py:55 templates/dashproject/pages/report_edit_comment.html:119
-#: templates/dashproject/pages/subject.html:13 templates/users/register.html:48
-#: templates/users/reset_password.html:39
+#: cidApp/forms.py:55 templates/dashproject/pages/call_web_page.html:122
+#: templates/dashproject/pages/call_web_page.html:231
+#: templates/dashproject/pages/detail_subject.html:11
+#: templates/dashproject/pages/detail_subject.html:120
+#: templates/dashproject/pages/report_edit_comment.html:119
+#: templates/dashproject/pages/report_header.html:121
+#: templates/dashproject/pages/report_header.html:230
+#: templates/dashproject/pages/subject.html:13
+#: templates/dashproject/pages/subject_modal.html:23
+#: templates/dashproject/pages/subject_modal.html:132
+#: templates/users/register.html:48 templates/users/reset_password.html:39
 msgid "Last Name"
 msgstr "Nama Belakang"
 
@@ -194,21 +213,22 @@ msgstr "Tidak Mungkin Tidak Dikonfirmasi"
 msgid "Truth Cannot be Judge"
 msgstr "Kebenaran Tidak Dapat Dinilai"
 
-#: cidApp/user_management.py:73
+#: cidApp/user_management.py:74
 #, python-brace-format
 msgid "Account created for {username}"
 msgstr "Akun dibuat untuk {username}"
 
-#: cidApp/user_management.py:118
+#: cidApp/user_management.py:120
 msgid "User information has been updated"
 msgstr "Informasi pengguna telah diperbarui"
 
-#: cidApp/user_management.py:156
-#, python-brace-format
-msgid "Hei: {self.request.user.first_name} You are successfully logged in"
+#: cidApp/user_management.py:158
+#, fuzzy
+#| msgid "Hei: {self.request.user.first_name} You are successfully logged in"
+msgid "You are successfully logged in"
 msgstr "Hei: {self.request.user.first_name} Anda berhasil masuk"
 
-#: cidApp/user_management.py:160
+#: cidApp/user_management.py:162
 msgid ""
 "Warning: UNAUTHORIZED ACCESS TO THIS SYSTEM MAY CONSTITUTE A CRIMINAL "
 "OFFENCE."
@@ -216,9 +236,19 @@ msgstr ""
 "Peringatan: AKSES YANG TIDAK SAH KE SISTEM INI DAPAT DIANGGAP SEBAGAI TINDAK "
 "PIDANA"
 
-#: cidApp/user_management.py:183
+#: cidApp/user_management.py:168
 msgid "Logged out successfully! bye bye"
 msgstr "Berhasil keluar! selamat tinggal"
+
+#: cidApp/user_management.py:234
+#, fuzzy
+#| msgid "User information has been updated"
+msgid "user has been disabled"
+msgstr "Informasi pengguna telah diperbarui"
+
+#: cidApp/user_management.py:237
+msgid "user has been enabled"
+msgstr ""
 
 #: cidApp/views.py:119 cidApp/views.py:250
 msgid "On Creating"
@@ -281,7 +311,7 @@ msgstr "Tanggal Pembuatan"
 #: templates/dashproject/pages/report_page.html:101
 #: templates/position/position_list.html:66
 #: templates/position/position_list.html:87 templates/users/user-list.html:62
-#: templates/users/user-list.html:93
+#: templates/users/user-list.html:102
 msgid "Edit"
 msgstr "Edit"
 
@@ -302,23 +332,23 @@ msgstr ""
 msgid "Cancel"
 msgstr "Batalkan"
 
-#: templates/dashproject/base/navbar.html:50
+#: templates/dashproject/base/navbar.html:45
 msgid "Hello"
 msgstr "Halo"
 
-#: templates/dashproject/base/navbar.html:56
+#: templates/dashproject/base/navbar.html:52
 msgid "Profile"
 msgstr "Profil"
 
-#: templates/dashproject/base/navbar.html:60
+#: templates/dashproject/base/navbar.html:56
 msgid "Change password"
 msgstr "Ganti kata sandi"
 
-#: templates/dashproject/base/navbar.html:64
+#: templates/dashproject/base/navbar.html:60
 msgid "Activity Log"
 msgstr "Log Aktivitas"
 
-#: templates/dashproject/base/navbar.html:69
+#: templates/dashproject/base/navbar.html:65
 msgid "Logout"
 msgstr "Keluar"
 
@@ -377,6 +407,342 @@ msgstr "Tindakan"
 msgid "View"
 msgstr "Lihat"
 
+#: templates/dashproject/pages/call_web_page.html:117
+#: templates/dashproject/pages/detail_subject.html:6
+#: templates/dashproject/pages/report_header.html:115
+#: templates/dashproject/pages/subject_modal.html:18
+msgid "Subject you are giving information about"
+msgstr "Orang yang anda berikan informasi"
+
+#: templates/dashproject/pages/call_web_page.html:125
+#: templates/dashproject/pages/call_web_page.html:234
+#: templates/dashproject/pages/detail_subject.html:14
+#: templates/dashproject/pages/detail_subject.html:123
+#: templates/dashproject/pages/report_header.html:124
+#: templates/dashproject/pages/report_header.html:233
+#: templates/dashproject/pages/subject_modal.html:26
+#: templates/dashproject/pages/subject_modal.html:135
+#, fuzzy
+#| msgid "Full Name"
+msgid "Middle Name"
+msgstr "Nama Lengkap"
+
+#: templates/dashproject/pages/call_web_page.html:128
+#: templates/dashproject/pages/detail_subject.html:17
+#: templates/dashproject/pages/report_edit_comment.html:133
+#: templates/dashproject/pages/report_header.html:127
+#: templates/dashproject/pages/subject_modal.html:29
+#, fuzzy
+#| msgid "First Name"
+msgid "Nick Name"
+msgstr "Nama Depan"
+
+#: templates/dashproject/pages/call_web_page.html:131
+#: templates/dashproject/pages/detail_subject.html:20
+#: templates/dashproject/pages/report_header.html:130
+#: templates/dashproject/pages/subject_modal.html:32
+#, fuzzy
+#| msgid "Description"
+msgid "Description of Subject"
+msgstr "Deskrispsi"
+
+#: templates/dashproject/pages/call_web_page.html:134
+#: templates/dashproject/pages/detail_subject.html:23
+#: templates/dashproject/pages/report_header.html:133
+#: templates/dashproject/pages/subject.html:59
+#: templates/dashproject/pages/subject_modal.html:35
+msgid "Business Name"
+msgstr "Nama Business"
+
+#: templates/dashproject/pages/call_web_page.html:137
+#: templates/dashproject/pages/detail_subject.html:26
+#: templates/dashproject/pages/report_header.html:136
+#: templates/dashproject/pages/subject_modal.html:38
+msgid "The address of the person or business"
+msgstr ""
+
+#: templates/dashproject/pages/call_web_page.html:139
+#: templates/dashproject/pages/detail_subject.html:28
+#: templates/dashproject/pages/report_header.html:138
+#: templates/dashproject/pages/subject_modal.html:40
+#, fuzzy
+#| msgid "Home Address"
+msgid "Address"
+msgstr "Alamat rumah"
+
+#: templates/dashproject/pages/call_web_page.html:142
+#: templates/dashproject/pages/detail_subject.html:31
+#: templates/dashproject/pages/report_header.html:141
+#: templates/dashproject/pages/subject_modal.html:43
+#, fuzzy
+#| msgid "Postcode"
+msgid "Post Code"
+msgstr "Kode Pos"
+
+#: templates/dashproject/pages/call_web_page.html:145
+#: templates/dashproject/pages/detail_subject.html:34
+#: templates/dashproject/pages/report_header.html:144
+#: templates/dashproject/pages/subject_modal.html:46
+msgid "Country"
+msgstr ""
+
+#: templates/dashproject/pages/call_web_page.html:151
+#: templates/dashproject/pages/detail_subject.html:40
+#: templates/dashproject/pages/report_header.html:150
+#: templates/dashproject/pages/subject_modal.html:52
+msgid "Transportation information"
+msgstr ""
+
+#: templates/dashproject/pages/call_web_page.html:153
+#: templates/dashproject/pages/detail_subject.html:42
+#: templates/dashproject/pages/report_header.html:152
+#: templates/dashproject/pages/subject_modal.html:54
+msgid "Vehicles"
+msgstr ""
+
+#: templates/dashproject/pages/call_web_page.html:156
+#: templates/dashproject/pages/detail_subject.html:45
+#: templates/dashproject/pages/report_header.html:155
+#: templates/dashproject/pages/subject_modal.html:57
+msgid "Flight and Routing"
+msgstr ""
+
+#: templates/dashproject/pages/call_web_page.html:159
+#: templates/dashproject/pages/detail_subject.html:48
+#: templates/dashproject/pages/report_header.html:158
+#: templates/dashproject/pages/subject_modal.html:60
+msgid "Ferry crossings"
+msgstr ""
+
+#: templates/dashproject/pages/call_web_page.html:162
+#: templates/dashproject/pages/detail_subject.html:51
+#: templates/dashproject/pages/report_header.html:161
+#: templates/dashproject/pages/subject_modal.html:63
+msgid "Vessel and Yachts"
+msgstr ""
+
+#: templates/dashproject/pages/call_web_page.html:165
+#: templates/dashproject/pages/detail_subject.html:54
+#: templates/dashproject/pages/report_header.html:164
+#: templates/dashproject/pages/subject_modal.html:66
+msgid "Cargo and Fast parcel"
+msgstr ""
+
+#: templates/dashproject/pages/call_web_page.html:168
+#: templates/dashproject/pages/detail_subject.html:57
+#: templates/dashproject/pages/report_header.html:167
+#: templates/dashproject/pages/subject_modal.html:69
+msgid "Other Transport and travels"
+msgstr ""
+
+#: templates/dashproject/pages/call_web_page.html:171
+#: templates/dashproject/pages/detail_subject.html:60
+#: templates/dashproject/pages/report_header.html:170
+#: templates/dashproject/pages/subject_modal.html:72
+msgid "The approximate age or date of birth and nationality of the person"
+msgstr ""
+
+#: templates/dashproject/pages/call_web_page.html:173
+#: templates/dashproject/pages/detail_subject.html:62
+#: templates/dashproject/pages/report_header.html:172
+#: templates/dashproject/pages/subject_modal.html:74
+msgid "Approximate Age"
+msgstr ""
+
+#: templates/dashproject/pages/call_web_page.html:176
+#: templates/dashproject/pages/detail_subject.html:65
+#: templates/dashproject/pages/report_header.html:175
+#: templates/dashproject/pages/subject.html:34
+#: templates/dashproject/pages/subject_modal.html:77
+msgid "Date of Birth"
+msgstr "Tahun dan tanggal Lahir"
+
+#: templates/dashproject/pages/call_web_page.html:179
+#: templates/dashproject/pages/detail_subject.html:68
+#: templates/dashproject/pages/report_edit_comment.html:141
+#: templates/dashproject/pages/report_header.html:178
+#: templates/dashproject/pages/subject.html:39
+#: templates/dashproject/pages/subject_modal.html:80
+msgid "Nationality"
+msgstr "Kewargaan negara"
+
+#: templates/dashproject/pages/call_web_page.html:182
+#: templates/dashproject/pages/detail_subject.html:71
+#: templates/dashproject/pages/report_header.html:181
+#: templates/dashproject/pages/subject_modal.html:83
+msgid "Names of others involved"
+msgstr ""
+
+#: templates/dashproject/pages/call_web_page.html:184
+#: templates/dashproject/pages/detail_subject.html:73
+#: templates/dashproject/pages/report_header.html:183
+#: templates/dashproject/pages/subject_modal.html:85
+msgid "Name of any other involved"
+msgstr ""
+
+#: templates/dashproject/pages/call_web_page.html:187
+#: templates/dashproject/pages/detail_subject.html:76
+#: templates/dashproject/pages/report_header.html:186
+#: templates/dashproject/pages/subject_modal.html:88
+msgid "Event details"
+msgstr ""
+
+#: templates/dashproject/pages/call_web_page.html:189
+#: templates/dashproject/pages/detail_subject.html:78
+#: templates/dashproject/pages/report_header.html:188
+#: templates/dashproject/pages/subject_modal.html:90
+msgid "What is taking place?"
+msgstr ""
+
+#: templates/dashproject/pages/call_web_page.html:192
+#: templates/dashproject/pages/detail_subject.html:81
+#: templates/dashproject/pages/report_header.html:191
+#: templates/dashproject/pages/subject_modal.html:93
+msgid "Where is happening?"
+msgstr ""
+
+#: templates/dashproject/pages/call_web_page.html:195
+#: templates/dashproject/pages/detail_subject.html:84
+#: templates/dashproject/pages/report_header.html:194
+#: templates/dashproject/pages/subject_modal.html:96
+msgid "How often does this happen?"
+msgstr ""
+
+#: templates/dashproject/pages/call_web_page.html:198
+msgid "How long has been going on?"
+msgstr ""
+
+#: templates/dashproject/pages/call_web_page.html:201
+#: templates/dashproject/pages/detail_subject.html:90
+#: templates/dashproject/pages/report_header.html:200
+#: templates/dashproject/pages/subject_modal.html:102
+msgid "Additional information"
+msgstr ""
+
+#: templates/dashproject/pages/call_web_page.html:203
+#: templates/dashproject/pages/detail_subject.html:92
+#: templates/dashproject/pages/subject_modal.html:104
+#, fuzzy
+#| msgid "User information has been updated"
+msgid "Other information that would be relevant"
+msgstr "Informasi pengguna telah diperbarui"
+
+#: templates/dashproject/pages/call_web_page.html:206
+#: templates/dashproject/pages/detail_subject.html:95
+#: templates/dashproject/pages/report_header.html:205
+#: templates/dashproject/pages/subject_modal.html:107
+msgid "Your connection with the person or business"
+msgstr ""
+
+#: templates/dashproject/pages/call_web_page.html:209
+#: templates/dashproject/pages/detail_subject.html:98
+#: templates/dashproject/pages/report_header.html:208
+#: templates/dashproject/pages/subject_modal.html:110
+msgid "Are you still connected to the person or business?"
+msgstr ""
+
+#: templates/dashproject/pages/call_web_page.html:212
+#: templates/dashproject/pages/detail_subject.html:101
+#: templates/dashproject/pages/report_header.html:211
+#: templates/dashproject/pages/subject_modal.html:113
+msgid "Involvement details"
+msgstr ""
+
+#: templates/dashproject/pages/call_web_page.html:214
+#: templates/dashproject/pages/detail_subject.html:103
+#: templates/dashproject/pages/report_header.html:213
+#: templates/dashproject/pages/subject_modal.html:115
+msgid "How did you obtain this information?"
+msgstr ""
+
+#: templates/dashproject/pages/call_web_page.html:217
+#: templates/dashproject/pages/detail_subject.html:106
+#: templates/dashproject/pages/report_header.html:216
+#: templates/dashproject/pages/subject_modal.html:118
+msgid "Does anyone else know this information? If so, how many?"
+msgstr ""
+
+#: templates/dashproject/pages/call_web_page.html:220
+#: templates/dashproject/pages/detail_subject.html:109
+#: templates/dashproject/pages/report_header.html:219
+#: templates/dashproject/pages/subject_modal.html:121
+msgid "How many?"
+msgstr ""
+
+#: templates/dashproject/pages/call_web_page.html:223
+#: templates/dashproject/pages/detail_subject.html:112
+#: templates/dashproject/pages/report_header.html:222
+#: templates/dashproject/pages/subject_modal.html:124
+msgid "Will it affect you if we use the information?"
+msgstr ""
+
+#: templates/dashproject/pages/call_web_page.html:226
+#: templates/dashproject/pages/detail_subject.html:115
+#: templates/dashproject/pages/report_header.html:225
+#: templates/dashproject/pages/subject_modal.html:127
+#, fuzzy
+#| msgid "Report List"
+msgid "Reporter details"
+msgstr "Daftar Laporan"
+
+#: templates/dashproject/pages/call_web_page.html:237
+#: templates/dashproject/pages/detail_subject.html:126
+#: templates/dashproject/pages/report_header.html:236
+#: templates/dashproject/pages/subject_modal.html:138
+msgid "Telephone number(s) including STD"
+msgstr ""
+
+#: templates/dashproject/pages/call_web_page.html:240
+#: templates/dashproject/pages/detail_subject.html:129
+#: templates/dashproject/pages/report_header.html:239
+#: templates/dashproject/pages/subject_modal.html:141
+#: templates/users/user-list.html:58
+msgid "Email"
+msgstr ""
+
+#: templates/dashproject/pages/call_web_page.html:243
+#: templates/dashproject/pages/detail_subject.html:132
+#: templates/dashproject/pages/report_header.html:242
+#: templates/dashproject/pages/subject_modal.html:144
+msgid "Would you like someone to call you back?"
+msgstr ""
+
+#: templates/dashproject/pages/comments.html:8
+#: templates/dashproject/pages/report_page.html:112
+msgid "Comment"
+msgstr "Komentar"
+
+#: templates/dashproject/pages/comments.html:13
+#, fuzzy
+#| msgid "Add New text"
+msgid "Add New Comment"
+msgstr "Menambahkan teks baru"
+
+#: templates/dashproject/pages/comments.html:22
+#, fuzzy
+#| msgid "Analyst Comment"
+msgid "Analyst Comments(s)"
+msgstr "Analise pengamat"
+
+#: templates/dashproject/pages/comments.html:23
+#: templates/dashproject/pages/report_page.html:66
+#: templates/dashproject/pages/text_list.html:7
+msgid "User"
+msgstr "Penguna"
+
+#: templates/dashproject/pages/comments.html:24
+#: templates/dashproject/pages/text_list.html:10
+#, fuzzy
+#| msgid "Updated at"
+msgid "Update at"
+msgstr "Di Perbarui pada"
+
+#: templates/dashproject/pages/detail_subject.html:87
+#: templates/dashproject/pages/report_header.html:197
+#: templates/dashproject/pages/subject_modal.html:99
+msgid "How long has it been going on?"
+msgstr ""
+
 #: templates/dashproject/pages/initial.html:5
 #: templates/dashproject/pages/report_edit_comment.html:83
 msgid "Form for Initialization"
@@ -421,6 +787,7 @@ msgstr "Orang"
 
 #: templates/dashproject/pages/nav_tab.html:24
 #: templates/dashproject/pages/report_edit_comment.html:39
+#: templates/dashproject/pages/text_list.html:11
 #: templates/dashproject/pages/textform.html:39
 msgid "Text"
 msgstr "Teks"
@@ -472,22 +839,11 @@ msgstr "Jenis Kelamin"
 msgid "Place of birth"
 msgstr "Tempat Lahir"
 
-#: templates/dashproject/pages/report_edit_comment.html:133
-#, fuzzy
-#| msgid "First Name"
-msgid "Nick Name"
-msgstr "Nama Depan"
-
 #: templates/dashproject/pages/report_edit_comment.html:137
 #, fuzzy
 #| msgid "Date of Birth"
 msgid "Date of birth"
 msgstr "Tahun dan tanggal Lahir"
-
-#: templates/dashproject/pages/report_edit_comment.html:141
-#: templates/dashproject/pages/subject.html:39
-msgid "Nationality"
-msgstr "Kewargaan negara"
 
 #: templates/dashproject/pages/report_edit_comment.html:145
 #: templates/dashproject/pages/subject.html:44
@@ -571,9 +927,11 @@ msgstr ""
 msgid "Reporting"
 msgstr "Laporan"
 
-#: templates/dashproject/pages/report_header.html:115
-msgid "Subject you are giving information about"
-msgstr "Orang yang anda berikan informasi"
+#: templates/dashproject/pages/report_header.html:202
+#, fuzzy
+#| msgid "User information has been updated"
+msgid "Other information would be relevant"
+msgstr "Informasi pengguna telah diperbarui"
 
 #: templates/dashproject/pages/report_page.html:21
 msgid "Reporting Lists"
@@ -595,14 +953,6 @@ msgstr "Sumber Laporan"
 msgid "Report Created"
 msgstr "Waktu Pembuatan"
 
-#: templates/dashproject/pages/report_page.html:66
-msgid "User"
-msgstr "Penguna"
-
-#: templates/dashproject/pages/report_page.html:112
-msgid "Comment"
-msgstr "Komentar"
-
 #: templates/dashproject/pages/report_page.html:129
 msgid "Request Dissemination"
 msgstr "Minta diseminasi"
@@ -610,14 +960,6 @@ msgstr "Minta diseminasi"
 #: templates/dashproject/pages/subject.html:23
 msgid "Place of Birth"
 msgstr "Tempat Lahir"
-
-#: templates/dashproject/pages/subject.html:34
-msgid "Date of Birth"
-msgstr "Tahun dan tanggal Lahir"
-
-#: templates/dashproject/pages/subject.html:59
-msgid "Business Name"
-msgstr "Nama Business"
 
 #: templates/dashproject/pages/subject.html:64
 msgid "Business Address"
@@ -635,6 +977,28 @@ msgstr "Kirim Formulir Subjek"
 #: templates/dashproject/pages/textform.html:147
 msgid "Save"
 msgstr "Simpan"
+
+#: templates/dashproject/pages/subject_modal.html:7
+msgid "Subject - Web form ID Number"
+msgstr ""
+
+#: templates/dashproject/pages/subject_modal.html:10
+#: templates/dashproject/pages/subject_modal.html:151
+#, fuzzy
+#| msgid "Closed"
+msgid "Close"
+msgstr "Ditutup"
+
+#: templates/dashproject/pages/text_list.html:8
+#: templates/dashproject/pages/textform.html:92
+msgid "Source Evaluation"
+msgstr "Sumber Evaluasi"
+
+#: templates/dashproject/pages/text_list.html:9
+#, fuzzy
+#| msgid "Information other"
+msgid "Information Evaluation"
+msgstr "Informasi lainnya"
 
 #: templates/dashproject/pages/textform.html:50
 msgid "1 - Confirmed by other Source"
@@ -659,10 +1023,6 @@ msgstr "5 - Tidak Mungkin Tidak Dikonfirmasi"
 #: templates/dashproject/pages/textform.html:85
 msgid "6 - Truth Cannot be Judge"
 msgstr "6 - Kebenaran Tidak Bisa Jadi Hakim"
-
-#: templates/dashproject/pages/textform.html:92
-msgid "Source Evaluation"
-msgstr "Sumber Evaluasi"
 
 #: templates/dashproject/pages/textform.html:98
 msgid "A - Always Reliable"
@@ -734,19 +1094,35 @@ msgstr "Konfirmasi kata sandi baru"
 msgid " Update Password"
 msgstr "Perbaruhi Password"
 
-#: templates/users/disable_mfa.html:9
+#: templates/users/delete-user.html:9
+msgid "Disable and Enable user"
+msgstr ""
+
+#: templates/users/delete-user.html:17
+#, fuzzy
+#| msgid "Disable MFA"
+msgid " Disable User"
+msgstr "Nonaktifkan MFA"
+
+#: templates/users/delete-user.html:21
+#, fuzzy
+#| msgid "Enable MFA"
+msgid "Enable User"
+msgstr "Aktifasi MFA"
+
+#: templates/users/disable_mfa.html:10
 msgid "Disable Multi-Factor Authentication"
 msgstr "Nonaktifkan Otentikasi Multi-Faktor"
 
-#: templates/users/disable_mfa.html:13
+#: templates/users/disable_mfa.html:14
 msgid "MFA is currently enabled. Are you sure you want to disable it?"
 msgstr "MFA saat ini diaktifkan. Apakah Anda yakin ingin menonaktifkannya?"
 
-#: templates/users/disable_mfa.html:16 templates/users/user-list.html:88
+#: templates/users/disable_mfa.html:17 templates/users/user-list.html:96
 msgid "Disable MFA"
 msgstr "Nonaktifkan MFA"
 
-#: templates/users/disable_mfa.html:19
+#: templates/users/disable_mfa.html:20
 msgid "MFA is already disabled for this user."
 msgstr "MFA sudah dinonaktifkan untuk pengguna ini."
 
@@ -757,13 +1133,15 @@ msgstr "Otentikasi Multi-Faktor"
 #: templates/users/enable_mfa.html:16
 msgid ""
 "Scan the QR code below with your Google Authenticator app to enable MFA:"
-msgstr "Pindai kode QR di bawah dengan aplikasi Google Authenticator Anda untuk mengaktifkan MFA:"
+msgstr ""
+"Pindai kode QR di bawah dengan aplikasi Google Authenticator Anda untuk "
+"mengaktifkan MFA:"
 
 #: templates/users/enable_mfa.html:22
 msgid "Enter the 6-digit code from your app:"
 msgstr "Masukkan kode 6 digit dari aplikasi Anda:"
 
-#: templates/users/enable_mfa.html:26 templates/users/user-list.html:91
+#: templates/users/enable_mfa.html:26 templates/users/user-list.html:99
 msgid "Enable MFA"
 msgstr "Aktifasi MFA"
 
@@ -823,21 +1201,17 @@ msgstr "Masukan kata sandi konfirmasi"
 msgid "Update"
 msgstr "Perbaruhi"
 
+#: templates/users/user-list.html:11 templates/users/user-list.html:18
+msgid "User List"
+msgstr "Susunan Pengguna"
+
 #: templates/users/user-list.html:16
 msgid "Contacts"
 msgstr "Kontak"
 
-#: templates/users/user-list.html:18
-msgid "User List"
-msgstr "Susunan Pengguna"
-
 #: templates/users/user-list.html:32
 msgid "Add New Account"
 msgstr "Menambahkan pengguna baru"
-
-#: templates/users/user-list.html:58
-msgid "Email"
-msgstr ""
 
 #: templates/users/user-list.html:59
 msgid "Last Login"
@@ -847,6 +1221,18 @@ msgstr "Login terakhir"
 msgid "Haven't tried logging in yet"
 msgstr "Belum pernah login"
 
-#: templates/users/user-list.html:95
+#: templates/users/user-list.html:87
+#, fuzzy
+#| msgid "Disable MFA"
+msgid "Disable user"
+msgstr "Nonaktifkan MFA"
+
+#: templates/users/user-list.html:88
+#, fuzzy
+#| msgid "Enable MFA"
+msgid "Enable user"
+msgstr "Aktifasi MFA"
+
+#: templates/users/user-list.html:104
 msgid "MFA Activation"
 msgstr "Aktivasi MFA"

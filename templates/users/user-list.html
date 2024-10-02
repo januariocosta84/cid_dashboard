@@ -8,7 +8,7 @@
     <div class="row content-home mt-1 mb-1">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0">User List</h4>
+                <h4 class="mb-0">{% trans 'User List' %}</h4>
 
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
@@ -82,7 +82,15 @@
                                         <a href="{% url 'change' user.id %}" class="btn btn-info">Edit</a>
                                     </td>
                                     <td>
+                                        <a href="{% url 'delete-user' user.id %}"
+                                            class="{%if user.is_active%}btn btn-danger{%else%} btn btn-info {%endif%}">
+                                            {%if user.is_active %}{% trans 'Disable user' %} {% else %}
+                                            {% trans 'Enable user'%} {%endif%}</a>
+                                    </td>
+
+                                    <td>
                                         <!-- Check MFA status and display the corresponding button -->
+                                        {%if user.is_active %}
                                         {% if user.mfa.is_mfa_enabled %}
                                         <a href="{% url 'disable-mfa' user.id %}" class="btn btn-danger">
                                             {% trans 'Disable MFA' %}</a>
@@ -90,6 +98,7 @@
                                         <a href="{% url 'enable-mfa' user.id %}" class="btn btn-primary">
                                             {% trans 'Enable MFA' %}</a>
                                         {% endif %}
+                                        {%endif %}
                                         <!-- <a href="{%url 'change' user.id%}" class="btn btn-info">{% trans 'Edit' %}</a>
                                         <a href="{%url 'enable-mfa' user.id%}" class="btn btn-primary">
                                             {% trans 'MFA Activation'%}

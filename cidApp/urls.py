@@ -12,13 +12,13 @@ from .user_management import(
     RegisterUsers,
     UserListsView,
     EditUserView,
+    DeleteUserView,
 )
 
 from .views import(
     HotLineAndWebView,
     DetailSubject,
       CreateReportWebView,
-    #ReportWizardView,
       ViewAllReport,
       CreateReportWebCallView,
       ReportDetail,
@@ -38,6 +38,7 @@ urlpatterns = [
     path('<int:user_id>/enable-mfa/', EnableMFAView.as_view(), name='enable-mfa'),
     path('<int:user_id>/disable-mfa/', DisableMFAView.as_view(), name='disable-mfa'),
     path('mfa-verify/', MFAVerificationView.as_view(), name='verify-mfa'),
+    
         #Hotline and Subjectdetail webview
     path('', HotLineAndWebView.as_view(), name='records'),
     
@@ -51,7 +52,7 @@ urlpatterns = [
     path('<int:pk>/edit-user/', EditUserView.as_view(), name='change'),
     path('users/user-list/', UserListsView.as_view(), name='user-list'),
     path('new/add-account/', RegisterUsers.as_view(), name='user-register'),
-   
+    path('<int:pk>/delete-user/',DeleteUserView.as_view(), name='delete-user' ),
     
     
         #CRUD URL Agency
