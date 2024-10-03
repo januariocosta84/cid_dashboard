@@ -5,11 +5,9 @@
   <!-- start page title -->
   <div class="row content-home mt-1 mb-1">
     <div class="col-12">
-      <div
-        class="page-title-box d-flex align-items-center justify-content-between"
-      >
+      <div class="page-title-box d-flex align-items-center justify-content-between">
         <h4 class="mb-0">
-         {% trans 'Report List'%}
+          {% trans 'Report List'%}
           <span class="badge badge-primary">{{ report_count }}</span>
         </h4>
 
@@ -31,9 +29,8 @@
           <div class="row mb-2">
             <div class="col-md-6">
               <div class="mb-3">
-                <a href="{%url 'new-report'%}" class="btn btn-success pl-1"
-                  ><i class="fa fa-file m-1" aria-hidden="true"></i>{% trans 'Add New Report'%}</a
-                >
+                <a href="{%url 'new-report'%}" class="btn btn-success pl-1"><i class="fa fa-file m-1"
+                    aria-hidden="true"></i>{% trans 'Add New Report'%}</a>
               </div>
             </div>
 
@@ -41,11 +38,7 @@
               <div class="form-inline float-md-right mb-3">
                 <div class="search-box ml-2">
                   <div class="position-relative">
-                    <input
-                      type="text"
-                      class="form-control rounded bg-light border-0"
-                      placeholder="Search..."
-                    />
+                    <input type="text" class="form-control rounded bg-light border-0" placeholder="Search..." />
                     <i class="mdi mdi-magnify search-icon"></i>
                   </div>
                 </div>
@@ -54,7 +47,7 @@
           </div>
           <!-- end row -->
           <div class="table-responsive mb-4">
-            <table class="table table-centered table-nowrap table-check mb-0"  id="example1">
+            <table class="table table-centered table-nowrap table-check mb-0" id="example1">
               <thead>
                 <tr>
                   <th scope="col">ID</th>
@@ -64,11 +57,11 @@
                   <th scope="col">{% trans 'Status'%}</th>
                   <th scope="col">{% trans 'User'%}</th>
 
-                  <th scope="col">{% trans  'Edit'%}</th>
+                  <th scope="col">{% trans 'Edit'%}</th>
                 </tr>
               </thead>
               <tbody>
-                
+
                 {%for report in reports %}
 
                 <tr>
@@ -80,70 +73,46 @@
                   <td>{{report.user.first_name}} {{report.user.last_name}}</td>
                   <td>
                     <div class="dropdown">
-                      <button
-                        type="button"
-                        class="btn btn-transparent dropdown-toggle text-uppercase"
-                        id="dropdownMenuButton"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                      >
-                        {% trans  'Actions'%}
+                      <button type="button" class="btn btn-transparent dropdown-toggle text-uppercase"
+                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {% trans 'Actions'%}
                       </button>
-                      <div
-                        class="dropdown-menu"
-                        aria-labelledby="dropdownMenuButton"
-                      >
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         {% if report.status == "Incomplete" %}
 
                         <a href="{%url 'edit_report' report.id%}" class="btn">
-                          {% trans  'Edit'%}</a
-                        >
+                          {% trans 'Edit'%}</a>
 
                         {% elif report.status == "Completed" %}
                         <!-- Always show these buttons -->
-                        <button
-                          type="button"
-                          class="dropdown-item text-uppercase comment-btn"
-                          data-id="{{ report.id }}"
-                          data-url="{%url 'comment_report' report.id%}?tab=comments"
-                        >
+                        <button type="button" class="dropdown-item text-uppercase comment-btn" data-id="{{ report.id }}"
+                          data-url="{%url 'comment_report' report.id%}?tab=comments">
                           {% trans 'Comment'%}
                         </button>
-                        <button
-                          type="button"
-                          class="dropdown-item text-uppercase comment-btn"
-                          data-id="{{ report.id }}"
-                          data-url="{%url 'review_report' report.id%}?tab=review"
-                        >
+                        <button type="button" class="dropdown-item text-uppercase comment-btn" data-id="{{ report.id }}"
+                          data-url="{%url 'review_report' report.id%}?tab=review">
                           {% trans 'Review'%}
                         </button>
-                        
-                         {%else%}
-                         <button
-                          type="button"
-                          class="dropdown-item text-uppercase archived-btn"
-                          data-id="{{ report.id }}"
-                        >
-                         {% trans  'Request Dissemination'%}
+
+                        {%else%}
+                        <button type="button" class="dropdown-item text-uppercase archived-btn"
+                          data-id="{{ report.id }}">
+                          {% trans 'Request Dissemination'%}
                         </button>
-                        <button
-                          type="button"
-                          class="dropdown-item text-uppercase disseminate-btn"
-                          data-id="{{ report.id }}"
-                        >
+                        <button type="button" class="dropdown-item text-uppercase disseminate-btn"
+                          data-id="{{ report.id }}">
                           {% trans 'Archived' %}
-                        </button >
+                        </button>
                         {% endif %}
-                       
+
                       </div>
                     </div>
                   </td>
                 </tr>
-              
-               
+
+
                 {%endfor%}
-                
+
               </tbody>
             </table>
           </div>
@@ -180,7 +149,7 @@
     });
   });
 
-   $(function () {
+  $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]

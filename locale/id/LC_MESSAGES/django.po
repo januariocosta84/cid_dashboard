@@ -223,10 +223,8 @@ msgid "User information has been updated"
 msgstr "Informasi pengguna telah diperbarui"
 
 #: cidApp/user_management.py:158
-#, fuzzy
-#| msgid "Hei: {self.request.user.first_name} You are successfully logged in"
 msgid "You are successfully logged in"
-msgstr "Hei: {self.request.user.first_name} Anda berhasil masuk"
+msgstr "Anda berhasil masuk"
 
 #: cidApp/user_management.py:162
 msgid ""
@@ -241,8 +239,6 @@ msgid "Logged out successfully! bye bye"
 msgstr "Berhasil keluar! selamat tinggal"
 
 #: cidApp/user_management.py:234
-#, fuzzy
-#| msgid "User information has been updated"
 msgid "user has been disabled"
 msgstr "Informasi pengguna telah diperbarui"
 
@@ -263,10 +259,8 @@ msgid "New Initial form has been added"
 msgstr "Formulir awal telah ditambahkan"
 
 #: cidApp/views.py:190
-#, fuzzy
-#| msgid "New Subject has been added successfully to Report ID {report_id}"
 msgid "New Subject has been added successfully to report list"
-msgstr "Subjek baru berhasil ditambahkan ke Laporan ID {report_id}"
+msgstr "Subjek baru berhasil ditambahkan ke Laporan dengan sukses"
 
 #: cidApp/views.py:254
 msgid "No report found"
@@ -432,8 +426,6 @@ msgstr "Nama Lengkap"
 #: templates/dashproject/pages/report_edit_comment.html:133
 #: templates/dashproject/pages/report_header.html:127
 #: templates/dashproject/pages/subject_modal.html:29
-#, fuzzy
-#| msgid "First Name"
 msgid "Nick Name"
 msgstr "Nama Depan"
 
@@ -441,10 +433,8 @@ msgstr "Nama Depan"
 #: templates/dashproject/pages/detail_subject.html:20
 #: templates/dashproject/pages/report_header.html:130
 #: templates/dashproject/pages/subject_modal.html:32
-#, fuzzy
-#| msgid "Description"
 msgid "Description of Subject"
-msgstr "Deskrispsi"
+msgstr "Deskrispsi tentang orang"
 
 #: templates/dashproject/pages/call_web_page.html:134
 #: templates/dashproject/pages/detail_subject.html:23
@@ -465,8 +455,6 @@ msgstr ""
 #: templates/dashproject/pages/detail_subject.html:28
 #: templates/dashproject/pages/report_header.html:138
 #: templates/dashproject/pages/subject_modal.html:40
-#, fuzzy
-#| msgid "Home Address"
 msgid "Address"
 msgstr "Alamat rumah"
 
@@ -474,8 +462,6 @@ msgstr "Alamat rumah"
 #: templates/dashproject/pages/detail_subject.html:31
 #: templates/dashproject/pages/report_header.html:141
 #: templates/dashproject/pages/subject_modal.html:43
-#, fuzzy
-#| msgid "Postcode"
 msgid "Post Code"
 msgstr "Kode Pos"
 
@@ -713,14 +699,10 @@ msgid "Comment"
 msgstr "Komentar"
 
 #: templates/dashproject/pages/comments.html:13
-#, fuzzy
-#| msgid "Add New text"
 msgid "Add New Comment"
 msgstr "Menambahkan teks baru"
 
 #: templates/dashproject/pages/comments.html:22
-#, fuzzy
-#| msgid "Analyst Comment"
 msgid "Analyst Comments(s)"
 msgstr "Analise pengamat"
 
@@ -732,8 +714,6 @@ msgstr "Penguna"
 
 #: templates/dashproject/pages/comments.html:24
 #: templates/dashproject/pages/text_list.html:10
-#, fuzzy
-#| msgid "Updated at"
 msgid "Update at"
 msgstr "Di Perbarui pada"
 
@@ -818,8 +798,6 @@ msgid "Dissemination"
 msgstr "Diseminasi"
 
 #: templates/dashproject/pages/report_edit_comment.html:97
-#, fuzzy
-#| msgid "Submit to next proccess"
 msgid "Submit to Continue"
 msgstr "Kirim untuk ke halaman berikutnya"
 
@@ -834,14 +812,10 @@ msgid "Gender"
 msgstr "Jenis Kelamin"
 
 #: templates/dashproject/pages/report_edit_comment.html:128
-#, fuzzy
-#| msgid "Place of Birth"
 msgid "Place of birth"
 msgstr "Tempat Lahir"
 
 #: templates/dashproject/pages/report_edit_comment.html:137
-#, fuzzy
-#| msgid "Date of Birth"
 msgid "Date of birth"
 msgstr "Tahun dan tanggal Lahir"
 
@@ -861,20 +835,14 @@ msgid "Home Address"
 msgstr "Alamat rumah"
 
 #: templates/dashproject/pages/report_edit_comment.html:158
-#, fuzzy
-#| msgid "Business Name"
 msgid "Bussiness Name"
 msgstr "Nama Business"
 
 #: templates/dashproject/pages/report_edit_comment.html:162
-#, fuzzy
-#| msgid "Business Address"
 msgid "Bussiness Address"
 msgstr "Alamat Business"
 
 #: templates/dashproject/pages/report_edit_comment.html:166
-#, fuzzy
-#| msgid "BIN or TIN"
 msgid "Bin or TIN"
 msgstr "BIND dan TIn"
 
@@ -903,14 +871,10 @@ msgid "Back to previous"
 msgstr ""
 
 #: templates/dashproject/pages/report_edit_comment.html:192
-#, fuzzy
-#| msgid "Submit Subject"
 msgid "Submit Subject Form"
 msgstr "Kirim Formulir Subjek"
 
 #: templates/dashproject/pages/report_edit_comment.html:207
-#, fuzzy
-#| msgid "Text"
 msgid "Tex"
 msgstr "Teks"
 
@@ -928,8 +892,6 @@ msgid "Reporting"
 msgstr "Laporan"
 
 #: templates/dashproject/pages/report_header.html:202
-#, fuzzy
-#| msgid "User information has been updated"
 msgid "Other information would be relevant"
 msgstr "Informasi pengguna telah diperbarui"
 
@@ -984,8 +946,6 @@ msgstr ""
 
 #: templates/dashproject/pages/subject_modal.html:10
 #: templates/dashproject/pages/subject_modal.html:151
-#, fuzzy
-#| msgid "Closed"
 msgid "Close"
 msgstr "Ditutup"
 
@@ -995,8 +955,6 @@ msgid "Source Evaluation"
 msgstr "Sumber Evaluasi"
 
 #: templates/dashproject/pages/text_list.html:9
-#, fuzzy
-#| msgid "Information other"
 msgid "Information Evaluation"
 msgstr "Informasi lainnya"
 
@@ -1084,31 +1042,27 @@ msgstr "Kata sandi Lama"
 #: templates/users/change_password.html:58
 #: templates/users/reset_password.html:49
 msgid "New Password"
-msgstr "Kata sandi baru"
+msgstr "Kata Sandi Baru"
 
 #: templates/users/change_password.html:77
 msgid "New Password Confirmation"
-msgstr "Konfirmasi kata sandi baru"
+msgstr "Konfirmasi Kata Sandi Baru"
 
 #: templates/users/change_password.html:99
 msgid " Update Password"
-msgstr "Perbaruhi Password"
+msgstr "Perbarui Kata Sandi"
 
 #: templates/users/delete-user.html:9
 msgid "Disable and Enable user"
-msgstr ""
+msgstr "Nonaktifkan dan Aktifkan Pengguna"
 
 #: templates/users/delete-user.html:17
-#, fuzzy
-#| msgid "Disable MFA"
 msgid " Disable User"
-msgstr "Nonaktifkan MFA"
+msgstr "Nonaktifkan Pengguna"
 
 #: templates/users/delete-user.html:21
-#, fuzzy
-#| msgid "Enable MFA"
 msgid "Enable User"
-msgstr "Aktifasi MFA"
+msgstr "Aktifkan Pengguna"
 
 #: templates/users/disable_mfa.html:10
 msgid "Disable Multi-Factor Authentication"
@@ -1131,11 +1085,8 @@ msgid "Multi-Factor Authentication"
 msgstr "Otentikasi Multi-Faktor"
 
 #: templates/users/enable_mfa.html:16
-msgid ""
-"Scan the QR code below with your Google Authenticator app to enable MFA:"
-msgstr ""
-"Pindai kode QR di bawah dengan aplikasi Google Authenticator Anda untuk "
-"mengaktifkan MFA:"
+msgid "Scan the QR code below with your Google Authenticator app to enable MFA:"
+msgstr "Pindai kode QR di bawah ini dengan aplikasi Google Authenticator Anda untuk mengaktifkan MFA:"
 
 #: templates/users/enable_mfa.html:22
 msgid "Enter the 6-digit code from your app:"
@@ -1143,11 +1094,11 @@ msgstr "Masukkan kode 6 digit dari aplikasi Anda:"
 
 #: templates/users/enable_mfa.html:26 templates/users/user-list.html:99
 msgid "Enable MFA"
-msgstr "Aktifasi MFA"
+msgstr "Aktifkan MFA"
 
 #: templates/users/mfa_verify.html:9
 msgid "MFA Verification"
-msgstr "Identifikasi MFA"
+msgstr "Verifikasi MFA"
 
 #: templates/users/mfa_verify.html:12
 msgid "Please enter the 6-digit MFA code from your authenticator app:"
@@ -1157,53 +1108,54 @@ msgstr "Silakan masukkan kode MFA 6 digit dari aplikasi autentikator Anda:"
 msgid "Verify MFA"
 msgstr "Verifikasi MFA"
 
+
 #: templates/users/register.html:14
 msgid "Create New Account"
-msgstr "Membuat Pengguna baru"
+msgstr "Buat Akun Baru"
 
 #: templates/users/register.html:62
 msgid "Permission"
-msgstr ""
+msgstr "Izin"
 
 #: templates/users/register.html:80
 msgid "Password"
-msgstr "Kata sandi"
+msgstr "Kata Sandi"
 
 #: templates/users/register.html:86
 msgid "Confirm Password"
-msgstr "Konfirmasi kata sandi"
+msgstr "Konfirmasi Kata Sandi"
 
 #: templates/users/register.html:94
 msgid "Create"
-msgstr "Membuat"
+msgstr "Buat"
 
 #: templates/users/reset_password.html:11
 msgid "Update User"
-msgstr "Perbaruhi Pengguna"
+msgstr "Perbarui Pengguna"
 
 #: templates/users/reset_password.html:43
 msgid "Email Address"
-msgstr "Alamat email"
+msgstr "Alamat Email"
 
 #: templates/users/reset_password.html:51
 msgid "Enter New password"
-msgstr "Masukan kata sandi baru"
+msgstr "Masukkan Kata Sandi Baru"
 
 #: templates/users/reset_password.html:58
 msgid "New Password Confirm"
-msgstr "Konfirmasi kata sandi"
+msgstr "Konfirmasi Kata Sandi Baru"
 
 #: templates/users/reset_password.html:60
 msgid "Enter New Password Confirm"
-msgstr "Masukan kata sandi konfirmasi"
+msgstr "Masukkan Konfirmasi Kata Sandi Baru"
 
 #: templates/users/reset_password.html:69
 msgid "Update"
-msgstr "Perbaruhi"
+msgstr "Perbarui"
 
 #: templates/users/user-list.html:11 templates/users/user-list.html:18
 msgid "User List"
-msgstr "Susunan Pengguna"
+msgstr "Daftar Pengguna"
 
 #: templates/users/user-list.html:16
 msgid "Contacts"
@@ -1211,28 +1163,25 @@ msgstr "Kontak"
 
 #: templates/users/user-list.html:32
 msgid "Add New Account"
-msgstr "Menambahkan pengguna baru"
+msgstr "Tambah Akun Baru"
 
 #: templates/users/user-list.html:59
 msgid "Last Login"
-msgstr "Login terakhir"
+msgstr "Login Terakhir"
 
 #: templates/users/user-list.html:76
 msgid "Haven't tried logging in yet"
-msgstr "Belum pernah login"
+msgstr "Belum Pernah Login"
 
 #: templates/users/user-list.html:87
-#, fuzzy
-#| msgid "Disable MFA"
 msgid "Disable user"
-msgstr "Nonaktifkan MFA"
+msgstr "Nonaktifkan Pengguna"
 
 #: templates/users/user-list.html:88
-#, fuzzy
-#| msgid "Enable MFA"
 msgid "Enable user"
-msgstr "Aktifasi MFA"
+msgstr "Aktifkan Pengguna"
 
 #: templates/users/user-list.html:104
 msgid "MFA Activation"
 msgstr "Aktivasi MFA"
+

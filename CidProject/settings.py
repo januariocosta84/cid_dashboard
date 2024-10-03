@@ -156,12 +156,8 @@ django.conf.locale.LANG_INFO = LANG_INFO
 
 # Languages using BiDi (right-to-left) layout
 LANGUAGES_BIDI = global_settings.LANGUAGES_BIDI + ["tl"]
-
-
 LANGUAGE_CODE = 'tl'
-
-TIME_ZONE = 'UTC'
-
+TIME_ZONE = 'Asia/Seoul'
 USE_I18N = True
 
 USE_TZ = False
