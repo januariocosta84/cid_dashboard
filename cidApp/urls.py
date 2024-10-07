@@ -83,7 +83,8 @@ urlpatterns = [
     # Reset password in case users forgot the password
     
     path("password_reset/",auth_views.PasswordResetView.as_view(
-        template_name ='users/reset_email_password.html'
+        template_name ='users/reset_email_password.html',
+        email_template_name ='users/password_reset_email.html',
         ), name='reset_password'),
     path(
         "password_reset/done/",
@@ -105,39 +106,3 @@ urlpatterns = [
     ),
     
 ]
-
-# #from .views import insert_subject
-# urlpatterns = [
-#     path('', RecordView.as_view(), name='records' ),
-#     ##CRUD user Group
-#     path('groups/', group_list, name='group-list'),
-#     path('create-group/', create_group,name='create-group'),
-#     path('<int:pk>/update-group/', update_group, name = 'update-group'),
-#     path('user-group/', user_group_create, name='user-group'),
-    
-#     ##CRUD Position
-#     path('postion/', position_list, name='position-list'),
-    
-#     #CRUD URL Agency
-#     path('agency-create/',agency_create, name= 'create-agency' ),
-#     path('agency-list/',agency_list, name ='agency-list'),
-#     path('<int:pk>/agency-update/', agency_update, name ='agency-update'),
-#     path('<int:pk>/agency-delete/', agency_delete, name ='agency-delete'),
-    
-#     #TWO Factor
-#     path('two_factor/', TwoStepVerification.as_view(), name='two_factor'),
-    
-#     path('record/', IndexView.as_view(), name='home'),
-#     path('new/add-account/', RegisterUsers.as_view(), name='register'),
-#     path('users/user-list/', UserListsView.as_view(), name='user-list'),
-#     path('<int:id>/change-password/', ChangePasswordView.as_view(), name='change'),
-#     path('user/<int:pk>/update/', ResetPasswordView.as_view(), name='user_reset_password'),
-   
-#     path('logout/', Logout_View.as_view(), name='logout'),
-#     path('search/', SearchForm.as_view(), name='search'),
-#     path('record_details/<int:pk>/',DetailRecordResource.as_view(), name='record_detail' ),
-#     path('subject_details/<int:pk>/', DetailSubject.as_view(), name='detail_subject'),
-#     #path('test', insert_subject, name='teste')
-#    # path('create-record/', CreateRecords.as_view(), name='create_record_form'),
-   
-# ]
