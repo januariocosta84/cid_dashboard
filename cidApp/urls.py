@@ -1,5 +1,8 @@
 from django.urls import path
 from django.conf.urls.i18n import set_language
+
+#Built in library for auth views
+from django.contrib.auth import views as auth_views
 from .crud import(
     AgencyListView,
     agency_create,
@@ -74,6 +77,32 @@ urlpatterns = [
     path('report-comment/<int:report_id>/', EditReportComment.as_view(), name='comment_report'),
     
     path('report-review/<int:report_id>/',EditReportReview.as_view(), name='review_report'),
+    
+    
+    
+    # Reset password in case users forgot the password
+    
+    path("password_reset/",auth_views.PasswordResetView.as_view(
+        template_name ='users/reset_email_password.html'
+        ), name='reset_password'),
+    path(
+        "password_reset/done/",
+        auth_views.PasswordResetDoneView.as_view(
+            template_name = 'users/password_reset_done.html'
+            ), name='password_reset_done'
+    ),
+    path(
+        "reset/<uidb64>/<token>/",
+         auth_views.PasswordResetConfirmView.as_view(
+             template_name ='users/password_reset_confirm.html'
+             ), name='password_reset_confirm'
+    ),
+    path(
+        "reset/done/",
+        auth_views.PasswordResetCompleteView.as_view(
+            template_name ='users/password_reset_complete.html'
+            ), name='password_reset_complete'
+    ),
     
 ]
 

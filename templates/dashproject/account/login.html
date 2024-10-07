@@ -82,7 +82,11 @@
               </div>
             </div>
           </form>
+
           {% include 'dashproject/base/messaging.html' %}
+        </div>
+        <div class="card-footer">
+          <a href="{% url 'reset_password' %}">{% trans 'Forgot Password?' %}</a>
         </div>
       </div>
     </div>

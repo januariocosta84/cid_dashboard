@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cidApp',
+     'widget_tweaks',
     #'adminlte3',
     #'django_otp',
     #'django_otp.plugins.otp_static',
@@ -235,3 +236,14 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # Session timeout (optional)
 SESSION_COOKIE_AGE = 3600  # Session will expire in 1 hour (3600 seconds)
+
+
+# Email settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Gmail SMTP server
+EMAIL_PORT = 587  # Port for TLS
+EMAIL_USE_TLS = True  # Enable TLS (transport layer security)
+EMAIL_HOST_USER = 'jnrdacostaibitl@gmail.com'  # Your email address
+EMAIL_HOST_PASSWORD = 'cgrc usqv svbh yjzv'  # Your email password or app-specific password
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER  # Default sender email
