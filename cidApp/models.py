@@ -36,6 +36,13 @@ class Hotline(models.Model):
     def __str__(self) -> str:
         return self.type
     
+    def update_from_file(self, origdate, wav_filepath, wav_filename):
+        self.origin_date = origdate
+        self.file_path = wav_filepath
+        self.file = wav_filename
+        self.modify_at = timezone.now()
+        self.save()
+        
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         CallAndWebForm.objects.create(

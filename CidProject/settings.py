@@ -9,7 +9,7 @@ import django.conf.locale
 pymysql.install_as_MySQLdb()
 
 env = environ.Env(
-    DEBUG=(bool, False)
+    DEBUG=(bool, True)
 )
 
 BASE_DIR = Path(__file__).resolve().parent.parent
