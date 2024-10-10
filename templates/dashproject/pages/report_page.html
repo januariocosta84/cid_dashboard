@@ -29,8 +29,12 @@
           <div class="row mb-2">
             <div class="col-md-6">
               <div class="mb-3">
-                <a href="{%url 'new-report'%}" class="btn btn-success pl-1"><i class="fa fa-file m-1"
-                    aria-hidden="true"></i>{% trans 'Add New Report'%}</a>
+                {% if 'administrator' in user_group or 'staff' in user_group %}
+                <a href="{% url 'new-report' %}" class="btn btn-success pl-1">
+                  <i class="fa fa-file m-1" aria-hidden="true"></i>{% trans 'Add New Report' %}
+                </a>
+                {% endif %}
+
               </div>
             </div>
 

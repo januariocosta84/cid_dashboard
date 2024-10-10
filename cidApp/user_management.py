@@ -83,7 +83,7 @@ class RegisterUsers(LoginRequiredMixin, View):
     
 """User EDIT"""
 class EditUserView(GroupRequiredMixin, View):
-    group_names = ['administrator']  
+    group_names = ['administrator', 'staff']  
     def get(self, request, pk, *args, **kwargs):
         user = get_object_or_404(User, pk=pk)
         print("user id",user.id)

@@ -35,7 +35,7 @@ class SyncSubjectsView(View):
         
 class HotLineAndWebView(LoginRequiredMixin,GroupRequiredMixin,TemplateView):
     template_name = 'dashproject/pages/call_web_page.html'
-    group_names =['administrator']
+    group_names =['administrator', 'oga','staff']
     login_url ='login'
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context =super().get_context_data(**kwargs)
@@ -48,7 +48,7 @@ class HotLineAndWebView(LoginRequiredMixin,GroupRequiredMixin,TemplateView):
             print("type",i.type)
         user_group = self.request.user.groups.values_list('name', flat=True)
         print(user_group)
-        context['user_group'] = list(user_group)
+        context['user_group'] = list(user_group)    
         return context 
     
 class ViewAllReport(LoginRequiredMixin,TemplateView):
@@ -56,7 +56,7 @@ class ViewAllReport(LoginRequiredMixin,TemplateView):
     subject_form =  SubjectForm
     report_form = ReportForm
     login_url ='login'
-    group_names =['administrator','staff']
+    group_names =['administrator','staff', 'oga']
     paginate_by =3   # Number of reports per page
 
     def get_context_data(self, **kwargs):
@@ -88,7 +88,7 @@ class ViewAllReport(LoginRequiredMixin,TemplateView):
 
 class CreateReportWebCallView(LoginRequiredMixin, GroupRequiredMixin, TemplateView):
     template_name = 'dashproject/pages/add_report.html'
-    group_names = ['administrator']
+    group_names = ['administrator', 'staff']
     login_url = 'login'
     initial_form = InitialForm
     subject_form = SubjectForm
@@ -224,7 +224,7 @@ class CreateReportWebCallView(LoginRequiredMixin, GroupRequiredMixin, TemplateVi
     
 class CreateReportWebView(LoginRequiredMixin, GroupRequiredMixin, TemplateView):
     template_name = 'dashproject/pages/add_report.html'
-    group_names = ['administrator']
+    group_names = ['administrator', 'staff']
     login_url = 'login'
     initial_form = InitialForm
     subject_form = SubjectForm

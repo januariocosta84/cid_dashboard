@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-03 09:54+0900\n"
+"POT-Creation-Date: 2024-10-07 17:24+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: CidProject/settings.py:172
+#: CidProject/settings.py:151
 msgid "Tetum"
 msgstr ""
 
@@ -161,7 +161,7 @@ msgstr "Taka"
 msgid "Disseminate"
 msgstr "Diseminasaun"
 
-#: cidApp/models.py:278 templates/dashproject/pages/report_page.html:136
+#: cidApp/models.py:278 templates/dashproject/pages/report_page.html:105
 msgid "Archived"
 msgstr "Arkivadu"
 
@@ -212,10 +212,6 @@ msgstr "Improbabel seidauk konfirma"
 #: cidApp/models.py:322
 msgid "Truth Cannot be Judge"
 msgstr "Los duni katak labele halo julgamentu"
-
-#: cidApp/urls.py:39
-msgid "<int:user_id>/enable-mfa/"
-msgstr "<int:user_id>/ativa-mfa/"
 
 #: cidApp/user_management.py:74
 #, python-brace-format
@@ -281,7 +277,7 @@ msgid "Invalid MFA token, please try again."
 msgstr "MFA token Invalido, halo favor koko fali"
 
 #: templates/agency/agency_list.html:15 templates/agency/agency_list.html:22
-#: templates/dashproject/base/sidebar.html:158
+#: templates/dashproject/base/sidebar.html:147
 msgid "Agency List"
 msgstr "Lista Ajensia"
 
@@ -303,8 +299,8 @@ msgid "Date Created"
 msgstr "Data Kriasaun"
 
 #: templates/agency/agency_list.html:84
-#: templates/dashproject/pages/report_page.html:68
-#: templates/dashproject/pages/report_page.html:101
+#: templates/dashproject/pages/report_page.html:61
+#: templates/dashproject/pages/report_page.html:85
 #: templates/position/position_list.html:66
 #: templates/position/position_list.html:87 templates/users/user-list.html:62
 #: templates/users/user-list.html:102
@@ -314,6 +310,12 @@ msgstr "Editar"
 #: templates/agency/agency_list.html:85
 msgid "Delete"
 msgstr "Hamos"
+
+#: templates/dashproject/account/login.html:89
+#, fuzzy
+#| msgid "Confirm Password"
+msgid "Forgot Password?"
+msgstr "Konfirma Password"
 
 #: templates/dashproject/base/layout.html:70
 msgid "Ready to leave?"
@@ -348,29 +350,29 @@ msgstr "Atividade Log"
 msgid "Logout"
 msgstr "Sai"
 
-#: templates/dashproject/base/sidebar.html:84
+#: templates/dashproject/base/sidebar.html:73
 msgid "Call & Forms"
 msgstr "Chamadas & Formulariu"
 
-#: templates/dashproject/base/sidebar.html:92
+#: templates/dashproject/base/sidebar.html:81
 #: templates/dashproject/pages/report_header.html:67
 msgid "Report"
 msgstr "Relatoriu"
 
-#: templates/dashproject/base/sidebar.html:107
-#: templates/dashproject/pages/report_page.html:12
+#: templates/dashproject/base/sidebar.html:96
+#: templates/dashproject/pages/report_page.html:10
 msgid "Report List"
 msgstr "Lista Relatoriu"
 
-#: templates/dashproject/base/sidebar.html:130
+#: templates/dashproject/base/sidebar.html:119
 msgid "Search"
 msgstr "Pesquiza"
 
-#: templates/dashproject/base/sidebar.html:137
+#: templates/dashproject/base/sidebar.html:126
 msgid "User Managements"
 msgstr "Jestaun Utilizadores"
 
-#: templates/dashproject/base/sidebar.html:152
+#: templates/dashproject/base/sidebar.html:141
 msgid "Users List"
 msgstr "Lista Utilizadores"
 
@@ -387,13 +389,13 @@ msgid "Source Type"
 msgstr "Tipu da Fonte"
 
 #: templates/dashproject/pages/call_web_page.html:17
-#: templates/dashproject/pages/report_page.html:65
+#: templates/dashproject/pages/report_page.html:58
 msgid "Status"
 msgstr "Estado"
 
 #: templates/dashproject/pages/call_web_page.html:18
 #: templates/dashproject/pages/call_web_page.html:33
-#: templates/dashproject/pages/report_page.html:92
+#: templates/dashproject/pages/report_page.html:79
 msgid "Actions"
 msgstr "Asaun"
 
@@ -680,6 +682,7 @@ msgstr "Numeru telefone incluiding STD"
 #: templates/dashproject/pages/detail_subject.html:129
 #: templates/dashproject/pages/report_header.html:239
 #: templates/dashproject/pages/subject_modal.html:141
+#: templates/users/reset_email_password.html:11
 #: templates/users/user-list.html:58
 msgid "Email"
 msgstr ""
@@ -692,7 +695,7 @@ msgid "Would you like someone to call you back?"
 msgstr "Hakarak ema ruma telfone fali?"
 
 #: templates/dashproject/pages/comments.html:8
-#: templates/dashproject/pages/report_page.html:112
+#: templates/dashproject/pages/report_page.html:91
 msgid "Comment"
 msgstr "Komentariu"
 
@@ -705,7 +708,7 @@ msgid "Analyst Comments(s)"
 msgstr "Analistas Nia Komentariu"
 
 #: templates/dashproject/pages/comments.html:23
-#: templates/dashproject/pages/report_page.html:66
+#: templates/dashproject/pages/report_page.html:59
 #: templates/dashproject/pages/text_list.html:7
 msgid "User"
 msgstr "Utilizador"
@@ -786,7 +789,7 @@ msgstr "Calendario da Situaçao"
 
 #: templates/dashproject/pages/nav_tab.html:55
 #: templates/dashproject/pages/report_edit_comment.html:61
-#: templates/dashproject/pages/report_page.html:120
+#: templates/dashproject/pages/report_page.html:95
 msgid "Review"
 msgstr "Revijaun"
 
@@ -885,7 +888,7 @@ msgid "Hear the Recording"
 msgstr "Rona gravasaun"
 
 #: templates/dashproject/pages/report_header.html:65
-#: templates/dashproject/pages/report_page.html:19
+#: templates/dashproject/pages/report_page.html:17
 msgid "Reporting"
 msgstr "Relatoriu"
 
@@ -895,27 +898,27 @@ msgstr "Relatoriu"
 msgid "Other information would be relevant"
 msgstr "Informasaun seluk nebe mak relevante"
 
-#: templates/dashproject/pages/report_page.html:21
+#: templates/dashproject/pages/report_page.html:19
 msgid "Reporting Lists"
 msgstr "Lista Relatoriu"
 
-#: templates/dashproject/pages/report_page.html:35
+#: templates/dashproject/pages/report_page.html:33
 msgid "Add New Report"
 msgstr "Adisiona Relatoriu Foun"
 
-#: templates/dashproject/pages/report_page.html:62
+#: templates/dashproject/pages/report_page.html:55
 msgid "Report Name"
 msgstr "Naran Relatoriu"
 
-#: templates/dashproject/pages/report_page.html:63
+#: templates/dashproject/pages/report_page.html:56
 msgid "Report Source"
 msgstr "Fonte Relatoriu"
 
-#: templates/dashproject/pages/report_page.html:64
+#: templates/dashproject/pages/report_page.html:57
 msgid "Report Created"
 msgstr "Data Kriasaun relatoriu"
 
-#: templates/dashproject/pages/report_page.html:129
+#: templates/dashproject/pages/report_page.html:101
 msgid "Request Dissemination"
 msgstr "Pedidu Diseminasaun"
 
@@ -1111,6 +1114,108 @@ msgstr "Insere Dijitus 6 nebe mosu iha ita nia APP"
 msgid "Verify MFA"
 msgstr "Verifika MFA"
 
+#: templates/users/password_reset_complete.html:8
+#, fuzzy
+#| msgid "You are successfully logged in"
+msgid "Password Successfully Changed"
+msgstr "Ita loggin ho susesu"
+
+#: templates/users/password_reset_complete.html:12
+msgid "Your password has been set. You may go ahead and log in now."
+msgstr ""
+
+#: templates/users/password_reset_complete.html:14
+msgid "Log in"
+msgstr ""
+
+#: templates/users/password_reset_confirm.html:9
+#, fuzzy
+#| msgid "Change password"
+msgid "Change Password"
+msgstr "Muda ita nia Password"
+
+#: templates/users/password_reset_confirm.html:12
+msgid ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly."
+msgstr ""
+
+#: templates/users/password_reset_confirm.html:20
+#, fuzzy
+#| msgid "New Password"
+msgid "New password:"
+msgstr "Password Foun"
+
+#: templates/users/password_reset_confirm.html:29
+#, fuzzy
+#| msgid "Confirm Password"
+msgid "Confirm password:"
+msgstr "Konfirma Password"
+
+#: templates/users/password_reset_confirm.html:36
+#, fuzzy
+#| msgid "Change password"
+msgid "Change my password"
+msgstr "Muda ita nia Password"
+
+#: templates/users/password_reset_confirm.html:44
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used. Please request a  new password reset."
+msgstr ""
+
+#: templates/users/password_reset_confirm.html:46
+#, fuzzy
+#| msgid "Back to previous"
+msgid "Back to login"
+msgstr "Fila ba kotuk"
+
+#: templates/users/password_reset_done.html:11
+#, fuzzy
+#| msgid "Password"
+msgid "Password recovery"
+msgstr "Palavra Passe"
+
+#: templates/users/password_reset_done.html:14
+msgid ""
+"We’ve emailed you instructions for setting your password, if an account "
+"exists with the email you entered. You should receive them shortly."
+msgstr ""
+
+#: templates/users/password_reset_done.html:15
+msgid ""
+"If you don’t receive an email, please make sure you’ve entered the address "
+"you registered with, and check your spam folder."
+msgstr ""
+
+#: templates/users/password_reset_email.html:2
+msgid "Dear"
+msgstr "Karu"
+
+#: templates/users/password_reset_email.html:3
+msgid 
+"You're receiving this email because you requested a password reset for your "
+"user account at %(site_name)s."
+msgstr "Ita simu email ida ne'e tamba ita halo pedidu atu reset password ba ita nia"
+"konta iha %(site_name)s."
+
+#: templates/users/password_reset_email.html:4
+msgid "Please go to the following page and choose a new password:"
+msgstr "Favor ba iha pajina tuur mai hodi hili password foun"
+
+#: templates/users/password_reset_email.html:8
+msgid "Your username, in case you’ve forgotten:"
+msgstr "Ita nia konta mak ida ne, kaju ita haluan"
+
+#: templates/users/password_reset_email.html:10
+msgid "Thanks for using our site!"
+msgstr ""
+
+#: templates/users/password_reset_email.html:12
+#, python-format
+msgid "The %(site_name)s team"
+msgstr "Ekipa %(site_name)s "
+
 #: templates/users/register.html:14
 msgid "Create New Account"
 msgstr "Adisiona Utilizador Foun"
@@ -1130,6 +1235,18 @@ msgstr "Konfirma Password"
 #: templates/users/register.html:94
 msgid "Create"
 msgstr "Kria"
+
+#: templates/users/reset_email_password.html:7
+#, fuzzy
+#| msgid "Password"
+msgid "Password Recovery"
+msgstr "Palavra Passe"
+
+#: templates/users/reset_email_password.html:20
+#, fuzzy
+#| msgid "Submit Subject"
+msgid "Submit"
+msgstr "Submete formulariu Sujeitu"
 
 #: templates/users/reset_password.html:11
 msgid "Update User"
@@ -1186,3 +1303,6 @@ msgstr "Ativa utilizador"
 #: templates/users/user-list.html:104
 msgid "MFA Activation"
 msgstr "Ativasaun MFA"
+
+#~ msgid "<int:user_id>/enable-mfa/"
+#~ msgstr "<int:user_id>/ativa-mfa/"
