@@ -1,9 +1,9 @@
 {% extends 'dashproject/base/layout.html' %} {% load static %} {% block content%}
 {% load i18n %}
 <div class="container-fluid">
-
+  {% include './header_box.html' %}
   <!-- start page title -->
-  <div class="row content-home mt-1 mb-1">
+  <!-- <div class="row content-home mt-1 mb-1">
     <div class="col-12">
       <div class="page-title-box d-flex align-items-center justify-content-between">
         <h4 class="mb-0">
@@ -21,7 +21,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <div class="row content-home">
     <div class="col-lg-12">
       <div class="card">
@@ -30,8 +30,9 @@
             <div class="col-md-6">
               <div class="mb-3">
                 {% if 'administrator' in user_group or 'staff' in user_group %}
-                <a href="{% url 'new-report' %}" class="btn btn-success pl-1">
-                  <i class="fa fa-file m-1" aria-hidden="true"></i>{% trans 'Add New Report' %}
+                <a href="{% url 'new-report' %}" class="btn btn-success">
+                  <i class="fa fa-file mr-2" aria-hidden="true"></i>
+                  {% trans 'Add New Report' %}
                 </a>
                 {% endif %}
 

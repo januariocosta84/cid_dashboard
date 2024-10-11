@@ -1,13 +1,16 @@
-{% extends 'dashproject/base/layout.html' %} {% load static %} {% block content%}
-{% load i18n %}
+{% extends 'dashproject/base/layout.html' %}
+{% load static i18n %}
+
+{% block content %}
 <div class="container-fluid">
+  {%include './header_box.html' %}
+  <!-- Records Table -->
   <div class="row content-home">
     <div class="col">
-      <h6>
-
-        {% trans ' Web and Records' %}<span class="badge badge-primary m-2"> {{ records_count }} </span>
-
-      </h6>
+      <!-- <h6>
+        {% trans 'Web and Records' %}
+        <span class="badge badge-primary m-2">{{ records_count }}</span>
+      </h6> -->
       <table class="table mt-2 table-bordered table-hover" id="example2">
         <thead>
           <tr>
@@ -19,67 +22,58 @@
           </tr>
         </thead>
         <tbody>
-          {{call_web.type}}
+          {{ call_web.type }}
           {% for record in call_web %}
-          {% if record.status == 'Report'%}
+          {% if record.status == 'Report' %}
           <tr class="mt-2">
-            <td><a href="#">{{record.id}}</a></td>
+            <td><a href="#">{{ record.id }}</a></td>
             <td>{{ record.type }}</td>
-            <td><time datetime="">{{ record.date_created}}</time></td>
-            <td>{{record.get_status_display}}</td>
-            {% if record.type == 'Web Form' %}
+            <td><time datetime="">{{ record.date_created }}</time></td>
+            <td>{{ record.get_status_display }}</td>
             <td>
               <button type="button" class="btn btn-transparent dropdown-toggle text-uppercase" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                {% trans 'Actions'%}
+                {% trans 'Actions' %}
               </button>
               <div class="dropdown-menu">
+                {% if record.type == 'Web Form' %}
                 <button type="button" class="btn btn-transparent p-3 text-uppercase view-subject-btn fas fa-eye"
-                  data-id="{{record.webform_id}}" data-toggle="modal" data-target="#modal-subject"
-                  onclick="setModalCallId('{{ record.id}}')">
+                  data-id="{{ record.webform_id }}" data-toggle="modal" data-target="#modal-subject"
+                  onclick="setModalCallId('{{ record.id }}')">
                   {% trans 'View' %}
                 </button>
-
-              </div>
-            </td>
-
-            {%else%}
-            <td>
-              <button type="button" class="btn btn-transparent dropdown-toggle text-uppercase" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                Actions
-              </button>
-              <div class="dropdown-menu">
+                {% else %}
                 <button type="button" class="btn btn-transparent p-3 text-uppercase view-subject-btn fas fa-eye"
-                  data-id="{{record.hotline_id}}" data-toggle="modal" data-target="#modal-default"
+                  data-id="{{ record.hotline_id }}" data-toggle="modal" data-target="#modal-default"
                   onclick="setModalWebId('{{ record.id }}')">
-                  View
+                  {% trans 'View' %}
                 </button>
+                {% endif %}
               </div>
             </td>
-
-
-            {%endif%}
           </tr>
-          {%endif%}
+          {% endif %}
           {% endfor %}
-
         </tbody>
       </table>
     </div>
   </div>
 
-  <!-- Modal ida ne sei hatudu bainhira click view iha Web no Rejistu alias index page -->
+  <!-- Modal for Hotline Records -->
   <div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="modal-default-label"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
+
+        <!-- Modal Header -->
         <div class="modal-header">
           <h5 class="modal-title" id="modal-default-label">Record From Hotline</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+
+        <!-- Modal Body -->
         <div class="modal-body">
           <div class="card">
             <p id="path">Record Name:</p> <!-- Dynamic file name -->
@@ -89,187 +83,158 @@
             Your browser does not support the audio element.
           </audio>
         </div>
+
+        <!-- Modal Footer -->
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <a href="#" id="modalReportLink" class="btn btn-primary">Report to</a>
         </div>
+
       </div>
     </div>
   </div>
 
-
-
-  <!-- Modal ida ne sei hatudu bainhira click view iha Web no Rejistu alias index page -->
-  <!-- Modal -->
-  <div class="modal fade" id="modal-subject" tabindex="-1" role="dialog" aria-labelledby="modal-default-label"
+  <!-- Modal for Web Records -->
+  <div class="modal fade" id="modal-subject" tabindex="-1" role="dialog" aria-labelledby="modal-subject-label"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title text-success" id="modal-default-label">Subject - Web form ID Number <span id="id_num">
-            </span> </span></h5>
+
+        <!-- Modal Header -->
+        <div class="modal-header border-bottom-primary">
+          <!-- <h5 class="modal-title text-success" id="modal-subject-label">
+            {% trans 'Subject - Web form ID Number' %} <span id="id_num"></span>
+          </h5> -->
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+
+        <!-- Modal Body -->
         <div class="modal-body">
           <div class="card">
             <div class="card-body">
+
+              <!-- Subject Information -->
               <div class="card-header">
                 <h4>{% trans "Subject you are giving information about" %}</h4>
               </div>
-              <p class="text-mute">{% trans "First Name" %}</p>
-              <p><strong><span id="name-data"></span></strong></p>
 
-              <p class="text-mute">{% trans "Last Name" %}</p>
-              <p><strong><span id="last-data"></span></strong></p>
+              <p class="text-muted">{% trans "First Name" %}: <strong><span id="name-data"></span></strong></p>
+              <p class="text-muted">{% trans "Last Name" %}: <strong><span id="last-data"></span></strong></p>
+              <p class="text-muted">{% trans "Middle Name" %}: <strong><span id="middle-name-data"></span></strong></p>
+              <p class="text-muted">{% trans "Nick Name" %}: <strong><span id="nick-name-data"></span></strong></p>
+              <p class="text-muted">{% trans "Description of Subject" %}: <strong><span
+                    id="description-data"></span></strong></p>
+              <p class="text-muted">{% trans "Business Name" %}: <strong><span id="business-name-data"></span></strong>
+              </p>
 
-              <p class="text-mute">{% trans "Middle Name" %}</p>
-              <p><strong><span id="middle-name-data"></span></strong></p>
-
-              <p class="text-mute">{% trans "Nick Name" %}</p>
-              <p><strong><span id="nick-name-data"></span></strong></p>
-
-              <p class="text-mute">{% trans "Description of Subject" %}</p>
-              <p><strong><span id="description-data"></span></strong></p>
-
-              <p class="text-mute">{% trans "Business Name" %}</p>
-              <p><strong><span id="business-name-data"></span></strong></p>
-
+              <!-- Address Information -->
               <h4>{% trans "The address of the person or business" %}</h4>
               <hr>
-              <p class="text-mute">{% trans "Address" %}</p>
-              <p><strong><span id="address-data"></span></strong></p>
+              <p class="text-muted">{% trans "Address" %}: <strong><span id="address-data"></span></strong></p>
+              <p class="text-muted">{% trans "Post Code" %}: <strong><span id="post-code-data"></span></strong></p>
+              <p class="text-muted">{% trans "Country" %}: <strong><span id="country-data"></span></strong></p>
+              <p class="text-muted">{% trans "Phone Number" %}: <strong><span id="phone-data"></span></strong></p>
 
-              <p class="text-mute">{% trans "Post Code" %}</p>
-              <p><strong><span id="post-code-data"></span></strong></p>
-
-              <p class="text-mute">{% trans "Country" %}</p>
-              <p><strong><span id="country-data"></span></strong></p>
-
-              <p class="text-mute">{% trans "Phone Number" %}</p>
-              <p><strong><span id="phone-data"></span></strong></p>
-
+              <!-- Transportation Information -->
               <h4>{% trans "Transportation information" %}</h4>
               <hr>
-              <p class="text-mute">{% trans "Vehicles" %}</p>
-              <p><strong><span id="vehicle-data"></span></strong></p>
+              <p class="text-muted">{% trans "Vehicles" %}: <strong><span id="vehicle-data"></span></strong></p>
+              <p class="text-muted">{% trans "Flight and Routing" %}: <strong><span id="routing-data"></span></strong>
+              </p>
+              <p class="text-muted">{% trans "Ferry crossings" %}: <strong><span id="ferry-data"></span></strong></p>
+              <p class="text-muted">{% trans "Vessel and Yachts" %}: <strong><span id="vessel-data"></span></strong></p>
+              <p class="text-muted">{% trans "Cargo and Fast parcel" %}: <strong><span id="cargo-data"></span></strong>
+              </p>
+              <p class="text-muted">{% trans "Other Transport and travels" %}: <strong><span
+                    id="other-trans-data"></span></strong></p>
 
-              <p class="text-mute">{% trans "Flight and Routing" %}</p>
-              <p><strong><span id="routing-data"></span></strong></p>
-
-              <p class="text-mute">{% trans "Ferry crossings" %}</p>
-              <p><strong><span id="ferry-data"></span></strong></p>
-
-              <p class="text-mute">{% trans "Vessel and Yachts" %}</p>
-              <p><strong><span id="vessel-data"></span></strong></p>
-
-              <p class="text-mute">{% trans "Cargo and Fast parcel" %}</p>
-              <p><strong><span id="cargo-data"></span></strong></p>
-
-              <p class="text-mute">{% trans "Other Transport and travels" %}</p>
-              <p><strong><span id="other-trans-data"></span></strong></p>
-
+              <!-- Age and Nationality Information -->
               <h4>{% trans "The approximate age or date of birth and nationality of the person" %}</h4>
               <hr>
-              <p class="text-mute">{% trans "Approximate Age" %}</p>
-              <p><strong><span id="approx-age-data"></span></strong></p>
+              <p class="text-muted">{% trans "Approximate Age" %}: <strong><span id="approx-age-data"></span></strong>
+              </p>
+              <p class="text-muted">{% trans "Date of Birth" %}: <strong><span id="dob-data"></span></strong></p>
+              <p class="text-muted">{% trans "Nationality" %}: <strong><span id="nat-data"></span></strong></p>
 
-              <p class="text-mute">{% trans "Date of Birth" %}</p>
-              <p><strong><span id="dob-data"></span></strong></p>
-
-              <p class="text-mute">{% trans "Nationality" %}</p>
-              <p><strong><span id="nat-data"></span></strong></p>
-
+              <!-- Involved Others Information -->
               <h4>{% trans "Names of others involved" %}</h4>
               <hr>
-              <p class="text-mute">{% trans "Name of any other involved" %}</p>
-              <p><strong><span id="any-other-data"></span></strong></p>
+              <p class="text-muted">{% trans "Name of any other involved" %}: <strong><span
+                    id="any-other-data"></span></strong></p>
 
+              <!-- Event Details -->
               <h4>{% trans "Event details" %}</h4>
               <hr>
-              <p class="text-mute">{% trans "What is taking place?" %}</p>
-              <p><strong><span id="what-data"></span></strong></p>
+              <p class="text-muted">{% trans "What is taking place?" %}: <strong><span id="what-data"></span></strong>
+              </p>
+              <p class="text-muted">{% trans "Where is happening?" %}: <strong><span id="location-data"></span></strong>
+              </p>
+              <p class="text-muted">{% trans "How often does this happen?" %}: <strong><span
+                    id="quando-data"></span></strong></p>
+              <p class="text-muted">{% trans "How long has been going on?" %}: <strong><span
+                    id="how-long-data"></span></strong></p>
 
-              <p class="text-mute">{% trans "Where is happening?" %}</p>
-              <p><strong><span id="location-data"></span></strong></p>
-
-              <p class="text-mute">{% trans "How often does this happen?" %}</p>
-              <p><strong><span id="quando-data"></span></strong></p>
-
-              <p class="text-mute">{% trans "How long has been going on?" %}</p>
-              <p><strong><span id="how-long-data"></span></strong></p>
-
+              <!-- Additional Information -->
               <h4>{% trans "Additional information" %}</h4>
               <hr>
-              <p class="text-mute">{% trans "Other information that would be relevant" %}</p>
-              <p><strong><span id="other-infor-data"></span></strong></p>
+              <p class="text-muted">{% trans "Other information that would be relevant" %}: <strong><span
+                    id="other-infor-data"></span></strong></p>
+              <p class="text-muted">{% trans "Your connection with the person or business" %}: <strong><span
+                    id="your-connection-data"></span></strong></p>
+              <p class="text-muted">{% trans "Are you still connected to the person or business?" %}: <strong><span
+                    id="still-connect-data"></span></strong></p>
 
-              <p class="text-mute">{% trans "Your connection with the person or business" %}</p>
-              <p><strong><span id="your-connection-data"></span></strong></p>
-
-              <p class="text-mute">{% trans "Are you still connected to the person or business?" %}</p>
-              <p><strong><span id="still-connect-data"></span></strong></p>
-
+              <!-- Involvement Details -->
               <h4>{% trans "Involvement details" %}</h4>
               <hr>
-              <p class="text-mute">{% trans "How did you obtain this information?" %}</p>
-              <p><strong><span id="how-did-data"></span></strong></p>
+              <p class="text-muted">{% trans "How did you obtain this information?" %}: <strong><span
+                    id="how-did-data"></span></strong></p>
+              <p class="text-muted">{% trans "Does anyone else know this information? If so, how many?" %}:
+                <strong><span id="others-know-information-data"></span></strong>
+              </p>
+              <p class="text-muted">{% trans "How many?" %}: <strong><span id="how-many-data"></span></strong></p>
+              <p class="text-muted">{% trans "Will it affect you if we use the information?" %}: <strong><span
+                    id="affect-information-data"></span></strong></p>
 
-              <p class="text-mute">{% trans "Does anyone else know this information? If so, how many?" %}</p>
-              <p><strong><span id="others-know-information-data"></span></strong></p>
-
-              <p class="text-mute">{% trans "How many?" %}</p>
-              <p><strong><span id="how-many-data"></span></strong></p>
-
-              <p class="text-mute">{% trans "Will it affect you if we use the information?" %}</p>
-              <p><strong><span id="affect-information-data"></span></strong></p>
-
+              <!-- Reporter Details -->
               <h4>{% trans "Reporter details" %}</h4>
               <hr>
-              <p class="text-mute">{% trans "First Name" %}</p>
-              <p><strong><span id="an-first-name-data"></span></strong></p>
+              <p class="text-muted">{% trans "First Name" %}: <strong><span id="an-first-name-data"></span></strong></p>
+              <p class="text-muted">{% trans "Last Name" %}: <strong><span id="an-last-name-data"></span></strong></p>
+              <p class="text-muted">{% trans "Middle Name" %}: <strong><span id="an-middle-name-data"></span></strong>
+              </p>
+              <p class="text-muted">{% trans "Telephone number(s) including STD" %}: <strong><span
+                    id="an-phone-number-data"></span></strong></p>
+              <p class="text-muted">{% trans "Email" %}: <strong><span id="an-email-data"></span></strong></p>
+              <p class="text-muted">{% trans "Would you like someone to call you back?" %}: <strong><span
+                    id="ligar-data"></span></strong></p>
 
-              <p class="text-mute">{% trans "Last Name" %}</p>
-              <p><strong><span id="an-last-name-data"></span></strong></p>
-
-              <p class="text-mute">{% trans "Middle Name" %}</p>
-              <p><strong><span id="an-middle-name-data"></span></strong></p>
-
-              <p class="text-mute">{% trans "Telephone number(s) including STD" %}</p>
-              <p><strong><span id="an-phone-number-data"></span></strong></p>
-
-              <p class="text-mute">{% trans "Email" %}</p>
-              <p><strong><span id="an-email-data"></span></strong></p>
-
-              <p class="text-mute">{% trans "Would you like someone to call you back?" %}</p>
-              <p><strong><span id="ligar-data"></span></strong></p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                Closed
-              </button>
-              {% if 'oga' not in user_group %}
-              <a href="#" id="modalSubjectReportLink" class="btn btn-success">Report</a>
-              {% endif %}
-              <!-- <button type="button" class="btn btn-primary">Report To</button> -->
             </div>
           </div>
         </div>
 
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          {% if 'oga' not in user_group %}
+          <a href="#" id="modalSubjectReportLink" class="btn btn-success">Report</a>
+          {% endif %}
+          <!-- <button type="button" class="btn btn-primary">Report To</button> -->
+        </div>
+
       </div>
     </div>
-
   </div>
-</div>
-</div>
+
 </div>
 
+<!-- JavaScript Section -->
 <script>
-
   // Get elements from the HTML
   var audioT = document.getElementById("music");
-  var audioSource = document.getElementById('id_path');
+  var audioSource = document.getElementById('audioSource'); // Corrected ID
   var playPauseBtn = document.getElementById("playPauseBtn");
   var playPauseIcon = document.getElementById("playPauseIcon");
   var currentTime = document.getElementById("currentTime");
@@ -278,12 +243,12 @@
   function togglePlayPause() {
     console.log(audioSource)
     if (audioT.paused) {
-      audioSource.src
-      audioT.play(); // Call play on the audio element
+      // Assuming you want to set the source here if needed
+      audioT.play(); // Play the audio
       playPauseBtn.innerText = "Pause";
       playPauseIcon.className = "fas fa-solid fa-pause";
     } else {
-      audioT.pause(); // Call pause on the audio element
+      audioT.pause(); // Pause the audio
       playPauseBtn.innerText = "Play";
       playPauseIcon.className = "fas fa-solid fa-play";
     }
@@ -291,7 +256,7 @@
 
   // Function to mute/unmute audio
   function muteAudio() {
-    audioT.muted = !audioT.muted; // Mute/unmute on the audio element
+    audioT.muted = !audioT.muted; // Toggle mute
   }
 
   // Function to format time (MM:SS)
@@ -313,24 +278,25 @@
     audioT.load(); // Load the new source
   }
 
-
+  // Set the Report link for Hotline Records Modal
   function setModalWebId(webId) {
     if (webId) {
       var reportLink = document.getElementById('modalReportLink');
       reportLink.href = "{% url 'report-web' 0 %}".replace("0", webId);
     } else {
-      console.log("Bug")
+      console.log("Bug");
     }
   }
 
+  // Set the Report link for Web Records Modal
   function setModalCallId(webId) {
     if (webId) {
-      //var reportLink = document.getElementById('modalReportLink');
-      var reportLink = document.getElementById('modalSubjectReportLink')
+      var reportLink = document.getElementById('modalSubjectReportLink');
       reportLink.href = "{% url 'report-web' 0 %}".replace("0", webId);
     } else {
-      console.log("Bug")
+      console.log("Bug");
     }
   }
 </script>
+
 {% endblock %}

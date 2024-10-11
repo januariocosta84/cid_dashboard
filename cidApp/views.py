@@ -42,6 +42,10 @@ class HotLineAndWebView(LoginRequiredMixin,GroupRequiredMixin,TemplateView):
         print(self.request.user.email)
         context['id']= self.request.user.id
         context['records_count']= CallAndWebForm.objects.filter(status="Report").count()
+        context['records_incomplete']= Report.objects.filter(status="Incomplete").count()
+        context['records_closed']= Report.objects.filter(status="Closed").count()
+        context['records_completed']= Report.objects.filter(status="Completed").count()
+        context['report_count'] = Report.objects.count()
         context['call_web'] = CallAndWebForm.objects.all()
         for i in context['call_web']:
             print("ID",i.id)
@@ -64,7 +68,10 @@ class ViewAllReport(LoginRequiredMixin,TemplateView):
         context['id']= self.request.user.id
         print(context['id'])
         context['report_count'] = Report.objects.count()
-        
+        context['records_count']= CallAndWebForm.objects.filter(status="Report").count()
+        context['records_incomplete']= Report.objects.filter(status="Incomplete").count()
+        context['records_closed']= Report.objects.filter(status="Closed").count()
+        context['records_completed']= Report.objects.filter(status="Completed").count()
         # Pagination logic
         reports_list = Report.objects.all().order_by('-status')
         paginator = Paginator(reports_list,self.paginate_by)

@@ -1,0 +1,106 @@
+{% load static i18n %}
+<!-- Dashboard Boxes -->
+<div class="row content-home mt-1">
+    <!-- Report Waiting Box -->
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-fuchsia">
+            <div class="inner">
+                <h3>{{ records_count }}</h3>
+                <p>{% trans 'Report Waiting' %}</p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-clock"></i>
+            </div>
+            <a href="#" class="small-box-footer"></a>
+        </div>
+    </div>
+
+
+    <!-- Incomplete Reports Box -->
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h3>{{records_incomplete}}<sup style="font-size: 20px"></sup></h3>
+                <p>{% trans 'Incomplete' %}</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-edit"></i>
+            </div>
+            <a href="#" class="small-box-footer"></a>
+        </div>
+    </div>
+
+    <!-- Archived Reports Box -->
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-danger">
+            <div class="inner">
+                <h3>{{records_completed}}</h3>
+                <p>{% trans 'Completed' %}</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-folder"></i>
+            </div>
+            <a href="#" class="small-box-footer"></a>
+        </div>
+    </div>
+
+    <!-- Finalized Reports Box -->
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-warning">
+            <div class="inner">
+                <h3>{{records_closed}}</h3>
+                <p>{% trans 'Closed' %}</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-file"></i>
+            </div>
+            <a href="#" class="small-box-footer"></a>
+        </div>
+    </div>
+
+</div>
+
+<!--Another Boxes-->
+<div class="row content-home">
+    <!-- Report Waiting Box -->
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-success">
+            <div class="inner">
+                <h3>0</h3>
+                <p>{% trans 'Dissemintation Approved' %}</p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-check"></i>
+            </div>
+            <a href="#" class="small-box-footer"></a>
+        </div>
+    </div>
+
+    <!-- Incomplete Reports Box -->
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-dark">
+            <div class="inner">
+                <h3>0<sup style="font-size: 20px"></sup></h3>
+                <p>{% trans 'Dissemination Rejected' %}</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-lock"></i>
+            </div>
+            <a href="#" class="small-box-footer"></a>
+        </div>
+    </div>
+
+    <!-- Finalized Reports Box -->
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-secondary">
+            <div class="inner">
+                <h3>0</h3>
+                <p>{% trans 'Disseminated' %}</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-paper-plane"></i>
+            </div>
+            <a href="#" class="small-box-footer"></a>
+        </div>
+    </div>
+</div>
