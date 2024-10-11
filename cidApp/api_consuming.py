@@ -85,13 +85,13 @@ def insert_subject():
                 # Atu verifika sei CAllandWebform iha ona 
                 if not CallAndWebForm.objects.filter(webform=web_form).exists():
                     #Se laiha entaun kria record foun iha bases de dados 
-                    status_instance = Status.objects.first()  # Atu hetan dit status iha linha primeiro
-                    if status_instance:
+                    #status_instance = Status.objects.first()  # Atu hetan dit status iha linha primeiro
+                    #if status_instance:
                         CallAndWebForm.objects.create(
                             hotline=None,  # Set hotline hanesan none
                             webform=web_form,  # Reference ba web form object
-                            type='webform',
-                            status=status_instance
+                            type='Web Form',
+                            status='Report'
                         )
                         print(f"New CallAndWebForm created for WebForm ID: {web_form.id}")
             else:

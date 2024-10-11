@@ -19,14 +19,15 @@
           </tr>
         </thead>
         <tbody>
+          {{call_web.type}}
           {% for record in call_web %}
-          {% if record.status.name == 'Report Waiting'%}
+          {% if record.status == 'Report'%}
           <tr class="mt-2">
             <td><a href="#">{{record.id}}</a></td>
             <td>{{ record.type }}</td>
             <td><time datetime="">{{ record.date_created}}</time></td>
-            <td>{{record.status.name}}</td>
-            {% if record.type == 'webform' %}
+            <td>{{record.get_status_display}}</td>
+            {% if record.type == 'Web Form' %}
             <td>
               <button type="button" class="btn btn-transparent dropdown-toggle text-uppercase" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">

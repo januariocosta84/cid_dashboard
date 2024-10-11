@@ -48,7 +48,7 @@ class Hotline(models.Model):
         CallAndWebForm.objects.create(
             hotline=self,
             webform=None,
-            type='hotline',
+            type=_('Hotline'),
             status=Status.objects.first()
         )
 
@@ -121,12 +121,19 @@ class WebForm(models.Model):
         CallAndWebForm.objects.create(
             hotline=None,
             webform=self,
-            type='webform',
+            type=_('Web Form'),
             status=Status.objects.first()
         )
+ 
+ 
+
+report_status_choice = (
+    ("Report", _("Report Waiting")),
+    ("Reported", _("Reported")),
+) 
     
 class Status(models.Model):
-    name = models.CharField(max_length=250)
+    name = models.CharField(max_length=250, choices=report_status_choice,default='Report')
     def __str__(self) -> str:
         return self.name
     
@@ -136,15 +143,15 @@ class CallAndWebForm(models.Model):
     date_modify = models.DateTimeField(auto_now=True)
     hotline = models.ForeignKey(Hotline, on_delete=models.CASCADE, blank=True, null=True)
     webform = models.ForeignKey(WebForm, on_delete=models.CASCADE, blank=True, null=True)
-    status = models.ForeignKey(Status, on_delete=models.CASCADE)
+    status = models.CharField(max_length=250, choices=report_status_choice,default='Report')
     
     def __str__(self):
         return self.type
-    def save(self, *args, **kwargs):
-        # Ensure status is set to the first Status entry if not already set
-        if not self.status_id:
-            self.status = Status.objects.first()
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     # Ensure status is set to the first Status entry if not already set
+    #     if not self.status_id:
+    #         self.status = Status.objects.first()
+    #     super().save(*args, **kwargs)
         
     
 class Agency(models.Model):

@@ -41,7 +41,7 @@ class HotLineAndWebView(LoginRequiredMixin,GroupRequiredMixin,TemplateView):
         context =super().get_context_data(**kwargs)
         print(self.request.user.email)
         context['id']= self.request.user.id
-        context['records_count']= CallAndWebForm.objects.filter(status__name="Report Waiting").count()
+        context['records_count']= CallAndWebForm.objects.filter(status="Report").count()
         context['call_web'] = CallAndWebForm.objects.all()
         for i in context['call_web']:
             print("ID",i.id)

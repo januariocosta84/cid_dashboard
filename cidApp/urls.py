@@ -37,7 +37,7 @@ from .views import(
 
 urlpatterns = [
         #Call API from Web form to insert local database
-    #path('call-api/', SyncSubjectsView.as_view(), name= 'call-api'),
+    path('call-api/', SyncSubjectsView.as_view(), name= 'call-api'),
     path('<int:user_id>/enable-mfa/', EnableMFAView.as_view(), name='enable-mfa'),
     path('<int:user_id>/disable-mfa/', DisableMFAView.as_view(), name='disable-mfa'),
     path('mfa-verify/', MFAVerificationView.as_view(), name='verify-mfa'),
